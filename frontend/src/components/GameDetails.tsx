@@ -43,7 +43,7 @@ function GameDetails(props: gameDetailsProps) {
     return (
         <Paper style={{ height: '100vh' }}>
             <Grid container>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{ textAlign: 'center' }}>
                     <Typography variant='h3'>{title}</Typography>
                     <Typography variant='subtitle1'>{platforms.join(', ')}</Typography>
                     <Typography variant='subtitle2'>Time played: {gameMinutes} minutes</Typography>

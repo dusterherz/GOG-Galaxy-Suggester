@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, Card, CardMedia, CardActionArea, makeStyles, List, ListItem } from '@material-ui/core';
+import { Grid, Paper, List, ListItem, Typography } from '@material-ui/core';
 
 interface gameDetailsProps {
     title: string,
@@ -17,15 +17,6 @@ interface gameDetailsProps {
     verticalCover: string
 }
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 345,
-    },
-    media: {
-        height: 482,
-        // maxWidth: 600,
-    },
-});
 function GameDetails(props: gameDetailsProps) {
     const title = props.title;
     const platforms = props.platformList;
@@ -44,35 +35,34 @@ function GameDetails(props: gameDetailsProps) {
 
 
 
-    //   gameMinutes=''
     //   backgroundImage=''
     //   squareIcon=''
     //   verticalCover=''
 
-    const classes = useStyles();
 
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <h1>{title}</h1>
-                <h4>{platforms.join(', ')}</h4>
-                <h5>Time played: {gameMinutes} minutes</h5>
+        <Paper style={{ height: '100vh' }}>
+            <Grid container>
+                <Grid item xs={12}>
+                    <Typography variant='h3'>{title}</Typography>
+                    <Typography variant='subtitle1'>{platforms.join(', ')}</Typography>
+                    <Typography variant='subtitle2'>Time played: {gameMinutes} minutes</Typography>
+                </Grid>
+                <Grid item xs={12} lg={9}>
+                    <Typography variant='body1'>{summary}</Typography>
+                </Grid>
+                <Grid item xs={12} lg={3}>
+                    <List>
+                        <ListItem>Release date: {releaseDate.toDateString()}</ListItem>
+                        <ListItem>Critics score: {criticsScore}</ListItem>
+                        <ListItem>Developer: {developers.join(', ')}</ListItem>
+                        <ListItem>Publisher: {publishers.join(', ')}</ListItem>
+                        <ListItem>Genres: {genres.join(', ')}</ListItem>
+                        <ListItem>Themes: {themes.join(', ')}</ListItem>
+                    </List>
+                </Grid>
             </Grid>
-            <Grid item xs={12}>
-                {summary}
-            </Grid>
-            <Grid item xs={12}>
-                <List>
-                    <ListItem>Release date: {releaseDate.toDateString()}</ListItem>
-                    <ListItem>Critics score: {criticsScore}</ListItem>
-                    <ListItem>Developer: {developers.join(', ')}</ListItem>
-                    <ListItem>Publisher: {publishers.join(', ')}</ListItem>
-                    <ListItem>Genres: {genres.join(', ')}</ListItem>
-                    <ListItem>Themes: {themes.join(', ')}</ListItem>
-                </List>
-            </Grid>
-        </Grid>
-
+        </Paper>
     );
 }
 

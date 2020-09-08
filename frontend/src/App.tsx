@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GameDetails from './components/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
+import { gameDetailsProps } from './components/GameDetails.types';
 
 const theme = createMuiTheme({
   palette: {
@@ -12,24 +13,49 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <GameDetails
-        title={'Kerbal Space Program'}
-        summary={"In KSP, you must build space-worthy craft, capable of flying your crew out into space, without killing them. At your disposal is a collection of parts, which must be assembled to create a functional ship. Each part has its own function and will affect the way a ship flies (or doesn't). So strap yourself in, and get ready to try some Rocket Science!\n\nThe game has different game modes, you can play the Career Mode if you want to expand and manage your own Space Center, taking on missions and researching new technologies. Or you can play Sandbox mode if you're only interested in flying and discovering the Kerbal universe without restrictions. There is even a mid point between these two, Science mode."}
-        platformList={['Steam']}
-        criticsScore={87}
-        developers={['Flying Tiger Developments', 'Squad']}
-        publishers={['Deported B.V.', 'Squad']}
-        genres={['Indie', 'Simulator']}
-        themes={['Educational', 'Open world', 'Sandbox', 'Science fiction']}
-        releaseDate={new Date('2015-04-27')}
-        gameMinutes={223}
-        backgroundImage={'https://images.gog.com/4d2680caf0bda7eeb4f90e3d9bccba500629cb0ec267dd1ec15bd38c9edcfec0_glx_bg_top_padding_7.webp?namespace=gamesdb'}
-        squareIcon={'https://images.gog.com/2f6964251817bcc0e4044de681f9cc40fa399f8bf39f16d98b6ba7d199bae2da_glx_square_icon_v2.webp?namespace=gamesdb'}
-        verticalCover={'https://images.gog.com/2f6964251817bcc0e4044de681f9cc40fa399f8bf39f16d98b6ba7d199bae2da_glx_vertical_cover.webp?namespace=gamesdb'} />
-    </ThemeProvider>
-  );
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [gameDetails, setGameDetails] = useState<gameDetailsProps>({ title: '', summary: '', platforms: [], criticsScore: 0, developers: [], publishers: [], genres: [], themes: [], releaseDate: new Date(), gameMinutes: 0, backgroundImage: '', verticalCover: '', squareIcon: '' });
+
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
+    fetch("http://localhost:5000/random", {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setGameDetails({
+            ...result,
+            releaseDate: new Date(result.releaseDate),
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+
+  if (error && error) {
+    return null; //<div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <GameDetails
+          {...gameDetails} />
+      </ThemeProvider>
+    );
+  }
 }
 
 export default App;

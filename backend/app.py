@@ -3,8 +3,10 @@ from datetime import date, datetime
 from typing import List
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @dataclass

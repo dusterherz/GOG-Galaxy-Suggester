@@ -1,44 +1,23 @@
 import React from "react";
 import { Grid, Paper, List, ListItem, Typography } from '@material-ui/core';
+import { gameDetailsProps } from "./GameDetails.types";
 
-interface gameDetailsProps {
-    title: string,
-    summary: string,
-    platformList: string[],
-    criticsScore: number,
-    developers: string[],
-    publishers: string[],
-    genres: string[],
-    themes: string[],
-    releaseDate: Date,
-    gameMinutes: number,
-    backgroundImage: string,
-    squareIcon: string,
-    verticalCover: string
-}
-
-function GameDetails(props: gameDetailsProps) {
-    const title = props.title;
-    const platforms = props.platformList;
-    const gameMinutes = props.gameMinutes;
-
-    const summary = props.summary;
-
-    const releaseDate = props.releaseDate;
-    const criticsScore = props.criticsScore;
-
-    const developers = props.developers;
-    const publishers = props.publishers;
-
-    const genres = props.genres;
-    const themes = props.themes;
-
-
+function GameDetails({
+    title,
+    platforms,
+    gameMinutes,
+    summary,
+    releaseDate,
+    criticsScore,
+    developers,
+    publishers,
+    genres,
+    themes
+}: gameDetailsProps) {
 
     //   backgroundImage=''
     //   squareIcon=''
     //   verticalCover=''
-
 
     return (
         <Paper style={{ height: '100vh' }}>

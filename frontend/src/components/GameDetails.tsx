@@ -15,10 +15,6 @@ function GameDetails({
     themes
 }: gameDetailsProps) {
 
-    //   backgroundImage=''
-    //   squareIcon=''
-    //   verticalCover=''
-
     return (
         <Paper style={{ height: '100vh' }}>
             <Grid container>
@@ -28,7 +24,14 @@ function GameDetails({
                     <Typography variant='subtitle2'>Time played: {gameMinutes} minutes</Typography>
                 </Grid>
                 <Grid item xs={12} lg={9}>
-                    <Typography variant='body1'>{summary}</Typography>
+                    <Typography variant='body1'>{summary.split("\\n").map(function (item, idx) {
+                        return (
+                            <span key={idx}>
+                                {item}
+                                <br />
+                            </span>
+                        )
+                    })}</Typography>
                 </Grid>
                 <Grid item xs={12} lg={3}>
                     <List>

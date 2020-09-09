@@ -21,7 +21,7 @@ function App() {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("http://localhost:5000/random", {
+    fetch("http://localhost:5000/games/random", {
       method: 'GET',
     })
       .then(res => res.json())

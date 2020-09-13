@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import GameDetails from './components/GameDetails';
+import GameDetails from './components/GameDetails/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
-import { gameDetailsProps } from './components/GameDetails.types';
+import { gameDetailsProps } from './components/GameDetails/GameDetails.types';
 
 const theme = createMuiTheme({
   palette: {

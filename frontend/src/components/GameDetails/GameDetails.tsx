@@ -3,6 +3,7 @@ import { Grid, Paper, List, ListItem, Typography, Container, Box, Divider } from
 import { gameDetailsProps } from "./GameDetails.types";
 import useStyles from './GameDetails.styles'
 import GameDetailsItem from "../GameDetailsItem/GameDetailsItem";
+import MultilineText from "../MultilineText/MultilineText";
 
 function GameDetails({
     title,
@@ -30,14 +31,7 @@ function GameDetails({
                             <Typography variant='subtitle2'>Time played: {gameMinutes} minutes</Typography>
                         </Grid>
                         <Grid item xs={12} lg={9} className={classes.summary}>
-                            <Typography variant='body1'>{summary.split("\\n").map(function (item, idx) {
-                                return (
-                                    <span key={idx}>
-                                        {item}
-                                        <br />
-                                    </span>
-                                )
-                            })}</Typography>
+                            <MultilineText text={summary} />
                         </Grid>
                         <Grid item xs={12} lg={3}>
                             <Divider className={classes.divider} />

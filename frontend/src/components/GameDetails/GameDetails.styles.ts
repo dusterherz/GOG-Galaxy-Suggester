@@ -10,7 +10,7 @@ export default makeStyles(theme => ({
     },
     root: {
         minHeight: '100vh',
-        background: 'linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.75) 100%);',
+        background: 'linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.9) 100%);',
     },
     header: {
         textAlign: 'center',

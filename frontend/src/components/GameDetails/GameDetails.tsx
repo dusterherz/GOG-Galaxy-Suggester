@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Grid, Paper, List, ListItem, Typography, Container, Box, Divider } from '@material-ui/core';
 import { gameDetailsProps } from "./GameDetails.types";
 import useStyles from './GameDetails.styles'
@@ -25,7 +25,7 @@ function GameDetails({
     const classes = useStyles();
 
     return (
-        <Paper className={classes.root} >
+        <Box className={classes.root} >
             <AnimatedBackground backgroundImage={backgroundImage} containerId={backgroundLimiterId}></AnimatedBackground>
             <Box className={classes.gradient} id={backgroundLimiterId} >
                 <Container>
@@ -53,7 +53,7 @@ function GameDetails({
                     </Grid>
                 </Container>
             </Box >
-        </Paper >
+        </Box >
     );
 }
 

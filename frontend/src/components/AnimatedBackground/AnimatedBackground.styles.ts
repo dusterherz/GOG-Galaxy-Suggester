@@ -1,6 +1,10 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 export default makeStyles(theme => ({
+    root: {
+        position: 'absolute',
+        width: '100%',
+    },
     background: {
         minHeight: '100vh',
         height: (props: any) => `${props.backgroundHeight}px`,

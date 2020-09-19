@@ -19,9 +19,11 @@ function AnimatedBackground({ backgroundImage, containerId }: animatedBackground
 
     const classes = useStyles({ backgroundImage, backgroundHeight });
     return (
-        <Box className={classes.backgroundContainer}>
-            <Box className={classes.background}></Box>
-            <style>{zoomanimation}</style>
+        <Box className={classes.root}>
+            <Box className={classes.backgroundContainer}>
+                <Box className={classes.background}></Box>
+                <style>{zoomanimation}</style>
+            </Box>
         </Box>
     );
 }

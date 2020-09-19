@@ -3,6 +3,7 @@ import GameDetails from './components/GameDetails/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
 import { gameDetailsProps } from './components/GameDetails/GameDetails.types';
+import Paper from '@material-ui/core/Paper';
 
 const theme = createMuiTheme({
   palette: {
@@ -51,8 +52,10 @@ function App() {
   } else {
     return (
       <ThemeProvider theme={theme}>
-        <GameDetails
-          {...gameDetails} />
+        <Paper>
+          <GameDetails
+            {...gameDetails} />
+        </Paper>
       </ThemeProvider>
     );
   }

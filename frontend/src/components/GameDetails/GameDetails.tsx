@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Grid, Paper, List, ListItem, Typography, Container, Box, Divider } from '@material-ui/core';
 import { gameDetailsProps } from "./GameDetails.types";
 import useStyles from './GameDetails.styles'
 import GameDetailsItem from "../GameDetailsItem/GameDetailsItem";
 import MultilineText from "../MultilineText/MultilineText";
 import HumanTime from "../HumanTime/HumanTime";
+import AnimatedBackground from "../AnimatedBackground/AnimatedBackground";
 
 function GameDetails({
     title,
@@ -18,12 +19,15 @@ function GameDetails({
     genres,
     themes,
     backgroundImage,
-    ...props
 }: gameDetailsProps) {
-    const classes = useStyles({ backgroundImage });
+
+    const backgroundLimiterId = 'backgroundLimiter';
+    const classes = useStyles();
+
     return (
         <Paper className={classes.root} >
-            <Box className={classes.gradient} >
+            <AnimatedBackground backgroundImage={backgroundImage} containerId={backgroundLimiterId}></AnimatedBackground>
+            <Box className={classes.gradient} id={backgroundLimiterId} >
                 <Container>
                     <Grid container>
                         <Grid item xs={12} className={classes.header}>
@@ -49,7 +53,7 @@ function GameDetails({
                     </Grid>
                 </Container>
             </Box >
-        </Paper>
+        </Paper >
     );
 }
 

@@ -6,6 +6,7 @@ import GameDetailsItem from "../GameDetailsItem/GameDetailsItem";
 import MultilineText from "../MultilineText/MultilineText";
 import HumanTime from "../HumanTime/HumanTime";
 import AnimatedBackground from "../AnimatedBackground/AnimatedBackground";
+import PlatformDisplay from "../PlatformDisplay/PlatformDisplay";
 
 function GameDetails({
     title,
@@ -32,7 +33,7 @@ function GameDetails({
                     <Grid container>
                         <Grid item xs={12} className={classes.header}>
                             <Typography variant='h3'>{title}</Typography>
-                            <Typography variant='subtitle1'>{platforms.join(', ')}</Typography>
+                            <Typography variant='subtitle1'><PlatformDisplay platforms={platforms} /></Typography>
                             <Typography variant='subtitle2'>Time played: {<HumanTime minutes={gameMinutes}></HumanTime>}</Typography>
                         </Grid>
                         <Grid item xs={12} lg={9} className={classes.summary}>

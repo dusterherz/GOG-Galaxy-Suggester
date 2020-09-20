@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlatformIcon should show Battle.net icon when platform is Battle.net 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Battle.net\\">battlenet.svg</svg>"`;
+
+exports[`PlatformIcon should show Epic icon when platform is Epic Games Store 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 32 32\\" aria-hidden=\\"true\\" title=\\"Epic Games Store\\">epic.svg</svg>"`;
+
+exports[`PlatformIcon should show Humble Bundle icon when platform is Humble Bundle 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Humble Bundle\\">humble_bundle.svg</svg>"`;
+
+exports[`PlatformIcon should show Origin icon when platform is Origin 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 32 32\\" aria-hidden=\\"true\\" title=\\"Origin\\">origin.svg</svg>"`;
+
+exports[`PlatformIcon should show PlayStation icon when platform is PlayStation Network 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"PlayStation Network\\">playstation.svg</svg>"`;
+
+exports[`PlatformIcon should show Steam icon when platform is Steam 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Steam\\">steam.svg</svg>"`;
+
+exports[`PlatformIcon should show Uplay icon when platform is Uplay 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Uplay\\">uplay.svg</svg>"`;
+
+exports[`PlatformIcon should show Xbox icon when platform is Xbox Live 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Xbox Live\\">xbox.svg</svg>"`;
+
+exports[`PlatformIcon should show default gog galaxy icon when platform is unknown 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"some random test platform\\">default.svg</svg>"`;
+
+exports[`PlatformIcon should show gog icon when platform is GOG 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"GOG\\">gog.svg</svg>"`;

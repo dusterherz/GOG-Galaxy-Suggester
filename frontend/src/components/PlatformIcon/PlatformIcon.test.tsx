@@ -9,6 +9,11 @@ describe('PlatformIcon should', () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
 
+    it('show Bethesda.net icon when platform is Bethesda.net', () => {
+        const wrapper = mount(<PlatformIcon platform={'Bethesda.net'}></PlatformIcon>);
+        expect(wrapper.html()).toMatchSnapshot();
+    });
+
     it('show Epic icon when platform is Epic Games Store', () => {
         const wrapper = mount(<PlatformIcon platform={'Epic Games Store'}></PlatformIcon>);
         expect(wrapper.html()).toMatchSnapshot();
@@ -26,6 +31,11 @@ describe('PlatformIcon should', () => {
 
     it('show Origin icon when platform is Origin', () => {
         const wrapper = mount(<PlatformIcon platform={'Origin'}></PlatformIcon>);
+        expect(wrapper.html()).toMatchSnapshot();
+    });
+
+    it('show paradox icon when platform is paradox', () => {
+        const wrapper = mount(<PlatformIcon platform={'paradox'}></PlatformIcon>);
         expect(wrapper.html()).toMatchSnapshot();
     });
 

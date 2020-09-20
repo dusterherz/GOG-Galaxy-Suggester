@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, List, ListItem, Typography, Container, Box, Divider } from '@material-ui/core';
+import { Grid, List, ListItem, Typography, Container, Box, Divider } from '@material-ui/core';
 import { gameDetailsProps } from "./GameDetails.types";
 import useStyles from './GameDetails.styles'
 import GameDetailsItem from "../GameDetailsItem/GameDetailsItem";

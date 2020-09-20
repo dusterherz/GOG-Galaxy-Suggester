@@ -2,6 +2,8 @@
 
 exports[`PlatformIcon should show Battle.net icon when platform is Battle.net 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Battle.net\\">battlenet.svg</svg>"`;
 
+exports[`PlatformIcon should show Bethesda.net icon when platform is Bethesda.net 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Bethesda.net\\">bethesda.svg</svg>"`;
+
 exports[`PlatformIcon should show Epic icon when platform is Epic Games Store 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 32 32\\" aria-hidden=\\"true\\" title=\\"Epic Games Store\\">epic.svg</svg>"`;
 
 exports[`PlatformIcon should show Humble Bundle icon when platform is Humble Bundle 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"Humble Bundle\\">humble_bundle.svg</svg>"`;
@@ -19,3 +21,5 @@ exports[`PlatformIcon should show Xbox icon when platform is Xbox Live 1`] = `"<
 exports[`PlatformIcon should show default gog galaxy icon when platform is unknown 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"some random test platform\\">default.svg</svg>"`;
 
 exports[`PlatformIcon should show gog icon when platform is GOG 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"GOG\\">gog.svg</svg>"`;
+
+exports[`PlatformIcon should show paradox icon when platform is paradox 1`] = `"<svg class=\\"MuiSvgIcon-root\\" focusable=\\"false\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" title=\\"paradox\\">paradox.svg</svg>"`;

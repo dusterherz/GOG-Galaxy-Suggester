@@ -10,7 +10,7 @@ const id = (type: string) => {
     return db.exec(`SELECT id FROM GamePieceTypes WHERE type="${type}"`)[0].values[0][0];
 }
 
-export const readGogGames = (file: Blob, onRead: (e: SqlJs.ValueType[][]) => void) => {
+export const readGogGames = (file: Blob, onRead: (e: SqlJs.QueryResults) => void) => {
     let fileReader = new FileReader();
     fileReader.onloadend = function () {
         var Uints = new Uint8Array(fileReader.result as ArrayBuffer);
@@ -27,9 +27,26 @@ export const readGogGames = (file: Blob, onRead: (e: SqlJs.ValueType[][]) => voi
                     `);
 
                 let statement2 = db.prepare(`
-                    CREATE TEMP VIEW MasterDB AS SELECT DISTINCT(MasterList.releaseKey) AS releaseKey, MasterList.value AS title, PLATFORMS.value AS platformList
-                    FROM MasterList, MasterList AS PLATFORMS
-                    WHERE ((MasterList.gamePieceTypeId=${id('originalTitle')}) OR (MasterList.gamePieceTypeId=${id('title')})) AND ((PLATFORMS.releaseKey=MasterList.releaseKey) AND (PLATFORMS.gamePieceTypeId=${id('allGameReleases')}))
+                    CREATE TEMP VIEW MasterDB AS
+                    SELECT DISTINCT(MasterList.releaseKey) AS releaseKey
+                         , MasterList.value AS title
+                         , PLATFORMS.value AS platformList
+                         , SUMMARY.value AS summary
+                         , METADATA.value AS metadata
+                         , GAMETIMES.minutesInGame AS time
+                         , IMAGES.value AS images
+                    FROM MasterList
+                       , MasterList AS PLATFORMS
+                       , MasterList AS SUMMARY
+                       , MasterList AS METADATA
+                       , GAMETIMES
+                       , MasterList AS IMAGES
+                    WHERE ((MasterList.gamePieceTypeId=${id('originalTitle')}) OR (MasterList.gamePieceTypeId=${id('title')})) 
+                          AND ((PLATFORMS.releaseKey=MasterList.releaseKey) AND (PLATFORMS.gamePieceTypeId=${id('allGameReleases')}))
+                          AND (SUMMARY.releaseKey=MasterList.releaseKey) AND (SUMMARY.gamePieceTypeId=${id('summary')})
+                          AND (METADATA.releaseKey=MasterList.releaseKey) AND ((METADATA.gamePieceTypeId=${id('originalMeta')}) OR (METADATA.gamePieceTypeId=${id('meta')}))
+                          AND GAMETIMES.releaseKey=MasterList.releaseKey
+                          AND (IMAGES.releaseKey=MasterList.releaseKey) AND (IMAGES.gamePieceTypeId=${id('originalImages')})
                     ORDER BY title
                     ;
                     `);
@@ -38,9 +55,19 @@ export const readGogGames = (file: Blob, onRead: (e: SqlJs.ValueType[][]) => voi
                 statement1.step();
                 statement2.step();
 
-                let results = db.exec(`SELECT GROUP_CONCAT(DISTINCT MasterDB.releaseKey), MasterDB.title FROM MasterDB GROUP BY MasterDB.platformList ORDER BY MasterDB.title;`);
+                let results = db.exec(`
+                SELECT GROUP_CONCAT(DISTINCT MasterDB.releaseKey)
+                     , MasterDB.title 
+                     , MasterDB.summary
+                     , MasterDB.metadata
+                     , sum(MasterDB.time)
+                     , MasterDB.images
+                FROM MasterDB
+                GROUP BY MasterDB.platformList 
+                ORDER BY MasterDB.title
+                ;`);
                 console.log(results);
-                onRead(results[0].values);
+                onRead(results[0]);
 
             })
         // .catch(err => this.setState({ err }));

@@ -56,27 +56,50 @@ function App() {
   //   return <div>Loading...</div>;
   // } else {
 
-  const handleGogRead = (e: SqlJs.ValueType[][]) => {
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(e.length));
-    let b = e[randomGameIndex][1];
-    if (typeof b !== "string") {
+  const columnIndexFromName = (columns: string[], name: string) => {
+    return columns.indexOf(name) as number;
+  }
+
+  const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
+    let gamePieceJson = valueType[columnIndex];
+    if (typeof gamePieceJson !== "string") {
       throw 'unexpected type';
     }
+
+    return JSON.parse(gamePieceJson);
+  }
+
+  const platformFromReleaseKey = (releaseKey: string) => {
+    let platformPrefix = releaseKey.split('_')[0];
+    return platformPrefix;
+  }
+
+  const handleGogRead = (queryResults: SqlJs.QueryResults) => {
+    let values = queryResults.values;
+    let randomGameIndex = Math.floor(Math.random() * Math.floor(values.length));
+    let valueType = values[randomGameIndex];
+    let platforms = new Set((valueType[0] as string).split(',').map(platformFromReleaseKey))
+
+    let metadata = parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'metadata'));
+    let gameMinutes = valueType[columnIndexFromName(queryResults.columns, 'sum(MasterDB.time)')] as number;
+    let images = parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'images'));
+
     let gameDetailsProps: gameDetailsProps = {
-      title: JSON.parse(b).title,
-      summary: '',
-      platforms: [],
-      criticsScore: null,
-      developers: [],
-      publishers: [],
-      genres: [],
-      themes: [],
-      releaseDate: null,
-      gameMinutes: 0,
-      backgroundImage: '',
-      squareIcon: '',
-      verticalCover: '',
+      title: parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'title')).title,
+      summary: parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'summary')).summary,
+      platforms: Array.from(platforms),
+      criticsScore: metadata.criticsScore,
+      developers: metadata.developers,
+      publishers: metadata.publishers,
+      genres: metadata.genres,
+      themes: metadata.themes,
+      releaseDate: metadata.releaseDate ? new Date(metadata.releaseDate * 1000) : null,
+      gameMinutes: gameMinutes ?? 0,
+      backgroundImage: images.background,
+      squareIcon: images.squareIcon,
+      verticalCover: images.verticalCover,
     }
+
     setGameDetails(gameDetailsProps);
   }
 

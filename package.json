@@ -14,11 +14,12 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "sql.js": "^1.4.0",
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -40,7 +41,10 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.6",
     "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/sql.js": "^1.0.3",
+    "copy-webpack-plugin": "5.1.1",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.4"
+    "enzyme-adapter-react-16": "^1.15.4",
+    "react-app-rewired": "^2.1.8"
   }
 }

@@ -42,8 +42,8 @@ function GameDetails({
                         <Grid item xs={12} lg={3}>
                             <Divider className={classes.divider} />
                             <List>
-                                <ListItem><GameDetailsItem title={'Release date'} text={releaseDate.toDateString()}></GameDetailsItem></ListItem>
-                                <ListItem><GameDetailsItem title={'Critics score'} text={criticsScore.toString()}></GameDetailsItem></ListItem>
+                                <ListItem><GameDetailsItem title={'Release date'} text={releaseDate ? releaseDate.toDateString() : ''}></GameDetailsItem></ListItem>
+                                <ListItem><GameDetailsItem title={'Critics score'} text={criticsScore ? criticsScore.toString() : ''}></GameDetailsItem></ListItem>
                                 <ListItem><GameDetailsItem title={'Developer'} text={developers.join(', ')}></GameDetailsItem></ListItem>
                                 <ListItem><GameDetailsItem title={'Publisher'} text={publishers.join(', ')}></GameDetailsItem></ListItem>
                                 <ListItem><GameDetailsItem title={'Genres'} text={genres.join(', ')}></GameDetailsItem></ListItem>

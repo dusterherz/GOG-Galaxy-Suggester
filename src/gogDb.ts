@@ -1,16 +1,18 @@
 import { SqlJs } from "sql.js/module";
 import initSqlJs from "sql.js";
 
+
 let db: SqlJs.Database;
-initSqlJs()
-    .then(SQL => { db = new SQL.Database() })
-// .catch(err => this.setState({ err }));
+initSqlJs();
 
 const id = (type: string) => {
     return db.exec(`SELECT id FROM GamePieceTypes WHERE type="${type}"`)[0].values[0][0];
 }
 
-export const readGogGames = (file: Blob, onRead: (e: SqlJs.QueryResults) => void) => {
+export const readGogGames = (
+    file: Blob,
+    onRead: (e: SqlJs.QueryResults) => void,
+    onError: (error: any) => void) => {
     let fileReader = new FileReader();
     fileReader.onloadend = function () {
         var Uints = new Uint8Array(fileReader.result as ArrayBuffer);
@@ -56,11 +58,11 @@ export const readGogGames = (file: Blob, onRead: (e: SqlJs.QueryResults) => void
                 statement2.step();
 
                 let results = db.exec(`
-                SELECT GROUP_CONCAT(DISTINCT MasterDB.releaseKey)
+                SELECT GROUP_CONCAT(DISTINCT MasterDB.releaseKey) AS releaseKeys
                      , MasterDB.title 
                      , MasterDB.summary
                      , MasterDB.metadata
-                     , sum(MasterDB.time)
+                     , sum(MasterDB.time) AS gameMinutes
                      , MasterDB.images
                 FROM MasterDB
                 GROUP BY MasterDB.platformList 
@@ -70,11 +72,7 @@ export const readGogGames = (file: Blob, onRead: (e: SqlJs.QueryResults) => void
                 onRead(results[0]);
 
             })
-        // .catch(err => this.setState({ err }));
-
-
-
-
+            .catch(err => onError(err));
     }
     fileReader.readAsArrayBuffer(file);
 

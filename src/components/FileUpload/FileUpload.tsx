@@ -1,8 +1,6 @@
 import React from "react";
-import { Grid, List, ListItem, Typography, Container, Box, Divider, Input, TextField, Button, makeStyles } from '@material-ui/core';
-import initSqlJs from "sql.js";
-import { SqlJs } from "sql.js/module";
-import { DbInputProps } from "./DbInput.types";
+import { TextField, Button, makeStyles } from '@material-ui/core';
+import { FileUploadProps } from "./FileUpload.types";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function DbInput({ onFileChange }: DbInputProps) {
+function FileUpload({ onFileChange }: FileUploadProps) {
 
     const classes = useStyles();
 
@@ -40,4 +38,4 @@ function DbInput({ onFileChange }: DbInputProps) {
     );
 }
 
-export default DbInput;
+export default FileUpload;

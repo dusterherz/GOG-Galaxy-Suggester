@@ -4,10 +4,10 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
 import { gameDetailsProps } from './components/GameDetails/GameDetails.types';
 import Paper from '@material-ui/core/Paper';
-import { readGogGames } from './sqlInput';
-import DbInput from './components/DbInput/DbInput';
+import { readGogGames } from './gogDb';
+import FileUpload from './components/FileUpload/FileUpload';
 import { SqlJs } from 'sql.js/module';
-import { exception } from 'console';
+import dbRowToGameDetails from './utils/dbRowToGameDetails';
 
 const theme = createMuiTheme({
   palette: {
@@ -18,10 +18,10 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<any>(null);
+  const [isLoaded, setIsLoaded] = useState(true);
   const [gameDetails, setGameDetails] = useState<gameDetailsProps | null>(null);
-  const [dbFile, setDbFile] = useState<Blob | null>(null);
+  const [allGames, setAllGames] = useState<gameDetailsProps[] | null>(null);
 
   // // Note: the empty deps array [] means
   // // this useEffect will run once
@@ -56,69 +56,45 @@ function App() {
   //   return <div>Loading...</div>;
   // } else {
 
-  const columnIndexFromName = (columns: string[], name: string) => {
-    return columns.indexOf(name) as number;
-  }
-
-  const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
-    let gamePieceJson = valueType[columnIndex];
-    if (typeof gamePieceJson !== "string") {
-      throw 'unexpected type';
-    }
-
-    return JSON.parse(gamePieceJson);
-  }
-
-  const platformFromReleaseKey = (releaseKey: string) => {
-    let platformPrefix = releaseKey.split('_')[0];
-    return platformPrefix;
-  }
-
   const handleGogRead = (queryResults: SqlJs.QueryResults) => {
-    let values = queryResults.values;
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(values.length));
-    let valueType = values[randomGameIndex];
-    let platforms = new Set((valueType[0] as string).split(',').map(platformFromReleaseKey))
+    let rows = queryResults.values;
+    let randomGameIndex = Math.floor(Math.random() * Math.floor(rows.length));
 
-    let metadata = parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'metadata'));
-    let gameMinutes = valueType[columnIndexFromName(queryResults.columns, 'sum(MasterDB.time)')] as number;
-    let images = parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'images'));
+    let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
+    setAllGames(games);
 
-    let gameDetailsProps: gameDetailsProps = {
-      title: parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'title')).title,
-      summary: parseGamePiece(valueType, columnIndexFromName(queryResults.columns, 'summary')).summary,
-      platforms: Array.from(platforms),
-      criticsScore: metadata.criticsScore,
-      developers: metadata.developers,
-      publishers: metadata.publishers,
-      genres: metadata.genres,
-      themes: metadata.themes,
-      releaseDate: metadata.releaseDate ? new Date(metadata.releaseDate * 1000) : null,
-      gameMinutes: gameMinutes ?? 0,
-      backgroundImage: images.background,
-      squareIcon: images.squareIcon,
-      verticalCover: images.verticalCover,
-    }
+    let gameDetailsProps: gameDetailsProps = games[randomGameIndex];
 
     setGameDetails(gameDetailsProps);
-  }
+    setIsLoaded(true);
+  };
 
-  const handleFileChange = (e: Blob) => {
-    readGogGames(e, handleGogRead);
-  }
+  const handleGogReadError = (error: any) => {
+    setError(error);
+    setIsLoaded(true);
+  };
+
+  const handleFileChange = (blob: Blob) => {
+    setIsLoaded(false);
+    readGogGames(blob, handleGogRead, handleGogReadError);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        {gameDetails != null
-          ? <GameDetails {...gameDetails} />
-          : <DbInput onFileChange={handleFileChange}></DbInput>
+        {error && error.message
+          ? <div>Error: {error.message}</div>
+          : !isLoaded
+            ? <div>Loading...</div>
+            : gameDetails != null
+              ? <GameDetails {...gameDetails} />
+              : <FileUpload onFileChange={handleFileChange}></FileUpload>
         }
 
 
       </Paper>
     </ThemeProvider>
   );
-  //   }
 }
 
 export default App;

@@ -1,3 +1,3 @@
-export interface DbInputProps {
+export interface FileUploadProps {
     onFileChange: (e: Blob) => void;
 }

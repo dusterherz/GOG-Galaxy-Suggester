@@ -8,6 +8,7 @@ import { readGogGames } from './gogDb';
 import FileUpload from './components/FileUpload/FileUpload';
 import { SqlJs } from 'sql.js/module';
 import dbRowToGameDetails from './utils/dbRowToGameDetails';
+import Navigation from './components/Navigation/Navigation';
 
 const theme = createMuiTheme({
   palette: {
@@ -79,9 +80,35 @@ function App() {
     readGogGames(blob, handleGogRead, handleGogReadError);
   };
 
+  const handleUploadDbClicked = () => {
+    setError(null);
+    setGameDetails(null);
+  };
+
+  const handleNextGameClicked = () => {
+    setError(null);
+    setNextGame();
+  };
+
+  const setNextGame = () => {
+    if (allGames === null) {
+      return;
+    }
+
+    let randomGameIndex = Math.floor(Math.random() * Math.floor(allGames.length));
+    let gameDetailsProps: gameDetailsProps = allGames[randomGameIndex];
+
+    setGameDetails(gameDetailsProps);
+  };
+
+  const isNextGameDisabled = () => {
+    return allGames === null || allGames.length === 0;
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Paper>
+        <Navigation onUploadDbClicked={handleUploadDbClicked} onNextGameClicked={handleNextGameClicked} isNextGameDisabled={isNextGameDisabled()}></Navigation>
         {error && error.message
           ? <div>Error: {error.message}</div>
           : !isLoaded

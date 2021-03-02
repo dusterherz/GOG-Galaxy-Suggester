@@ -9,5 +9,4 @@ export interface gameDetailsProps {
     themes: string[];
     releaseDate: Date | null;
     gameMinutes: number;
-    backgroundImage: string;
 }

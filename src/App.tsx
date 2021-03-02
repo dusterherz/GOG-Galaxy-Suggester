@@ -9,6 +9,7 @@ import { SqlJs } from 'sql.js/module';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import Navigation from './components/Navigation/Navigation';
 import { game } from './types/game';
+import Background from './components/Background/Background';
 
 const theme = createMuiTheme({
   palette: {
@@ -23,6 +24,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [game, setGame] = useState<game | null>(null);
   const [allGames, setAllGames] = useState<game[] | null>(null);
+
+
 
   // // Note: the empty deps array [] means
   // // this useEffect will run once
@@ -108,18 +111,17 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Paper>
-        <Navigation onUploadDbClicked={handleUploadDbClicked} onNextGameClicked={handleNextGameClicked} isNextGameDisabled={isNextGameDisabled()}></Navigation>
-        {error && error.message
-          ? <div>Error: {error.message}</div>
-          : !isLoaded
-            ? <div>Loading...</div>
-            : game != null
-              ? <GameDetails {...game} />
-              : <FileUpload onFileChange={handleFileChange}></FileUpload>
-        }
-
-
-      </Paper>
+        <Background backgroundImage={game?.backgroundImage ?? ''}>
+          <Navigation onUploadDbClicked={handleUploadDbClicked} onNextGameClicked={handleNextGameClicked} isNextGameDisabled={isNextGameDisabled()}></Navigation>
+          {error && error.message
+            ? <div>Error: {error.message}</div>
+            : !isLoaded
+              ? <div>Loading...</div>
+              : game != null
+                ? <GameDetails {...game} />
+                : <FileUpload onFileChange={handleFileChange}></FileUpload>
+          }
+        </Background></Paper>
     </ThemeProvider>
   );
 }

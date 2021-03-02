@@ -1,5 +1,6 @@
 import { SqlJs } from 'sql.js/module';
 import dbRowToGame from './dbRowToGame';
+import * as readablePlatformName from './readablePlatformName';
 
 const columns: string[] = [
   "releaseKeys",
@@ -11,7 +12,7 @@ const columns: string[] = [
 ];
 
 const valueTypes: SqlJs.ValueType[] = [
-  'steam_435790',
+  'steam_435790,supertest_123',
   '{"title":"10 Second Ninja X"}',
   '{"summary":"10 SECOND NINJA X is a blisteringly fast, satisfyingly difficult and surprisingly methodical sidescroller which tasks you with completing each level in ten seconds or less. No lengthy checkpoint gaps. No cluttered control scheme. No hand holding. Get that three star rating, yo! You got this. \\n\\n1 star. Again. 1 star. Again. 2 stars! Again. Back to 1 star. DAMN IT. Again... \\n\\n100 levels including all 40 original 10 Second Ninja levels remastered in HD. Individual leaderboards for each level. Unlockables and collectibles."}',
   '{"criticsScore":77.3333,"developers":["Four Circle Interactive"],"genres":["Indie","Platform","Puzzle","Arcade"],"publishers":["Curve Digital"],"releaseDate":1468886400,"themes":["Action"]}',
@@ -25,89 +26,79 @@ describe('dbRowToGame', () => {
 
     expect(game.title).toBe('10 Second Ninja X');
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set summary', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.summary).toBe("10 SECOND NINJA X is a blisteringly fast, satisfyingly difficult and surprisingly methodical sidescroller which tasks you with completing each level in ten seconds or less. No lengthy checkpoint gaps. No cluttered control scheme. No hand holding. Get that three star rating, yo! You got this. \n\n1 star. Again. 1 star. Again. 2 stars! Again. Back to 1 star. DAMN IT. Again... \n\n100 levels including all 40 original 10 Second Ninja levels remastered in HD. Individual leaderboards for each level. Unlockables and collectibles.");
   });
-});
 
-describe('dbRowToGame', () => {
+  it('should set platforms converted to readable format', () => {
+    const spy = jest.spyOn(readablePlatformName, 'default');
+    spy.mockImplementation((key) => {
+      const platforms: { [key: string]: string } = { 'steam': 'Steam', 'supertest': 'Super Test' };
+      return platforms[key];
+    });
+
+    const game = dbRowToGame(valueTypes, columns);
+
+    expect(game.platforms).toEqual(['Steam', 'Super Test'])
+  });
+
   it('should set criticsScore', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.criticsScore).toBe(77.3333);
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set developers', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.developers).toStrictEqual(["Four Circle Interactive"]);
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set genres', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.genres).toStrictEqual(["Indie", "Platform", "Puzzle", "Arcade"]);
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set publishers', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.publishers).toStrictEqual(["Curve Digital"]);
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set releaseDate', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.releaseDate).toStrictEqual(new Date('2016-07-19'));
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set themes', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.themes).toStrictEqual(["Action"]);
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set gameMinutes', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.gameMinutes).toBe(44);
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set backgroundImage', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.backgroundImage).toBe('https://images.gog.com/640c97dd51fbb5eb6240d0d7e2765e223d46e1b9f92ce4d9f5db7992f4ced293_glx_bg_top_padding_7.webp?namespace=gamesdb');
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set squareIcon', () => {
     const game = dbRowToGame(valueTypes, columns);
 
     expect(game.squareIcon).toBe("https://images.gog.com/e1d3f3b75a1cf921a1493294840c1e821e5002e55943f987039f6a76cc2bd90c_glx_square_icon_v2.webp?namespace=gamesdb");
   });
-});
 
-describe('dbRowToGame', () => {
   it('should set verticalCover', () => {
     const game = dbRowToGame(valueTypes, columns);
 

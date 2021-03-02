@@ -1,5 +1,6 @@
 import { SqlJs } from 'sql.js/module';
 import { game } from '../types/game';
+import readablePlatformName from './readablePlatformName';
 
 const columnIndexFromName = (columns: string[], name: string) => {
     return columns.indexOf(name) as number;
@@ -20,7 +21,12 @@ const platformFromReleaseKey = (releaseKey: string) => {
 };
 
 export default (row: SqlJs.ValueType[], columns: string[]) => {
-    let platforms = new Set((row[columnIndexFromName(columns, 'releaseKeys')] as string).split(',').map(platformFromReleaseKey))
+    let platforms = new Set(
+        (row[columnIndexFromName(columns, 'releaseKeys')] as string)
+            .split(',')
+            .map(platformFromReleaseKey)
+            .map(readablePlatformName)
+    );
 
     let metadata = parseGamePiece(row, columnIndexFromName(columns, 'metadata'));
     let gameMinutes = row[columnIndexFromName(columns, 'gameMinutes')] as number;

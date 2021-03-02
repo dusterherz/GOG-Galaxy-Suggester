@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import GameDetails from './components/GameDetails/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
-import { gameDetailsProps } from './components/GameDetails/GameDetails.types';
 import Paper from '@material-ui/core/Paper';
 import { readGogGames } from './gogDb';
 import FileUpload from './components/FileUpload/FileUpload';
 import { SqlJs } from 'sql.js/module';
-import dbRowToGameDetails from './utils/dbRowToGameDetails';
+import dbRowToGameDetails from './utils/dbRowToGame';
 import Navigation from './components/Navigation/Navigation';
+import { game } from './types/game';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,8 +21,8 @@ const theme = createMuiTheme({
 function App() {
   const [error, setError] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [gameDetails, setGameDetails] = useState<gameDetailsProps | null>(null);
-  const [allGames, setAllGames] = useState<gameDetailsProps[] | null>(null);
+  const [game, setGame] = useState<game | null>(null);
+  const [allGames, setAllGames] = useState<game[] | null>(null);
 
   // // Note: the empty deps array [] means
   // // this useEffect will run once
@@ -64,9 +64,9 @@ function App() {
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
     setAllGames(games);
 
-    let gameDetailsProps: gameDetailsProps = games[randomGameIndex];
+    let gameDetailsProps: game = games[randomGameIndex];
 
-    setGameDetails(gameDetailsProps);
+    setGame(gameDetailsProps);
     setIsLoaded(true);
   };
 
@@ -82,7 +82,7 @@ function App() {
 
   const handleUploadDbClicked = () => {
     setError(null);
-    setGameDetails(null);
+    setGame(null);
   };
 
   const handleNextGameClicked = () => {
@@ -96,9 +96,9 @@ function App() {
     }
 
     let randomGameIndex = Math.floor(Math.random() * Math.floor(allGames.length));
-    let gameDetailsProps: gameDetailsProps = allGames[randomGameIndex];
+    let gameDetailsProps: game = allGames[randomGameIndex];
 
-    setGameDetails(gameDetailsProps);
+    setGame(gameDetailsProps);
   };
 
   const isNextGameDisabled = () => {
@@ -113,8 +113,8 @@ function App() {
           ? <div>Error: {error.message}</div>
           : !isLoaded
             ? <div>Loading...</div>
-            : gameDetails != null
-              ? <GameDetails {...gameDetails} />
+            : game != null
+              ? <GameDetails {...game} />
               : <FileUpload onFileChange={handleFileChange}></FileUpload>
         }
 

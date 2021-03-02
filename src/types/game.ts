@@ -1,4 +1,4 @@
-export interface gameDetailsProps {
+export interface game {
     title: string;
     summary: string;
     platforms: string[];
@@ -10,4 +10,6 @@ export interface gameDetailsProps {
     releaseDate: Date | null;
     gameMinutes: number;
     backgroundImage: string;
+    squareIcon: string;
+    verticalCover: string;
 }

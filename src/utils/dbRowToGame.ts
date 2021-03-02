@@ -1,5 +1,5 @@
 import { SqlJs } from 'sql.js/module';
-import { gameDetailsProps } from '../components/GameDetails/GameDetails.types';
+import { game } from '../types/game';
 
 const columnIndexFromName = (columns: string[], name: string) => {
     return columns.indexOf(name) as number;
@@ -26,7 +26,7 @@ export default (row: SqlJs.ValueType[], columns: string[]) => {
     let gameMinutes = row[columnIndexFromName(columns, 'gameMinutes')] as number;
     let images = parseGamePiece(row, columnIndexFromName(columns, 'images'));
 
-    let gameDetailsProps: gameDetailsProps = {
+    let game: game = {
         title: parseGamePiece(row, columnIndexFromName(columns, 'title')).title,
         summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary,
         platforms: Array.from(platforms),
@@ -42,5 +42,5 @@ export default (row: SqlJs.ValueType[], columns: string[]) => {
         verticalCover: images.verticalCover,
     }
 
-    return gameDetailsProps;
+    return game;
 };

@@ -14,14 +14,17 @@ export default ({
     const classes = useStyles();
 
     return (
-        <AppBar position="sticky" className={classes.root}>
-            <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="menu" onClick={onUploadDbClicked}>
-                    <FolderOpenTwoToneIcon />
-                </IconButton>
-                <IconButton color="inherit" aria-label="menu" onClick={onNextGameClicked} disabled={isNextGameDisabled}>
-                    <RefreshTwoToneIcon />
-                </IconButton>
-            </Toolbar>
-        </AppBar>);
+        <React.Fragment>
+            <AppBar position="fixed" className={classes.root}>
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={onUploadDbClicked}>
+                        <FolderOpenTwoToneIcon />
+                    </IconButton>
+                    <IconButton color="inherit" aria-label="menu" onClick={onNextGameClicked} disabled={isNextGameDisabled}>
+                        <RefreshTwoToneIcon />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+            <div className={classes.offset}></div>
+        </React.Fragment>);
 }

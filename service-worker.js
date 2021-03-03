@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/GOG-Galaxy-Suggester/precache-manifest.1be8ca66855148ec3a196f1a15d5953e.js"
+  "/GOG-Galaxy-Suggester/precache-manifest.737dc238f159f8865ef9cd27227dec0b.js"
 );
 
 self.addEventListener('message', (event) => {

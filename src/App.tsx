@@ -121,7 +121,8 @@ function App() {
                 ? <GameDetails {...game} />
                 : <FileUpload onFileChange={handleFileChange}></FileUpload>
           }
-        </Background></Paper>
+        </Background>
+      </Paper>
     </ThemeProvider>
   );
 }

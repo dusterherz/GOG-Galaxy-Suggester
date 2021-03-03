@@ -30,7 +30,7 @@ describe('dbRowToGame', () => {
   it('should set summary', () => {
     const game = dbRowToGame(valueTypes, columns);
 
-    expect(game.summary).toBe("10 SECOND NINJA X is a blisteringly fast, satisfyingly difficult and surprisingly methodical sidescroller which tasks you with completing each level in ten seconds or less. No lengthy checkpoint gaps. No cluttered control scheme. No hand holding. Get that three star rating, yo! You got this. \n\n1 star. Again. 1 star. Again. 2 stars! Again. Back to 1 star. DAMN IT. Again... \n\n100 levels including all 40 original 10 Second Ninja levels remastered in HD. Individual leaderboards for each level. Unlockables and collectibles.");
+    expect(game.summary).toBe("10 SECOND NINJA X is a blisteringly fast, satisfyingly difficult and surprisingly methodical sidescroller which tasks you with completing each level in ten seconds or less. No lengthy checkpoint gaps. No cluttered control scheme. No hand holding. Get that three star rating, yo! You got this. \\n\\n1 star. Again. 1 star. Again. 2 stars! Again. Back to 1 star. DAMN IT. Again... \\n\\n100 levels including all 40 original 10 Second Ninja levels remastered in HD. Individual leaderboards for each level. Unlockables and collectibles.");
   });
 
   it('should set platforms converted to readable format', () => {

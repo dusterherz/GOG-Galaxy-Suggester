@@ -35,7 +35,7 @@ export default (row: SqlJs.ValueType[], columns: string[]) => {
 
     let game: game = {
         title: parseGamePiece(row, columnIndexFromName(columns, 'title')).title,
-        summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary,
+        summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary.split('\n').join('\\n'),
         platforms: Array.from(platforms),
         criticsScore: metadata.criticsScore,
         developers: metadata.developers,

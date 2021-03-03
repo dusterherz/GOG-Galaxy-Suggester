@@ -20,10 +20,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2    
-    - name: Get commit data
-      uses: rlespinasse/git-commit-data-action@v1.x
-    - run: git config --global user.email "${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
-    - run: git config --global user.name "${{ env.GIT_COMMIT_AUTHOR_NAME }}"
     - run: npm ci
-    - run: npm run deploy
+    - run: npm run build
+    - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
       

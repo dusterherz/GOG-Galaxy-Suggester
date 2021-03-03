@@ -50,7 +50,7 @@ export const readGogGames = (
                           AND (METADATA.releaseKey=MasterList.releaseKey) AND ((METADATA.gamePieceTypeId=${id('originalMeta')}) OR (METADATA.gamePieceTypeId=${id('meta')}))
                           AND GAMETIMES.releaseKey=MasterList.releaseKey
                           AND (IMAGES.releaseKey=MasterList.releaseKey) AND (IMAGES.gamePieceTypeId=${id('originalImages')})
-                          AND (RELEASEPROPERTIES.releaseKey=MasterList.releaseKey AND RELEASEPROPERTIES.isVisibleInLibrary=1)
+                          AND (RELEASEPROPERTIES.releaseKey=MasterList.releaseKey AND RELEASEPROPERTIES.isDlc=0 AND RELEASEPROPERTIES.isVisibleInLibrary=1)
                     ORDER BY title
                     ;
                     `);

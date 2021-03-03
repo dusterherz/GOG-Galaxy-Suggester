@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/GOG-Galaxy-Suggester/static/js/main.6fefca2b.chunk.js",
-    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.6fefca2b.chunk.js.map",
+    "main.js": "/GOG-Galaxy-Suggester/static/js/main.e7495684.chunk.js",
+    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.e7495684.chunk.js.map",
     "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js",
     "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js.map",
     "static/js/2.e31ed621.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.e31ed621.chunk.js",
     "static/js/2.e31ed621.chunk.js.map": "/GOG-Galaxy-Suggester/static/js/2.e31ed621.chunk.js.map",
     "index.html": "/GOG-Galaxy-Suggester/index.html",
-    "precache-manifest.aedd1c9f2ab692018ebcae7d9c6fa92d.js": "/GOG-Galaxy-Suggester/precache-manifest.aedd1c9f2ab692018ebcae7d9c6fa92d.js",
+    "precache-manifest.1be8ca66855148ec3a196f1a15d5953e.js": "/GOG-Galaxy-Suggester/precache-manifest.1be8ca66855148ec3a196f1a15d5953e.js",
     "service-worker.js": "/GOG-Galaxy-Suggester/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.e31ed621.chunk.js.LICENSE.txt": "/GOG-Galaxy-Suggester/static/js/2.e31ed621.chunk.js.LICENSE.txt",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.92d61a7d.js",
     "static/js/2.e31ed621.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.6fefca2b.chunk.js"
+    "static/js/main.e7495684.chunk.js"
   ]
 }

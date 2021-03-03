@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/GOG-Galaxy-Suggester/static/js/main.6fefca2b.chunk.js",
+    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.6fefca2b.chunk.js.map",
+    "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js",
+    "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js.map",
+    "static/js/2.e31ed621.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.e31ed621.chunk.js",
+    "static/js/2.e31ed621.chunk.js.map": "/GOG-Galaxy-Suggester/static/js/2.e31ed621.chunk.js.map",
+    "index.html": "/GOG-Galaxy-Suggester/index.html",
+    "precache-manifest.78c0dc77724cd318e93c6777d01a5889.js": "/GOG-Galaxy-Suggester/precache-manifest.78c0dc77724cd318e93c6777d01a5889.js",
+    "service-worker.js": "/GOG-Galaxy-Suggester/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.e31ed621.chunk.js.LICENSE.txt": "/GOG-Galaxy-Suggester/static/js/2.e31ed621.chunk.js.LICENSE.txt",
+    "static/js/sql-wasm.wasm": "/GOG-Galaxy-Suggester/static/js/sql-wasm.wasm",
+    "static/media/battlenet.21f5bf2c.svg": "/GOG-Galaxy-Suggester/static/media/battlenet.21f5bf2c.svg",
+    "static/media/bethesda.0db90642.svg": "/GOG-Galaxy-Suggester/static/media/bethesda.0db90642.svg",
+    "static/media/default.118fce45.svg": "/GOG-Galaxy-Suggester/static/media/default.118fce45.svg",
+    "static/media/epic.f75522e7.svg": "/GOG-Galaxy-Suggester/static/media/epic.f75522e7.svg",
+    "static/media/gog.1ff85af0.svg": "/GOG-Galaxy-Suggester/static/media/gog.1ff85af0.svg",
+    "static/media/humble_bundle.3205b330.svg": "/GOG-Galaxy-Suggester/static/media/humble_bundle.3205b330.svg",
+    "static/media/origin.67c452f3.svg": "/GOG-Galaxy-Suggester/static/media/origin.67c452f3.svg",
+    "static/media/paradox.de6f4bda.svg": "/GOG-Galaxy-Suggester/static/media/paradox.de6f4bda.svg",
+    "static/media/playstation.3ea94cc6.svg": "/GOG-Galaxy-Suggester/static/media/playstation.3ea94cc6.svg",
+    "static/media/steam.ea5e707f.svg": "/GOG-Galaxy-Suggester/static/media/steam.ea5e707f.svg",
+    "static/media/uplay.4bd3e3b5.svg": "/GOG-Galaxy-Suggester/static/media/uplay.4bd3e3b5.svg",
+    "static/media/xbox.51e1df0b.svg": "/GOG-Galaxy-Suggester/static/media/xbox.51e1df0b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92d61a7d.js",
+    "static/js/2.e31ed621.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.6fefca2b.chunk.js"
+  ]
+}

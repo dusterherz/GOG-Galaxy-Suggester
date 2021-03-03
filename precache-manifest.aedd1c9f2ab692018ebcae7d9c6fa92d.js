@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "041ce851ee7bc8912c17003bbe4db902",
+    "revision": "036f87c36ca86aceaad5e864394bb42a",
     "url": "/GOG-Galaxy-Suggester/index.html"
   },
   {

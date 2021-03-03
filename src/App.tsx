@@ -3,7 +3,7 @@ import GameDetails from './components/GameDetails/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
 import Paper from '@material-ui/core/Paper';
-import { readGogGames } from './gogDb';
+import { readGogGames } from './utils/gogDb';
 import FileUpload from './components/FileUpload/FileUpload';
 import { SqlJs } from 'sql.js/module';
 import dbRowToGameDetails from './utils/dbRowToGame';

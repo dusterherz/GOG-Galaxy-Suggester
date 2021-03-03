@@ -20,8 +20,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2    
-    - run: git config --global user.email "ci@not_a_real_email.com"
-    - run: git config --global user.name "Continuous Integration script"
+    - name: Get commit data
+      uses: rlespinasse/git-commit-data-action@v1.x
+    - run: git config --global user.email "${{ env.GIT_COMMIT_AUTHOR_EMAIL }}"
+    - run: git config --global user.name "${{ env.GIT_COMMIT_AUTHOR_NAME }}"
     - run: npm ci
     - run: npm run deploy
       

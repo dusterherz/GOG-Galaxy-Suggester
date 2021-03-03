@@ -1,4 +1,5 @@
 import { SqlJs } from 'sql.js/module';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { game } from '../types/game';
 import readablePlatformName from './readablePlatformName';
 
@@ -9,7 +10,7 @@ const columnIndexFromName = (columns: string[], name: string) => {
 const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
     let gamePieceJson = valueType[columnIndex];
     if (typeof gamePieceJson !== "string") {
-        throw 'unexpected type';
+        throw new Error('unexpected type');
     }
 
     return JSON.parse(gamePieceJson);

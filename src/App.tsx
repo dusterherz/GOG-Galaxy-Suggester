@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import GameDetails from './components/GameDetails/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
@@ -8,6 +8,7 @@ import FileUpload from './components/FileUpload/FileUpload';
 import { SqlJs } from 'sql.js/module';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import Navigation from './components/Navigation/Navigation';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { game } from './types/game';
 import Background from './components/Background/Background';
 
@@ -24,41 +25,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [game, setGame] = useState<game | null>(null);
   const [allGames, setAllGames] = useState<game[] | null>(null);
-
-
-
-  // // Note: the empty deps array [] means
-  // // this useEffect will run once
-  // // similar to componentDidMount()
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/games/random", {
-  //     method: 'GET',
-  //   })
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setIsLoaded(true);
-  //         setGameDetails({
-  //           ...result,
-  //           releaseDate: new Date(result.releaseDate),
-  //         });
-  //       },
-  //       // Note: it's important to handle errors here
-  //       // instead of a catch() block so that we don't swallow
-  //       // exceptions from actual bugs in components.
-  //       (error) => {
-  //         setIsLoaded(true);
-  //         setError(error);
-  //       }
-  //     )
-  // }, [])
-
-
-  // if (error && error) {
-  //   return null; //<div>Error: {error.message}</div>;
-  // } else if (!isLoaded) {
-  //   return <div>Loading...</div>;
-  // } else {
 
   const handleGogRead = (queryResults: SqlJs.QueryResults) => {
     let rows = queryResults.values;

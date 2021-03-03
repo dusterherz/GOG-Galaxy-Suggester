@@ -1,4 +1,3 @@
-import classes from "*.module.css";
 import { AppBar, Toolbar, IconButton } from "@material-ui/core";
 import React from "react";
 import FolderOpenTwoToneIcon from '@material-ui/icons/FolderOpenTwoTone';

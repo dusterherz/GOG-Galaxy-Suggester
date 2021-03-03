@@ -43,12 +43,14 @@ export const readGogGames = (
                        , MasterList AS METADATA
                        , GAMETIMES
                        , MasterList AS IMAGES
+                       , RELEASEPROPERTIES
                     WHERE ((MasterList.gamePieceTypeId=${id('originalTitle')}) OR (MasterList.gamePieceTypeId=${id('title')})) 
                           AND ((PLATFORMS.releaseKey=MasterList.releaseKey) AND (PLATFORMS.gamePieceTypeId=${id('allGameReleases')}))
                           AND (SUMMARY.releaseKey=MasterList.releaseKey) AND (SUMMARY.gamePieceTypeId=${id('summary')})
                           AND (METADATA.releaseKey=MasterList.releaseKey) AND ((METADATA.gamePieceTypeId=${id('originalMeta')}) OR (METADATA.gamePieceTypeId=${id('meta')}))
                           AND GAMETIMES.releaseKey=MasterList.releaseKey
                           AND (IMAGES.releaseKey=MasterList.releaseKey) AND (IMAGES.gamePieceTypeId=${id('originalImages')})
+                          AND (RELEASEPROPERTIES.releaseKey=MasterList.releaseKey AND RELEASEPROPERTIES.isVisibleInLibrary=1)
                     ORDER BY title
                     ;
                     `);

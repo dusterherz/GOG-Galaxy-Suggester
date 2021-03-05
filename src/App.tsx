@@ -44,9 +44,15 @@ function App() {
     setIsLoaded(true);
   };
 
-  const handleFileChange = (blob: Blob) => {
+  const handleFileChange = async (blob: Blob) => {
     setIsLoaded(false);
-    readGogGames(blob, handleGogRead, handleGogReadError);
+    try {
+      let results = await readGogGames(blob);
+      handleGogRead(results);
+    }
+    catch (error) {
+      handleGogReadError(error);
+    }
   };
 
   const handleUploadDbClicked = () => {

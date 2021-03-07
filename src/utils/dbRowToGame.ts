@@ -1,7 +1,6 @@
 import { SqlJs } from 'sql.js/module';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { game } from '../types/game';
-import readablePlatformName from './readablePlatformName';
 
 const columnIndexFromName = (columns: string[], name: string) => {
     return columns.indexOf(name) as number;
@@ -16,18 +15,9 @@ const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
     return JSON.parse(gamePieceJson);
 };
 
-const platformFromReleaseKey = (releaseKey: string) => {
-    let platformPrefix = releaseKey.split('_')[0];
-    return platformPrefix;
-};
-
 export default (row: SqlJs.ValueType[], columns: string[]) => {
-    let platforms = new Set(
-        (row[columnIndexFromName(columns, 'releaseKeys')] as string)
-            .split(',')
-            .map(platformFromReleaseKey)
-            .map(readablePlatformName)
-    );
+    let releaseKeys = (row[columnIndexFromName(columns, 'releaseKeys')] as string)
+        .split(',');
 
     let metadata = parseGamePiece(row, columnIndexFromName(columns, 'metadata'));
     let gameMinutes = row[columnIndexFromName(columns, 'gameMinutes')] as number;
@@ -36,7 +26,7 @@ export default (row: SqlJs.ValueType[], columns: string[]) => {
     let game: game = {
         title: parseGamePiece(row, columnIndexFromName(columns, 'title')).title,
         summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary.split('\n').join('\\n'),
-        platforms: Array.from(platforms),
+        releaseKeys: releaseKeys,
         criticsScore: metadata.criticsScore,
         developers: metadata.developers,
         publishers: metadata.publishers,

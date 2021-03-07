@@ -2,11 +2,11 @@ import React from 'react';
 import { platformDisplayProps } from "./PlatformDisplay.types";
 import PlatformIcon from '../PlatformIcon/PlatformIcon';
 
-function PlatformDisplay({ platforms }: platformDisplayProps) {
+function PlatformDisplay({ releaseKeys }: platformDisplayProps) {
     return (
         <div>
-            {platforms.map(platform =>
-                <PlatformIcon key={platform} platform={platform} />
+            {releaseKeys.map(releaseKey =>
+                <PlatformIcon key={releaseKey} releaseKey={releaseKey} />
             )}
 
         </div>

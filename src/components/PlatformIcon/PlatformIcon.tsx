@@ -16,49 +16,50 @@ import { ReactComponent as SteamIcon } from './icons/steam.svg'
 import { ReactComponent as UplayIcon } from './icons/uplay.svg'
 import { ReactComponent as XboxIcon } from './icons/xbox.svg'
 import { ReactComponent as DefaultIcon } from './icons/default.svg'
+import { IconButton } from '@material-ui/core';
+import platformFromReleaseKey from '../../utils/platformFromReleaseKey';
+import readablePlatformName from '../../utils/readablePlatformName';
 
-function PlatformIcon({ platform }: platformIconProps) {
+function PlatformIcon({ releaseKey }: platformIconProps) {
+    const platform = readablePlatformName(platformFromReleaseKey(releaseKey));
     const icon = pickIcon(platform);
+
+    const onClick = () => {
+        var win = window.open(`goggalaxy://openGameView/${releaseKey}`, '_blank');
+        win?.focus();
+    }
 
     return (
         <Tooltip title={platform} >
-            <SvgIcon component={icon.icon} viewBox={`0 0 ${icon.size ?? 24} ${icon.size ?? 24}`} />
+            <IconButton onClick={onClick}>
+                <SvgIcon component={icon.icon} viewBox={`0 0 ${icon.size ?? 24} ${icon.size ?? 24}`} />
+            </IconButton>
         </Tooltip>
     );
 }
 
 function pickIcon(platform: string) {
     switch (platform) {
-        case 'battlenet':
         case 'Battle.net':
             return { icon: BattleNetIcon };
-        case 'bethesda':
         case 'Bethesda.net':
             return { icon: BethesdaNetIcon };
-        case 'epic':
         case 'Epic Games Store':
             return { icon: EpicIcon, size: 32 };
         case 'GOG':
             return { icon: GogIcon };
-        case 'humble':
         case 'Humble Bundle':
             return { icon: HumbleBundleIcon };
-        case 'origin':
         case 'Origin':
             return { icon: OriginIcon, size: 32 };
-        case 'paradox':
         case 'Paradox Plaza':
             return { icon: ParadoxIcon };
-        case 'psn':
         case 'PlayStation Network':
             return { icon: PlayStationIcon };
-        case 'steam':
         case 'Steam':
             return { icon: SteamIcon };
-        case 'uplay':
         case 'Uplay':
             return { icon: UplayIcon };
-        case 'xboxone':
         case 'Xbox Live':
             return { icon: XboxIcon };
         default:

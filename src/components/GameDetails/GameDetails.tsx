@@ -9,7 +9,7 @@ import PlatformDisplay from "../PlatformDisplay/PlatformDisplay";
 
 function GameDetails({
     title,
-    platforms,
+    releaseKeys,
     gameMinutes,
     summary,
     releaseDate,
@@ -28,7 +28,7 @@ function GameDetails({
             <Grid container>
                 <Grid item xs={12} className={classes.header}>
                     <Typography variant='h3'>{title}</Typography>
-                    <Typography variant='subtitle1'><PlatformDisplay platforms={platforms} /></Typography>
+                    <Typography variant='subtitle1'><PlatformDisplay releaseKeys={releaseKeys} /></Typography>
                     <Typography variant='subtitle2'>Time played: {<HumanTime minutes={gameMinutes}></HumanTime>}</Typography>
                 </Grid>
                 <Grid item xs={12} lg={9} className={classes.summary}>

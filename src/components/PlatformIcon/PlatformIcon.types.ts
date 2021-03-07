@@ -1,3 +1,3 @@
 export interface platformIconProps {
-    platform: string,
+    releaseKey: string,
 }

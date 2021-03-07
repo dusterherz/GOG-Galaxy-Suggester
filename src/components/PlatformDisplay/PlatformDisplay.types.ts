@@ -1,3 +1,3 @@
 export interface platformDisplayProps {
-    platforms: string[],
+    releaseKeys: string[],
 }

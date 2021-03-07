@@ -33,16 +33,10 @@ describe('dbRowToGame', () => {
     expect(game.summary).toBe("10 SECOND NINJA X is a blisteringly fast, satisfyingly difficult and surprisingly methodical sidescroller which tasks you with completing each level in ten seconds or less. No lengthy checkpoint gaps. No cluttered control scheme. No hand holding. Get that three star rating, yo! You got this. \\n\\n1 star. Again. 1 star. Again. 2 stars! Again. Back to 1 star. DAMN IT. Again... \\n\\n100 levels including all 40 original 10 Second Ninja levels remastered in HD. Individual leaderboards for each level. Unlockables and collectibles.");
   });
 
-  it('should set platforms converted to readable format', () => {
-    const spy = jest.spyOn(readablePlatformName, 'default');
-    spy.mockImplementation((key) => {
-      const platforms: { [key: string]: string } = { 'steam': 'Steam', 'supertest': 'Super Test' };
-      return platforms[key];
-    });
-
+  it('should set releaseKeys', () => {
     const game = dbRowToGame(valueTypes, columns);
 
-    expect(game.platforms).toEqual(['Steam', 'Super Test'])
+    expect(game.releaseKeys).toEqual(['steam_435790', 'supertest_123'])
   });
 
   it('should set criticsScore', () => {

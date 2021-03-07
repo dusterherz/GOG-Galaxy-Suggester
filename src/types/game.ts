@@ -1,7 +1,7 @@
 export interface game {
     title: string;
     summary: string;
-    platforms: string[];
+    releaseKeys: string[];
     criticsScore: number | null;
     developers: string[];
     publishers: string[];

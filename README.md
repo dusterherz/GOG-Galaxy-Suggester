@@ -3,7 +3,7 @@
 
 A website that recommends a random game to play from your GOG Galaxy library.
 
-Open your GOG Galaxy database file with this website and it will pick a random game for you.
+Open your GOG Galaxy database file with this website and it will pick a random game for you. Then you can click a platform icon to show it in your **GOG Galaxy** client.
 
 Visit at: https://sparrowbrain.github.io/GOG-Galaxy-Suggester/
 

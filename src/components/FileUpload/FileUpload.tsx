@@ -34,7 +34,7 @@ function FileUpload({ onFileChange }: FileUploadProps) {
         <Container maxWidth={'md'} className={classes.root}>
             <Typography variant='h4'>Welcome to GOG Galaxy Suggester</Typography>
             <Typography variant='subtitle1'>If you ever had the difficulty picking your next to play game, don't fret, GOG Galaxy Suggester is here to help! It will pick a random game from your library for you, so you don't have to decide.</Typography>
-            <Typography variant='subtitle1'>First you will need to have GOG Galaxy installed all desired integration plugins connected. Then follow these steps below.</Typography>
+            <Typography variant='subtitle1'>First you will need to have GOG Galaxy installed with all desired integration plugins connected. Then follow these steps below.</Typography>
             <TutorialPoint number={1}>
                 <ClickAwayListener onClickAway={handleTooltipClose}>
                     <div>

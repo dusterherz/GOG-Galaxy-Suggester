@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import GameDetails from './components/GameDetails/GameDetails';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
 import Paper from '@material-ui/core/Paper';
-import { readGogGames } from './utils/gogDb';
-import FileUpload from './components/FileUpload/FileUpload';
 import { SqlJs } from 'sql.js/module';
-import dbRowToGameDetails from './utils/dbRowToGame';
+
+import Background from './components/Background/Background';
+import FileUpload from './components/FileUpload/FileUpload';
+import GameDetails from './components/GameDetails/GameDetails';
+import Loading from './components/Loading/Loading';
 import Navigation from './components/Navigation/Navigation';
+
+import dbRowToGameDetails from './utils/dbRowToGame';
+import { readGogGames } from './utils/gogDb';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { game } from './types/game';
-import Background from './components/Background/Background';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -88,7 +92,7 @@ function App() {
           {error && error.message
             ? <div>Error: {error.message}</div>
             : !isLoaded
-              ? <div>Loading...</div>
+              ? <Loading />
               : game != null
                 ? <GameDetails {...game} />
                 : <FileUpload onFileChange={handleFileChange}></FileUpload>

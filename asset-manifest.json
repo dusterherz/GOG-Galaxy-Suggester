@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/GOG-Galaxy-Suggester/static/js/main.640248e0.chunk.js",
-    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.640248e0.chunk.js.map",
+    "main.js": "/GOG-Galaxy-Suggester/static/js/main.cc0eac93.chunk.js",
+    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.cc0eac93.chunk.js.map",
     "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js",
     "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js.map",
-    "static/js/2.1c6743b1.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.1c6743b1.chunk.js",
-    "static/js/2.1c6743b1.chunk.js.map": "/GOG-Galaxy-Suggester/static/js/2.1c6743b1.chunk.js.map",
+    "static/js/2.33d41b51.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.33d41b51.chunk.js",
+    "static/js/2.33d41b51.chunk.js.map": "/GOG-Galaxy-Suggester/static/js/2.33d41b51.chunk.js.map",
     "index.html": "/GOG-Galaxy-Suggester/index.html",
-    "precache-manifest.0b07e06f1591847c2991909e23953be0.js": "/GOG-Galaxy-Suggester/precache-manifest.0b07e06f1591847c2991909e23953be0.js",
+    "precache-manifest.8201d77bf421828467640dea2be84241.js": "/GOG-Galaxy-Suggester/precache-manifest.8201d77bf421828467640dea2be84241.js",
     "service-worker.js": "/GOG-Galaxy-Suggester/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.1c6743b1.chunk.js.LICENSE.txt": "/GOG-Galaxy-Suggester/static/js/2.1c6743b1.chunk.js.LICENSE.txt",
+    "static/js/2.33d41b51.chunk.js.LICENSE.txt": "/GOG-Galaxy-Suggester/static/js/2.33d41b51.chunk.js.LICENSE.txt",
     "static/js/sql-wasm.wasm": "/GOG-Galaxy-Suggester/static/js/sql-wasm.wasm",
     "static/media/battlenet.21f5bf2c.svg": "/GOG-Galaxy-Suggester/static/media/battlenet.21f5bf2c.svg",
     "static/media/bethesda.0db90642.svg": "/GOG-Galaxy-Suggester/static/media/bethesda.0db90642.svg",
@@ -29,8 +29,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.92d61a7d.js",
-    "static/js/2.1c6743b1.chunk.js",
+    "static/js/2.33d41b51.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.640248e0.chunk.js"
+    "static/js/main.cc0eac93.chunk.js"
   ]
 }

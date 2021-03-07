@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cd94f2e70a37877553bebe9c63403690",
+    "revision": "fe11925d7da4f1f9fe430f96f1c0c139",
     "url": "/GOG-Galaxy-Suggester/index.html"
   },
   {
-    "revision": "5a4258f4f3c54037bd78",
+    "revision": "83e3ba80b22e940a22d4",
     "url": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "1ff03facd06de005cccc",
-    "url": "/GOG-Galaxy-Suggester/static/js/2.1c6743b1.chunk.js"
+    "revision": "a3ada260ac7c8ecd7d07",
+    "url": "/GOG-Galaxy-Suggester/static/js/2.33d41b51.chunk.js"
   },
   {
     "revision": "6dfd51a424093640fd93ded5a9a98689",
-    "url": "/GOG-Galaxy-Suggester/static/js/2.1c6743b1.chunk.js.LICENSE.txt"
+    "url": "/GOG-Galaxy-Suggester/static/js/2.33d41b51.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5a4258f4f3c54037bd78",
-    "url": "/GOG-Galaxy-Suggester/static/js/main.640248e0.chunk.js"
+    "revision": "83e3ba80b22e940a22d4",
+    "url": "/GOG-Galaxy-Suggester/static/js/main.cc0eac93.chunk.js"
   },
   {
     "revision": "c216f5dc298428954c3d",

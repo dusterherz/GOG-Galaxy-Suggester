@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "35c26d072c7ab6f1910e05c9635f4868",
+    "revision": "6791a7d9aa1ac4cd808c2d47b3bebf03",
     "url": "/GOG-Galaxy-Suggester/index.html"
   },
   {
-    "revision": "f74f5a10b344e239f48e",
+    "revision": "abca7a67b7872c3dee6a",
     "url": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GOG-Galaxy-Suggester/static/js/2.bc433d47.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f74f5a10b344e239f48e",
-    "url": "/GOG-Galaxy-Suggester/static/js/main.5d13461c.chunk.js"
+    "revision": "abca7a67b7872c3dee6a",
+    "url": "/GOG-Galaxy-Suggester/static/js/main.7433ed83.chunk.js"
   },
   {
     "revision": "c216f5dc298428954c3d",

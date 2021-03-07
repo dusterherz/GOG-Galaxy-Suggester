@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { SqlJs } from 'sql.js/module';
 
 import Background from './components/Background/Background';
+import Error from './components/Error/Error';
 import FileUpload from './components/FileUpload/FileUpload';
 import GameDetails from './components/GameDetails/GameDetails';
 import Loading from './components/Loading/Loading';
@@ -90,7 +91,7 @@ function App() {
         <Background backgroundImage={game?.backgroundImage ?? ''}>
           <Navigation onUploadDbClicked={handleUploadDbClicked} onNextGameClicked={handleNextGameClicked} isNextGameDisabled={isNextGameDisabled()}></Navigation>
           {error && error.message
-            ? <div>Error: {error.message}</div>
+            ? <Error message={error.message} />
             : !isLoaded
               ? <Loading />
               : game != null

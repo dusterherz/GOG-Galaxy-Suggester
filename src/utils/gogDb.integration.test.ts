@@ -2,9 +2,10 @@ import { SqlJs } from "sql.js/module";
 import initSqlJs from "sql.js";
 import { readGogGames } from "./gogDb";
 import each from 'jest-each';
-import { cyberpunkGoodies_dlc, galaxyBeta_notVisibleInLibrary, prisonArchitect } from "./gogDb.integration.test.data";
+import { cyberpunkGoodies_dlc, galaxyBeta_notVisibleInLibrary, greyGooDefinitiveEdition_notInLibraryReleases, prisonArchitect } from "./gogDb.integration.test.data";
 
 let db: SqlJs.Database;
+let blob: Blob;
 
 const runSql = (sql: string) => {
   let statement = db.prepare(sql);
@@ -12,15 +13,15 @@ const runSql = (sql: string) => {
   statement.free();
 }
 
-const createGameLinks = () => {
+const createLibraryReleases = () => {
   let createTable = `
-    -- Script Date: 2021-03-03 23:22  - ErikEJ.SqlCeScripting version 3.5.2.86
-    CREATE TABLE [GameLinks] (
-      [releaseKey] text NOT NULL
+    -- Script Date: 2021-03-07 22:25  - ErikEJ.SqlCeScripting version 3.5.2.86
+    CREATE TABLE [LibraryReleases] (
+      [id] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
     , [userId] int64 NOT NULL
-    , [gameId] text NULL
+    , [releaseKey] text NOT NULL
     );
-    CREATE UNIQUE INDEX [GameLinks_sqlite_autoindex_GameLinks_1] ON [GameLinks] ([releaseKey] ASC,[userId] ASC);
+    CREATE UNIQUE INDEX [LibraryReleases_sqlite_autoindex_LibraryReleases_1] ON [LibraryReleases] ([userId] ASC,[releaseKey] ASC);  
   `;
   runSql(createTable);
 }
@@ -130,7 +131,7 @@ describe('gogDb', () => {
     const SQL = await initSqlJs();
     db = new SQL.Database();
 
-    createGameLinks();
+    createLibraryReleases();
     createGamePieceTypes();
     createGamePieces();
     createGameTimes();
@@ -139,6 +140,10 @@ describe('gogDb', () => {
     prisonArchitect.forEach(runSql);
     galaxyBeta_notVisibleInLibrary.forEach(runSql);
     cyberpunkGoodies_dlc.forEach(runSql);
+    greyGooDefinitiveEdition_notInLibraryReleases.forEach(runSql);
+
+    let data = db.export();
+    blob = new Blob([data]);
   });
 
   each([
@@ -149,9 +154,6 @@ describe('gogDb', () => {
     ['gameMinutes', 1116],
     ['images', '{"background":"https:\/\/images.gog.com\/ab679758906a2b48a4e3cfda684cf78288aef89a4fbc39331a6e6d89787eb7e9_glx_bg_top_padding_7.webp?namespace=gamesdb","squareIcon":"https:\/\/images.gog.com\/824738dd3534fba4838d9d4920cc0a780c9dea998a5d45f28a93fbb3bacdcaff_glx_square_icon_v2.webp?namespace=gamesdb","verticalCover":"https:\/\/images.gog.com\/824738dd3534fba4838d9d4920cc0a780c9dea998a5d45f28a93fbb3bacdcaff_glx_vertical_cover.webp?namespace=gamesdb"}'],
   ]).it('%s to be %s', async (column, value) => {
-    let data = db.export();
-    const blob = new Blob([data]);
-
     let result = await readGogGames(blob);
 
     expect(result.columns).toContain(column);
@@ -159,24 +161,25 @@ describe('gogDb', () => {
     expect(result.values.some(x => x[columnIndex] === value)).toBeTruthy();
   });
 
-  it('ignore releases with isVisibleInLibrary=0 in ReleaseProperties', async () => {
-    let data = db.export();
-    const blob = new Blob([data]);
-
+  it('ignores releases with isVisibleInLibrary=0 in ReleaseProperties', async () => {
     let result = await readGogGames(blob);
 
     let releaseKeysIndex = result.columns.indexOf('releaseKeys');
     result.values.forEach(x => expect(x[releaseKeysIndex] === 'gog_1207667173').toBeFalsy())
   });
 
-  it('ignore dlc', async () => {
-    let data = db.export();
-    const blob = new Blob([data]);
-
+  it('ignores dlc', async () => {
     let result = await readGogGames(blob);
 
     let releaseKeysIndex = result.columns.indexOf('releaseKeys');
     result.values.forEach(x => expect(x[releaseKeysIndex] === 'gog_1486144755').toBeFalsy())
+  });
+
+  it('ignores items that are not in LibraryReleases', async () => {
+    let result = await readGogGames(blob);
+
+    let releaseKeysIndex = result.columns.indexOf('releaseKeys');
+    result.values.forEach(x => expect(x[releaseKeysIndex] === 'humble_greygoo_definitiveedition_steam').toBeFalsy())
   });
 });
 

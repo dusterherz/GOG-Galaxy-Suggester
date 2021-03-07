@@ -1,8 +1,8 @@
 export const prisonArchitect = [`
-    INSERT INTO [GameLinks] ([releaseKey],[userId],[gameId]) VALUES (
-    'gog_1441974651',123123123,NULL);
-    `, `INSERT INTO [GameLinks] ([releaseKey],[userId],[gameId]) VALUES (
-    'steam_233450',123123123,NULL);
+    INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
+    14,123123123,'gog_1441974651');
+    `, `INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
+    4424346,123123123,'steam_233450');
 
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     'gog_1441974651',30,NULL,'{"releases":["steam_233450","gog_1441974651","origin_Origin.OFR.50.0002578","humble_prisonarchitect","humble_prisonarchitect_bundle_steam","humble_storefront_prisonarchitect_steam","humble_introversion_weekly_prisonarchitect","humble_storefront_prisonarchitect","humble_prisonarchitect_bundle_row_steam","humble_prisonarchitect_bundle_rucis_latam_cn_kr_steam","nswitch_010029200AB1C000","totalwar_storefront_prisonarchitect_steam","d2d_storefront_prisonarchitect_steam","humble_introversion_weekly_prisonarchitect_steam","humble_prisonarchitect_paradox_row_steam","itch_cf871ec6c3bfd6180386393a3c5f5e17bba57cd1bb18c567ddf2a7c6","itch_XFxSYWlkc2VydmVyXGdcTXkgRHJpdmVcRml0R2lybCBHYW1lc1xQcmlzb24gQXJjaGl0ZWN0IFtGaXRHaXJsIFJlcGFja10=","origin_08e8230c4cf2cd0751707eac3ae0e3b8946940da","origin_8e6e2338d4e524a6bd00f10e9e83d5b13fc9a1e4c3ab3f4469bc01754488930f","paradox_prison_architect_standard","test_233450","test_\/prison-architect-free-download\/","test_prison-architect","xboxone_2102601227","generic_51153517180596753"]}');
@@ -62,8 +62,8 @@ export const galaxyBeta_notVisibleInLibrary = [`
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     'gog_1207667173',103,123123123,'{"title":"Galaxy Beta"}');
 
-    `, `INSERT INTO [GameLinks] ([releaseKey],[userId],[gameId]) VALUES (
-    'gog_1207667173',123123123,NULL);
+    `, `INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
+    41,123123123,'gog_1207667173');
 
     `, `INSERT INTO [GameTimes] ([userId],[releaseKey],[minutesInGame]) VALUES (
     123123123,'gog_1207667173',0);
@@ -88,12 +88,40 @@ export const cyberpunkGoodies_dlc = [`
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     'gog_1486144755',103,123123123,'{"title":"Cyberpunk 2077 Goodies Collection"}');
 
-    `, `INSERT INTO [GameLinks] ([releaseKey],[userId],[gameId]) VALUES (
-    'gog_1486144755',123123123,NULL);
+    `, `INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
+    2594773,123123123,'gog_1486144755');
 
     `, `INSERT INTO [GameTimes] ([userId],[releaseKey],[minutesInGame]) VALUES (
     123123123,'gog_1486144755',0);
 
     `, `INSERT INTO [ReleaseProperties] ([releaseKey],[isDlc],[isVisibleInLibrary],[gameId]) VALUES (
     'gog_1486144755',1,1,'53448971734326669');
+`];
+
+export const greyGooDefinitiveEdition_notInLibraryReleases = [`
+    INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',30,NULL,'{"releases":["humble_greygoo_definitiveedition_steam","humble_greygoo_definitiveedition_bundle_steam","itch_80881419deb2d55b07a79036b82e6e1dec46374ef8172bbe3ab194cd","origin_7c691847e2f37603da5f7544c82f5cb0c2d907ef","origin_83cc891838de7c49854cf743b5c441b39f695c1a764e099a4bf9dcd719a9caf6","generic_51152934844753453"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',31,NULL,'{"dlcs":[]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',32,123123123,'{"artworks":[],"screenshots":[],"videos":[]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',33,123123123,'{"background":null,"squareIcon":"https:\/\/images.gog.com\/056b06122157930f5a16f5be2946a9a8823802b6f7ee2555a8575bfcbbfa86e3_glx_square_icon_v2.webp?namespace=gamesdb","verticalCover":"https:\/\/images.gog.com\/056b06122157930f5a16f5be2946a9a8823802b6f7ee2555a8575bfcbbfa86e3_glx_vertical_cover.webp?namespace=gamesdb"}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',34,123123123,'{"criticsScore":null,"developers":["Petroglyph Games"],"genres":["Strategy","Real Time Strategy (RTS)"],"publishers":[],"releaseDate":1421971200,"themes":["Warfare","Science fiction"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',35,123123123,'{"title":"Grey Goo Definitive Edition"}');
+
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',101,123123123,'{"criticsScore":null,"developers":["Petroglyph Games"],"genres":["Strategy","Real Time Strategy (RTS)"],"publishers":[],"releaseDate":1421971200,"themes":["Warfare","Science fiction"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',102,123123123,'{"summary":""}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'humble_greygoo_definitiveedition_steam',103,123123123,'{"title":"Grey Goo Definitive Edition"}');
+
+    `, `INSERT INTO [GameTimes] ([userId],[releaseKey],[minutesInGame]) VALUES (
+    123123123,'humble_greygoo_definitiveedition_steam',0);
+
+    `, `INSERT INTO [ReleaseProperties] ([releaseKey],[isDlc],[isVisibleInLibrary],[gameId]) VALUES (
+    'humble_greygoo_definitiveedition_steam',0,1,'51152934844753453');
 `];

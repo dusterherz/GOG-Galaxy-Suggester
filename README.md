@@ -13,4 +13,4 @@ It's a React application that runs in your browser. It uses https://github.com/s
 ## Acknowledgements
 The **GOG Galaxy** database query is mostly taken from **AB1908's** [GOG-Galaxy-Export-Script](https://github.com/AB1908/GOG-Galaxy-Export-Script)
 
-Idea to open gameView in **GOG Galaxy** from [maxwellainatchi](https://gist.github.com/maxwellainatchi/794d22c2c24f98d5dc8e6abc7ccc8a92)
+Idea to open gameView in **GOG Galaxy** and use *LibraryReleases* table from [maxwellainatchi](https://gist.github.com/maxwellainatchi/794d22c2c24f98d5dc8e6abc7ccc8a92)

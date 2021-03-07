@@ -20,8 +20,8 @@ export const readGogGames = async (file: Blob) => {
 
     let statement1 = db.prepare(`
         CREATE TEMP VIEW IF NOT EXISTS MasterList AS
-        SELECT GamePieces.releaseKey, GamePieces.gamePieceTypeId, GamePieces.value FROM GameLinks
-        JOIN GamePieces ON GameLinks.releaseKey = GamePieces.releaseKey;
+        SELECT GamePieces.releaseKey, GamePieces.gamePieceTypeId, GamePieces.value FROM LibraryReleases
+        JOIN GamePieces ON LibraryReleases.releaseKey = GamePieces.releaseKey;
     `);
 
     let statement2 = db.prepare(`

@@ -45,6 +45,7 @@ function App() {
   };
 
   const handleGogReadError = (error: any) => {
+    console.error(error);
     setError(error);
     setIsLoaded(true);
   };

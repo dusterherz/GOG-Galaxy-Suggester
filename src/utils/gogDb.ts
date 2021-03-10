@@ -69,6 +69,5 @@ export const readGogGames = async (file: Blob) => {
         ;
     `);
 
-    console.log(results);
     return results[0];
 };

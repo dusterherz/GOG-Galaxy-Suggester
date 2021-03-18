@@ -1,4 +1,4 @@
-import openDbFile from "../pages/openDbFile";
+import openDbFile from "../fixtures/openDbFile";
 
 describe('Navigation', () => {
     beforeEach(() => {

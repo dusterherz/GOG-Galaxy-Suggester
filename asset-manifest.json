@@ -5,13 +5,13 @@
     "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.e06bcb65.chunk.js.map",
     "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js",
     "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js.map",
-    "static/js/2.f382f672.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.f382f672.chunk.js",
-    "static/js/2.f382f672.chunk.js.map": "/GOG-Galaxy-Suggester/static/js/2.f382f672.chunk.js.map",
+    "static/js/2.372beb93.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.372beb93.chunk.js",
+    "static/js/2.372beb93.chunk.js.map": "/GOG-Galaxy-Suggester/static/js/2.372beb93.chunk.js.map",
     "index.html": "/GOG-Galaxy-Suggester/index.html",
-    "precache-manifest.aa384a4a37265680da7c9997950b8cc9.js": "/GOG-Galaxy-Suggester/precache-manifest.aa384a4a37265680da7c9997950b8cc9.js",
+    "precache-manifest.cd25b66b1f5d8ba7e0c892a18c2a8c24.js": "/GOG-Galaxy-Suggester/precache-manifest.cd25b66b1f5d8ba7e0c892a18c2a8c24.js",
     "service-worker.js": "/GOG-Galaxy-Suggester/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/GOG-Galaxy-Suggester/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.f382f672.chunk.js.LICENSE.txt": "/GOG-Galaxy-Suggester/static/js/2.f382f672.chunk.js.LICENSE.txt",
+    "static/js/2.372beb93.chunk.js.LICENSE.txt": "/GOG-Galaxy-Suggester/static/js/2.372beb93.chunk.js.LICENSE.txt",
     "static/js/sql-wasm.wasm": "/GOG-Galaxy-Suggester/static/js/sql-wasm.wasm",
     "static/media/battlenet.21f5bf2c.svg": "/GOG-Galaxy-Suggester/static/media/battlenet.21f5bf2c.svg",
     "static/media/bethesda.0db90642.svg": "/GOG-Galaxy-Suggester/static/media/bethesda.0db90642.svg",
@@ -29,7 +29,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.92d61a7d.js",
-    "static/js/2.f382f672.chunk.js",
+    "static/js/2.372beb93.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
     "static/js/main.e06bcb65.chunk.js"
   ]

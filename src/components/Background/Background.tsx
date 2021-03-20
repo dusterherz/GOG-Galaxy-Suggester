@@ -4,7 +4,7 @@ import AnimatedBackground from "../AnimatedBackground/AnimatedBackground";
 import useStyles from './Background.styles'
 import { backgroundProps } from "./Background.types";
 
-export default ({ children, backgroundImage }: backgroundProps) => {
+const Background = ({ children, backgroundImage }: backgroundProps) => {
     const backgroundLimiterId = 'backgroundLimiter';
     const classes = useStyles();
 
@@ -16,3 +16,5 @@ export default ({ children, backgroundImage }: backgroundProps) => {
             </Box>
         </Box >)
 };
+
+export default Background;

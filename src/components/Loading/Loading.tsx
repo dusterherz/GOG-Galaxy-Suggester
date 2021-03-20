@@ -2,7 +2,7 @@ import React from "react";
 import { Box, CircularProgress, Typography } from "@material-ui/core";
 import useStyles from './Loading.styles';
 
-export default () => {
+const Loading = () => {
     const classes = useStyles();
     return (
         <Box className={classes.center}>
@@ -11,3 +11,5 @@ export default () => {
         </Box>
     );
 }
+
+export default Loading;

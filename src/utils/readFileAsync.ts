@@ -1,6 +1,6 @@
 // https://simon-schraeder.de/posts/filereader-async/
 
-export default (file: Blob) => {
+const readFileAsync = (file: Blob) => {
     return new Promise((resolve, reject) => {
         let reader = new FileReader();
 
@@ -13,3 +13,5 @@ export default (file: Blob) => {
         reader.readAsArrayBuffer(file);
     })
 }
+
+export default readFileAsync;

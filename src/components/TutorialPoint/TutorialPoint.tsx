@@ -4,7 +4,7 @@ import { Avatar, Box, Divider, Grid } from '@material-ui/core';
 import useStyles from './TutorialPoint.styles'
 import { tutorialPointProps } from "./TutorialPoint.types";
 
-export default ({ children, number }: tutorialPointProps) => {
+const TutorialPoint = ({ children, number }: tutorialPointProps) => {
 
     const classes = useStyles();
 
@@ -22,3 +22,5 @@ export default ({ children, number }: tutorialPointProps) => {
         </Grid>
     );
 }
+
+export default TutorialPoint;

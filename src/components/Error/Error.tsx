@@ -6,7 +6,7 @@ import WarningTwoToneIcon from '@material-ui/icons/WarningTwoTone';
 import useStyles from './Error.styles';
 import { errorProps } from "./Error.types";
 
-export default ({ message }: errorProps) => {
+const Error = ({ message }: errorProps) => {
     const classes = useStyles();
     return (
         <Container className={classes.root} maxWidth={'md'}>
@@ -23,3 +23,5 @@ export default ({ message }: errorProps) => {
         </Container>
     );
 }
+
+export default Error;

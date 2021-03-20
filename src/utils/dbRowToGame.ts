@@ -1,5 +1,4 @@
 import { SqlJs } from 'sql.js/module';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { game } from '../types/game';
 
 const columnIndexFromName = (columns: string[], name: string) => {

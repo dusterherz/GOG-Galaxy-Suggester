@@ -5,7 +5,7 @@ import RefreshTwoToneIcon from '@material-ui/icons/RefreshTwoTone';
 import useStyles from './Navigation.styles'
 import { navigationProps } from "./Navigation.types";
 
-export default ({
+const Navigation = ({
     onUploadDbClicked,
     onNextGameClicked,
     isNextGameDisabled,
@@ -33,3 +33,5 @@ export default ({
             <div className={classes.offset}></div>
         </React.Fragment>);
 }
+
+export default Navigation;

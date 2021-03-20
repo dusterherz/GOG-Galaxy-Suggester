@@ -87,10 +87,12 @@ const platformMap: { [key: string]: string } = {
     'rockstar': 'Rockstar',
 };
 
-export default (platform: string) => {
+const readablePlatformName = (platform: string) => {
     if (platform in platformMap) {
         return platformMap[platform];
     }
 
     return platform;
 }
+
+export default readablePlatformName;

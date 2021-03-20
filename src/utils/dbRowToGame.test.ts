@@ -98,4 +98,12 @@ describe('dbRowToGame', () => {
 
     expect(game.verticalCover).toBe('https://images.gog.com/4df641c4cada7d9a9d3e76ac76581e4733d84d0a7030fd9de9322c9bf8b423d3_glx_vertical_cover.webp?namespace=gamesdb');
   });
+
+  it('should convert \\r\\n to \\n in summary', () => {
+    const customSummary = valueTypes;
+    customSummary[2] = '{"summary":"Soccer meets racing! \\r\\n \\r\\nA futuristic Sports-Action game, Rocket League, equips players."}';
+    const game = dbRowToGame(valueTypes, columns);
+
+    expect(game.summary).toBe("Soccer meets racing! \\n \\nA futuristic Sports-Action game, Rocket League, equips players.");
+  });
 });

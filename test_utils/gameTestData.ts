@@ -46,6 +46,32 @@ export const prisonArchitect = [`
     `
 ];
 
+export const rocketLeague = [`
+    INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
+    4425575,123123123,'steam_252950');
+    
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',30,NULL,'{"releases":["steam_252950","xboxone_558797228","psn_CUSA01433_00","psn_CUSA01163_00","psn_CUSA01759_00","humble_rocketleague_steam","humble_rocketleague_bundle_steam","psvita_CUSA01163_00","test_CUSA01163_00","nswitch_01005EE0036EC000","itch_901b40fc25ce85c4723173eacf2403637f0225217f6fc8eee3bda670","itch_XFxSYWlkc2VydmVyXGdcTXkgRHJpdmVcRml0R2lybCBHYW1lc1xSb2NrZXQgTGVhZ3VlIFtGaXRHaXJsIFJlcGFja10=","origin_d6b1e23c1d37a714ac7d56a9d5ea27412793f6fa","origin_39fbad2f531cfa1c5bd23760a4a26d590ce0eb74c30d25af8564584430163608","psx_Rocket League","psn_CUSA01653_00","psx_CUSA01433_00","epic_Sugar","nswitch_c313e82ce64e18054a1e3800df42af79bc9b89e8","test_CUSA01433_00","humble_rocketleague_us_switch","test_252950","nswitch_2fe8a2314ebde5c98bbd6ef630e71ddf030f0c30","test_\/rocket-league-free-download\/","test_rocket-league","generic_51154132383216479"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',33,123123123,'{"background":"https:\/\/images.gog.com\/ca8df85fb30e736ecb20f757e33255f6b5eaae65fa1fbf24237e6297decf2c97_glx_bg_top_padding_7.webp?namespace=gamesdb","squareIcon":"https:\/\/images.gog.com\/6c3492f74e8098466f1fcf23365c50dc40262b2cfc7ebb4e8e22e11c031963af_glx_square_icon_v2.webp?namespace=gamesdb","verticalCover":"https:\/\/images.gog.com\/7ad1cb3af7570eed2418ad80276a1b3294f18c6837f657accb2bdf3683e52bbd_glx_vertical_cover.webp?namespace=gamesdb"}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',34,123123123,'{"criticsScore":88.7059,"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',35,123123123,'{"title":"Rocket League"}'); 
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',101,123123123,'{"criticsScore":88.7059,"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',102,123123123,'{"summary":"Soccer meets racing once again in our long-awaited, MP-focused sequel to Supersonic Acrobatic Rocket-Powered Battle-Cars! \\r\\n \\r\\nA futuristic Sports-Action game, Rocket League, equips players with booster-rigged vehicles that can be crashed into balls for incredible goals or epic saves across multiple, highly-detailed arenas. Using an advanced physics system to simulate realistic interactions, Rocket League relies on mass and momentum to give players a complete sense of intuitive control in this unbelievable, high-octane re-imagining of association football."}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    'steam_252950',103,123123123,'{"title":"Rocket League"}');
+
+    `, `INSERT INTO [GameTimes] ([userId],[releaseKey],[minutesInGame]) VALUES (
+    123123123,'steam_252950',71527);
+
+    `, `INSERT INTO [ReleaseProperties] ([releaseKey],[isDlc],[isVisibleInLibrary],[gameId]) VALUES (
+    'steam_252950',0,1,'51154132383216479');
+`];
+
 export const galaxyBeta_notVisibleInLibrary = [`
     INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     'gog_1207667173',30,NULL,'{"releases":["gog_1207667173","generic_51724209887568068"]}');
@@ -84,7 +110,7 @@ export const cyberpunkGoodies_dlc = [`
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     'gog_1486144755',35,123123123,'{"title":"Cyberpunk 2077 Goodies Collection"}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
-    'gog_1486144755',102,123123123,'{"summary":"The upcoming RPG from CD Projekt RED based on the Cyberpunk 2020 tabletop RPG created by Mike Pondsmith. \r\n \r\nIn Cyberpunk 2077 you play as V — a hired gun on the rise — and you just got your first serious contract. In a world of cyberenhanced street warriors, tech-savvy netrunners and corporate lifehackers, today you take your first step towards becoming an urban legend."}');
+    'gog_1486144755',102,123123123,'{"summary":"The upcoming RPG from CD Projekt RED based on the Cyberpunk 2020 tabletop RPG created by Mike Pondsmith. \\r\\n \\r\\nIn Cyberpunk 2077 you play as V — a hired gun on the rise — and you just got your first serious contract. In a world of cyberenhanced street warriors, tech-savvy netrunners and corporate lifehackers, today you take your first step towards becoming an urban legend."}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     'gog_1486144755',103,123123123,'{"title":"Cyberpunk 2077 Goodies Collection"}');
 

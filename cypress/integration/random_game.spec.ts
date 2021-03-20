@@ -11,7 +11,7 @@ describe('Game details', () => {
 
         // cy.writeFile('test.db', file, 'binary')
 
-        openDbFile();
+        openDbFile('oneGame.db');
     });
 
     it('all game data visible after loading', () => {

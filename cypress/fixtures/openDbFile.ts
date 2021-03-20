@@ -1,7 +1,5 @@
-export default () => {
+const openDbFile = (dbFile: string) => {
     cy.visit('/');
-
-    const dbFile = 'test.db';
 
     cy.fixture(dbFile, 'binary')
         .then(Cypress.Blob.binaryStringToBlob)
@@ -9,3 +7,5 @@ export default () => {
             cy.get('input[type="file"]').attachFile({ fileContent, filePath: dbFile, encoding: 'utf-8' });
         });
 }
+
+export default openDbFile;

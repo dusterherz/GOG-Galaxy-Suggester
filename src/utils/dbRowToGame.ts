@@ -15,7 +15,7 @@ const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
     return JSON.parse(gamePieceJson);
 };
 
-export default (row: SqlJs.ValueType[], columns: string[]) => {
+const dbRowToGame = (row: SqlJs.ValueType[], columns: string[]) => {
     let releaseKeys = (row[columnIndexFromName(columns, 'releaseKeys')] as string)
         .split(',');
 
@@ -25,7 +25,9 @@ export default (row: SqlJs.ValueType[], columns: string[]) => {
 
     let game: game = {
         title: parseGamePiece(row, columnIndexFromName(columns, 'title')).title,
-        summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary.split('\n').join('\\n'),
+        summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary
+            .split('\r\n').join('\\n')
+            .split('\n').join('\\n'),
         releaseKeys: releaseKeys,
         criticsScore: metadata.criticsScore,
         developers: metadata.developers,
@@ -41,3 +43,5 @@ export default (row: SqlJs.ValueType[], columns: string[]) => {
 
     return game;
 };
+
+export default dbRowToGame;

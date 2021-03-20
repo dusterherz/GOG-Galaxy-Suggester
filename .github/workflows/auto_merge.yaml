@@ -1,4 +1,4 @@
-name: Auto-merge minor/patch
+name: Auto-merge
 on:
   schedule:
     - cron: "0 * * * *"

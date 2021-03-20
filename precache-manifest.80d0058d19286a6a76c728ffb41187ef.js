@@ -24,6 +24,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GOG-Galaxy-Suggester/static/js/runtime-main.92d61a7d.js"
   },
   {
+    "revision": "e96391fc594b5869546a3cdac4e76b10",
+    "url": "/GOG-Galaxy-Suggester/static/js/sql-wasm.wasm"
+  },
+  {
     "revision": "21f5bf2c80f246dadadc608b7e5ba401",
     "url": "/GOG-Galaxy-Suggester/static/media/battlenet.21f5bf2c.svg"
   },

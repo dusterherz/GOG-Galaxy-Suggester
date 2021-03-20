@@ -23,7 +23,7 @@ export default ({
                     </Tooltip>
                     <Tooltip title="Next Game">
                         <div>
-                            <IconButton color="inherit" aria-label="menu" onClick={onNextGameClicked} disabled={isNextGameDisabled}>
+                            <IconButton color="inherit" aria-label="menu" onClick={onNextGameClicked} disabled={isNextGameDisabled} data-testid='nextGameButton'>
                                 <RefreshTwoToneIcon />
                             </IconButton>
                         </div>

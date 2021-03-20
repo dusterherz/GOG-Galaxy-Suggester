@@ -1,38 +1,40 @@
-import { mount } from 'enzyme';
 import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import Navigation from './Navigation';
-import FolderOpenTwoToneIcon from '@material-ui/icons/FolderOpenTwoTone';
-import RefreshTwoToneIcon from '@material-ui/icons/RefreshTwoTone';
 
 describe('Navigation', () => {
     function createNavigation(onUploadDbClicked: any, onNextGameClicked: any, isNextGameDisabled: any) {
-        return mount(<Navigation onUploadDbClicked={onUploadDbClicked} onNextGameClicked={onNextGameClicked} isNextGameDisabled={isNextGameDisabled ?? false} />);
+        render(<Navigation onUploadDbClicked={onUploadDbClicked} onNextGameClicked={onNextGameClicked} isNextGameDisabled={isNextGameDisabled ?? false} />);
     }
 
-    it('should invoke onUploadDbClicked() when upload db icon is clicked', () => {
+    it('should invoke onUploadDbClicked() when Open button is clicked', () => {
         const onUploadDbClicked = jest.fn()
-        const wrapper = createNavigation(onUploadDbClicked, null, null);
+        createNavigation(onUploadDbClicked, null, null);
 
-        wrapper.find(FolderOpenTwoToneIcon).simulate('click');
+        fireEvent.click(screen.getByTitle('Open'));
 
         expect(onUploadDbClicked).toHaveBeenCalled();
     });
 
-    it('should invoke onNextGameClicked() when next game icon is clicked', () => {
+    it('should invoke onNextGameClicked() when Next Game button is clicked', () => {
         const onNextGameClicked = jest.fn()
-        const wrapper = createNavigation(null, onNextGameClicked, null);
+        createNavigation(null, onNextGameClicked, null);
 
-        wrapper.find(RefreshTwoToneIcon).simulate('click');
+        const nextGameButton = screen.getByTestId('nextGameButton');
+        fireEvent.click(nextGameButton);
 
         expect(onNextGameClicked).toHaveBeenCalled();
     });
 
-    it('should not invoke onNextGameClicked() when next game icon is clicked and disabled', () => {
+    it('should not invoke onNextGameClicked() when Next Game button is clicked and disabled', () => {
         const onNextGameClicked = jest.fn()
-        const wrapper = createNavigation(null, onNextGameClicked, true);
+        createNavigation(null, onNextGameClicked, true);
 
-        wrapper.find(RefreshTwoToneIcon).simulate('click');
+        const nextGameButton = screen.getByTestId('nextGameButton');
+        fireEvent.click(nextGameButton);
 
+        expect(nextGameButton).toBeDisabled();
         expect(onNextGameClicked).toHaveBeenCalledTimes(0);
     });
 });

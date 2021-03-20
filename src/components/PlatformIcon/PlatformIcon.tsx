@@ -32,7 +32,7 @@ function PlatformIcon({ releaseKey }: platformIconProps) {
     return (
         <Tooltip title={platform} >
             <IconButton onClick={onClick}>
-                <SvgIcon component={icon.icon} viewBox={`0 0 ${icon.size ?? 24} ${icon.size ?? 24}`} />
+                <SvgIcon component={icon.icon} viewBox={`0 0 ${icon.size ?? 24} ${icon.size ?? 24}`} titleAccess={platform} />
             </IconButton>
         </Tooltip>
     );

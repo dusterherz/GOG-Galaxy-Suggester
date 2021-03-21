@@ -4,7 +4,7 @@ on:
     - cron: "0 * * * *"
 jobs:
   test:
-    name: Auto-merge minor and patch updates
+    name: Auto-merge
     runs-on: ubuntu-latest
     steps:
       - uses: koj-co/dependabot-pr-action@master

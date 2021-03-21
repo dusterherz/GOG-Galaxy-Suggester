@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/GOG-Galaxy-Suggester/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/GOG-Galaxy-Suggester/static/js/main.f06491f1.chunk.js",
-    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.f06491f1.chunk.js.map",
+    "main.js": "/GOG-Galaxy-Suggester/static/js/main.8d24720e.chunk.js",
+    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.8d24720e.chunk.js.map",
     "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.bc909f24.js",
     "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.bc909f24.js.map",
     "static/js/2.af966467.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.af966467.chunk.js",
@@ -19,9 +19,9 @@
     "static/media/humble_bundle.13f754bc.svg": "/GOG-Galaxy-Suggester/static/media/humble_bundle.13f754bc.svg",
     "static/media/origin.8c6c78fd.svg": "/GOG-Galaxy-Suggester/static/media/origin.8c6c78fd.svg",
     "static/media/paradox.a16487d3.svg": "/GOG-Galaxy-Suggester/static/media/paradox.a16487d3.svg",
+    "static/media/pasteAndOpen.8950bedd.jpg": "/GOG-Galaxy-Suggester/static/media/pasteAndOpen.8950bedd.jpg",
     "static/media/playstation.79bc1e4b.svg": "/GOG-Galaxy-Suggester/static/media/playstation.79bc1e4b.svg",
     "static/media/steam.9258aedf.svg": "/GOG-Galaxy-Suggester/static/media/steam.9258aedf.svg",
-    "static/media/step3.8950bedd.jpg": "/GOG-Galaxy-Suggester/static/media/step3.8950bedd.jpg",
     "static/media/uplay.3858a744.svg": "/GOG-Galaxy-Suggester/static/media/uplay.3858a744.svg",
     "static/media/xbox.41ec052c.svg": "/GOG-Galaxy-Suggester/static/media/xbox.41ec052c.svg"
   },
@@ -29,6 +29,6 @@
     "static/js/runtime-main.bc909f24.js",
     "static/js/2.af966467.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.f06491f1.chunk.js"
+    "static/js/main.8d24720e.chunk.js"
   ]
 }

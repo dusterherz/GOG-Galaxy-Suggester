@@ -2,7 +2,7 @@ import React from "react";
 import { TextField, Button, Typography, Container, ClickAwayListener, Tooltip, withStyles } from '@material-ui/core';
 import { FileUploadProps } from "./FileUpload.types";
 import TutorialPoint from "../TutorialPoint/TutorialPoint";
-import step3 from './step3.jpg';
+import pasteAndOpen from './pasteAndOpen.jpg';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 import useStyles from './FileUpload.styles'
@@ -59,6 +59,10 @@ function FileUpload({ onFileChange }: FileUploadProps) {
                 </Typography>
             </TutorialPoint>
             <TutorialPoint number={2}>
+                <Typography>You'll have to paste the copied path to the File name field and click open.</Typography>
+                <img className={classes.image} src={pasteAndOpen} alt="Paste and open" />
+            </TutorialPoint>
+            <TutorialPoint number={3}>
                 <input
                     accept=".db"
                     className={classes.input}
@@ -72,15 +76,12 @@ function FileUpload({ onFileChange }: FileUploadProps) {
                         Open
                     </Button>
                 </label>
-                <Typography>Click the button to open the file.</Typography>
-            </TutorialPoint>
-            <TutorialPoint number={3}>
-                <Typography>Paste the copied path to the File name field and click open.</Typography>
-                <img className={classes.image} src={step3} alt="Paste and open" />
+                <Typography>Now click the button and open the file.</Typography>
             </TutorialPoint>
 
 
-        </Container>
+
+        </Container >
     );
 }
 

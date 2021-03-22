@@ -12,9 +12,8 @@ describe('Open file page', () => {
     it('should copy text to clipboard', () => {
         cy.visit('/');
 
-        const gogDbTextBox = cy.findByRole('textbox');
-        gogDbTextBox.should('have.value', gogDbLocation);
-        gogDbTextBox.click();
+        cy.findByRole('textbox').should('have.value', gogDbLocation);
+        cy.findByRole('textbox').click();
         cy.findByRole('tooltip').should('have.text', 'Copied!');
 
         // TODO: test pasting, cannot get it to work
@@ -24,7 +23,6 @@ describe('Open file page', () => {
         //     });
         // });
 
-
-        // cy.wrap(promise).should('eq', gogDbLocation);
+        // cy.wrap(promise).should(txt => { expect(txt).to.be.eq(gogDbLocation) });
     });
 });

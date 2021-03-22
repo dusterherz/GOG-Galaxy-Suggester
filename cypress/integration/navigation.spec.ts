@@ -1,8 +1,14 @@
 import openDbFile from "../fixtures/openDbFile";
+import writeDbFile from "../fixtures/writeDbFile";
+import { prisonArchitect, rocketLeague } from "../../test_utils/gameTestData";
 
 describe('Navigation', () => {
+    before(() => {
+        writeDbFile('navigation.db', prisonArchitect.concat(rocketLeague));
+    });
+
     beforeEach(() => {
-        openDbFile('twoGames.db');
+        openDbFile('navigation.db');
     });
 
     it('should be able to visit open file after loading a game', () => {
@@ -20,4 +26,4 @@ describe('Navigation', () => {
 
         cy.findByText(/^(Prison Architect|Rocket League)$/).should('exist');
     });
-})
+});

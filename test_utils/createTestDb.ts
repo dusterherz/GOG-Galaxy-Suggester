@@ -120,8 +120,15 @@ const createReleaseProperties = (db: SqlJs.Database) => {
   runSql(db, createTable);
 }
 
-export default async () => {
-  const SQL = await initSqlJs();
+const createTestDb = async () => {
+  const SQL = await initSqlJs({
+    locateFile: (path, prefix) => {
+      // A bit hacky, but for now the only way I made it work for cypress
+      // Probably would be better to do it with webpack
+      if (path.endsWith("sql-wasm.wasm")) return 'http://localhost:3000/GOG-Galaxy-Suggester/static/js/sql-wasm.wasm';
+      return prefix + path;
+    }
+  });
   let db = new SQL.Database();
 
   createLibraryReleases(db);
@@ -131,3 +138,5 @@ export default async () => {
   createReleaseProperties(db);
   return db;
 }
+
+export default createTestDb;

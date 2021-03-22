@@ -6,7 +6,7 @@ import createTestDb, { runSql } from '../../test_utils/createTestDb'
 describe('gogDb', () => {
   let blob: Blob;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     let db = await createTestDb();
 
     prisonArchitect.forEach(x => runSql(db, x));
@@ -16,9 +16,6 @@ describe('gogDb', () => {
 
     let data = db.export();
     blob = new Blob([data]);
-
-    // this is bad. We want to generate test.db in cypress, but I can't get sql-js .wasm to work there.
-    // writeFileSync('./cypress/fixtures/test.db', data, "utf-8");
   });
 
   each([

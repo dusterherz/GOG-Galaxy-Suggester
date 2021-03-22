@@ -1,17 +1,14 @@
-import openDbFile from "../fixtures/openDbFile";
+import openDbFile from '../fixtures/openDbFile';
+import writeDbFile from '../fixtures/writeDbFile';
+import { prisonArchitect } from '../../test_utils/gameTestData';
 
 describe('Game details', () => {
+    before(() => {
+        writeDbFile('gameDetails.db', prisonArchitect);
+    });
+
     beforeEach(() => {
-        // let db = await createTestDb();
-        // prisonArchitect.forEach(x => runSql(db, x));
-
-        // let data = db.export();
-        // let blob = new Blob([data]);
-        // let file = new File([blob], "test.db");
-
-        // cy.writeFile('test.db', file, 'binary')
-
-        openDbFile('oneGame.db');
+        openDbFile('gameDetails.db');
     });
 
     it('all game data visible after loading', () => {

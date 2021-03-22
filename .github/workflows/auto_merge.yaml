@@ -7,7 +7,7 @@ jobs:
     name: Auto-merge
     runs-on: ubuntu-latest
     steps:
-      - uses: koj-co/dependabot-pr-action@master
+      - uses: koj-co/dependabot-pr-action@v1.1.12
         with:
           token: ${{ secrets.AUTO_MERGE_TOKEN }}
           merge: true

@@ -13,7 +13,6 @@ import Navigation from './components/Navigation/Navigation';
 
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { game } from './types/game';
 
 

@@ -14,6 +14,7 @@ import Navigation from './components/Navigation/Navigation';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
+import moveGameToHistory from './filters/history';
 
 
 const theme = createMuiTheme({
@@ -29,15 +30,22 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [game, setGame] = useState<game | null>(null);
   const [allGames, setAllGames] = useState<game[] | null>(null);
+  const [gamesInRotation, setGamesInRotation] = useState<game[]>([]);
+  const [gamesInHistory, setGamesInHistory] = useState<game[]>([]);
 
   const handleGogRead = (queryResults: SqlJs.QueryResults) => {
     let rows = queryResults.values;
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(rows.length));
 
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
     setAllGames(games);
+    setGamesInRotation(games);
 
+    let randomGameIndex = Math.floor(Math.random() * Math.floor(games.length));
     let gameDetailsProps: game = games[randomGameIndex];
+
+    let [rotation, history] = moveGameToHistory(games, [], randomGameIndex);
+    setGamesInRotation(rotation);
+    setGamesInHistory(history);
 
     setGame(gameDetailsProps);
     setIsLoaded(true);
@@ -75,8 +83,12 @@ function App() {
       return;
     }
 
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(allGames.length));
-    let gameDetailsProps: game = allGames[randomGameIndex];
+    let randomGameIndex = Math.floor(Math.random() * Math.floor(gamesInRotation.length));
+    let gameDetailsProps: game = gamesInRotation[randomGameIndex];
+
+    let [rotation, history] = moveGameToHistory(gamesInRotation, gamesInHistory, randomGameIndex);
+    setGamesInRotation(rotation);
+    setGamesInHistory(history);
 
     setGame(gameDetailsProps);
   };

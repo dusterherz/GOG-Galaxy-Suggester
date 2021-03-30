@@ -20,10 +20,15 @@ describe('Navigation', () => {
     });
 
     it('should be able to get next game', () => {
-        cy.findByText(/^(Prison Architect|Rocket League)$/).should('exist');
+        cy.findByText(/^(Prison Architect|Rocket League)$/).then($title1 => {
+            const title1 = $title1.text();
 
-        cy.findByTitle('Next Game').click();
+            cy.findByTitle('Next Game').click();
 
-        cy.findByText(/^(Prison Architect|Rocket League)$/).should('exist');
+            cy.findByText(/^(Prison Architect|Rocket League)$/).then($title2 => {
+
+                expect($title2.text()).not.to.eq(title1);
+            });
+        });
     });
 });

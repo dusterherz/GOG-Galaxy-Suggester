@@ -1,13 +1,14 @@
+import React from 'react';
 import { AppBar, Toolbar, IconButton, Tooltip } from "@material-ui/core";
-import React from "react";
 import FolderOpenTwoToneIcon from '@material-ui/icons/FolderOpenTwoTone';
 import RefreshTwoToneIcon from '@material-ui/icons/RefreshTwoTone';
+import TuneTwoToneIcon from '@material-ui/icons/TuneTwoTone';
 import useStyles from './Navigation.styles'
 import { navigationProps } from "./Navigation.types";
+import { navigationPage } from '../../types/navigation';
 
 const Navigation = ({
-    onUploadDbClicked,
-    onNextGameClicked,
+    onNavigationChanged,
     isNextGameDisabled,
 }: navigationProps) => {
     const classes = useStyles();
@@ -17,16 +18,21 @@ const Navigation = ({
             <AppBar position="fixed" className={classes.root}>
                 <Toolbar>
                     <Tooltip title="Open">
-                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={onUploadDbClicked}>
+                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.openFile) }}>
                             <FolderOpenTwoToneIcon />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Next Game">
                         <div>
-                            <IconButton color="inherit" aria-label="menu" onClick={onNextGameClicked} disabled={isNextGameDisabled} data-testid='nextGameButton'>
+                            <IconButton color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.gameDetails) }} disabled={isNextGameDisabled} data-testid='nextGameButton'>
                                 <RefreshTwoToneIcon />
                             </IconButton>
                         </div>
+                    </Tooltip>
+                    <Tooltip title="Preferences">
+                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.preferences) }}>
+                            <TuneTwoToneIcon />
+                        </IconButton>
                     </Tooltip>
                 </Toolbar>
             </AppBar>

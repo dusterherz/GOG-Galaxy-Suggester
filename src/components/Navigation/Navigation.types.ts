@@ -1,5 +1,6 @@
+import { navigationPage } from "../../types/navigation";
+
 export interface navigationProps {
-    onUploadDbClicked: () => void;
-    onNextGameClicked: () => void;
+    onNavigationChanged: (navigation: navigationPage) => void;
     isNextGameDisabled: boolean;
 }

@@ -10,12 +10,14 @@ import FileUpload from './components/FileUpload/FileUpload';
 import GameDetails from './components/GameDetails/GameDetails';
 import Loading from './components/Loading/Loading';
 import Navigation from './components/Navigation/Navigation';
+import Preferences from './components/Preferences/Preferences';
 
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
 import { preferences } from './types/preferences';
 import { pickAGameAndRefreshRotaion, pickAGameInRotation } from './utils/gamesRotation';
+import { navigationPage } from './types/navigation';
 
 
 const theme = createMuiTheme({
@@ -35,7 +37,8 @@ function App() {
   const [allGames, setAllGames] = useState<game[] | null>(null);
   const [gamesInRotation, setGamesInRotation] = useState<game[]>([]);
   const [gamesInHistory, setGamesInHistory] = useState<game[]>([]);
-  const [preferences,] = useState<preferences>(defaultPreferences);
+  const [preferences, setPreferences] = useState<preferences>(defaultPreferences);
+  const [currentPage, setCurrentPage] = useState<navigationPage>(navigationPage.openFile);
 
   const handleGogRead = (queryResults: SqlJs.QueryResults) => {
     let rows = queryResults.values;
@@ -66,14 +69,27 @@ function App() {
     }
   };
 
-  const handleUploadDbClicked = () => {
-    setError(null);
-    setGame(null);
+  const handlePreferencesChanged = (newPreferences: preferences) => {
+    setPreferences(newPreferences);
   };
 
-  const handleNextGameClicked = () => {
+  const handleNavigationChanged = (goToPage: navigationPage) => {
     setError(null);
-    setNextGame();
+
+    switch (goToPage) {
+      case navigationPage.openFile:
+        setGame(null);
+        break;
+      case navigationPage.gameDetails:
+        setNextGame();
+        break;
+      case navigationPage.preferences:
+        setGame(null);
+        setGamesInRotation([]);
+        break;
+    }
+
+    setCurrentPage(goToPage);
   };
 
   const setNextGame = () => {
@@ -81,7 +97,9 @@ function App() {
       return;
     }
 
-    const selectedGame = pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, setGamesInRotation, setGamesInHistory);
+    const selectedGame = gamesInRotation.length === 0
+      ? pickAGameAndRefreshRotaion(allGames, preferences, setGamesInRotation, setGamesInHistory)
+      : pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, setGamesInRotation, setGamesInHistory);
 
     setGame(selectedGame);
   };
@@ -94,14 +112,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <Paper>
         <Background backgroundImage={game?.backgroundImage ?? ''}>
-          <Navigation onUploadDbClicked={handleUploadDbClicked} onNextGameClicked={handleNextGameClicked} isNextGameDisabled={isNextGameDisabled()}></Navigation>
+          <Navigation onNavigationChanged={handleNavigationChanged} isNextGameDisabled={isNextGameDisabled()}></Navigation>
           {error && error.message
             ? <Error message={error.message} />
             : !isLoaded
               ? <Loading />
               : game != null
                 ? <GameDetails {...game} />
-                : <FileUpload onFileChange={handleFileChange}></FileUpload>
+                : currentPage === navigationPage.openFile
+                  ? <FileUpload onFileChange={handleFileChange}></FileUpload>
+                  : <Preferences preferences={preferences} onPreferencesChanged={handlePreferencesChanged}></Preferences>
           }
         </Background>
       </Paper>

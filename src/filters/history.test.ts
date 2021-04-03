@@ -1,22 +1,9 @@
 import { game } from "../types/game";
 import moveGameToHistory from "./history";
+import { testGame } from "./testData";
 
 describe('history', () => {
-    const game01: game = {
-        title: 'Ricochet',
-        backgroundImage: '',
-        criticsScore: null,
-        developers: [],
-        gameMinutes: 0,
-        genres: [],
-        publishers: [],
-        releaseDate: null,
-        releaseKeys: ['abc_abc'],
-        squareIcon: '',
-        summary: '',
-        themes: [],
-        verticalCover: ''
-    };
+    const game01 = testGame;
 
     const game02: game = {
         ...game01,
@@ -27,7 +14,7 @@ describe('history', () => {
         let gamesInRotation: game[] = [game01, game02];
         let history: game[] = [];
 
-        let [actualGamesInRotation] = moveGameToHistory(gamesInRotation, history, 1);
+        let [actualGamesInRotation] = moveGameToHistory(gamesInRotation, history, game02);
 
         expect(actualGamesInRotation).toEqual([game01]);
     });
@@ -36,7 +23,7 @@ describe('history', () => {
         let gamesInRotation: game[] = [game01, game02];
         let history: game[] = [];
 
-        let [, actualHistory] = moveGameToHistory(gamesInRotation, history, 1);
+        let [, actualHistory] = moveGameToHistory(gamesInRotation, history, game02);
 
         expect(actualHistory).toEqual([game02]);
     });
@@ -45,7 +32,7 @@ describe('history', () => {
         let gamesInRotation: game[] = [game01];
         let history: game[] = [];
 
-        let [actualGamesInRotation] = moveGameToHistory(gamesInRotation, history, 0);
+        let [actualGamesInRotation] = moveGameToHistory(gamesInRotation, history, game01);
 
         expect(actualGamesInRotation).toEqual([game01]);
     });
@@ -54,7 +41,7 @@ describe('history', () => {
         let gamesInRotation: game[] = [game01];
         let history: game[] = [];
 
-        let [, actualHistory] = moveGameToHistory(gamesInRotation, history, 0);
+        let [, actualHistory] = moveGameToHistory(gamesInRotation, history, game01);
 
         expect(actualHistory).toEqual([]);
     });
@@ -63,7 +50,7 @@ describe('history', () => {
         let gamesInRotation: game[] = [game01];
         let history: game[] = [game02];
 
-        let [actualGamesInRotation] = moveGameToHistory(gamesInRotation, history, 0);
+        let [actualGamesInRotation] = moveGameToHistory(gamesInRotation, history, game01);
 
         expect(actualGamesInRotation).toContain(game02);
     });
@@ -72,7 +59,7 @@ describe('history', () => {
         let gamesInRotation: game[] = [game01];
         let history: game[] = [game02];
 
-        let [, actualHistory] = moveGameToHistory(gamesInRotation, history, 0);
+        let [, actualHistory] = moveGameToHistory(gamesInRotation, history, game01);
 
         expect(actualHistory).not.toContain(game02);
     });

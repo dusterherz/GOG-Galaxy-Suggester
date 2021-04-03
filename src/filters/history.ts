@@ -1,9 +1,11 @@
 import { game } from "../types/game";
 
-const moveGameToHistory = (gamesInRotation: game[], history: game[], selectedGameIndex: number) => {
+const moveGameToHistory = (gamesInRotation: game[], history: game[], selectedGame: game) => {
     if (gamesInRotation.length + history.length < 2) {
         return [gamesInRotation, history];
     }
+
+    const selectedGameIndex = gamesInRotation.indexOf(selectedGame);
 
     let gamesResult = [...gamesInRotation];
     let removedFromRotation = gamesResult.splice(selectedGameIndex, 1);

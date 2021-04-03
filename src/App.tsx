@@ -15,6 +15,8 @@ import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
 import moveGameToHistory from './filters/history';
+import { preferences } from './types/preferences';
+import applyFilters from './filters/applyFilters';
 
 
 const theme = createMuiTheme({
@@ -25,6 +27,8 @@ const theme = createMuiTheme({
   },
 });
 
+const defaultPreferences = { filters: { excludePlayed: false } };
+
 function App() {
   const [error, setError] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(true);
@@ -32,18 +36,19 @@ function App() {
   const [allGames, setAllGames] = useState<game[] | null>(null);
   const [gamesInRotation, setGamesInRotation] = useState<game[]>([]);
   const [gamesInHistory, setGamesInHistory] = useState<game[]>([]);
+  const [preferences, setPreferences] = useState<preferences>(defaultPreferences);
 
   const handleGogRead = (queryResults: SqlJs.QueryResults) => {
     let rows = queryResults.values;
 
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
     setAllGames(games);
-    setGamesInRotation(games);
+    let filteredGames = applyFilters(games, preferences.filters);
 
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(games.length));
-    let gameDetailsProps: game = games[randomGameIndex];
+    let randomGameIndex = Math.floor(Math.random() * Math.floor(filteredGames.length));
+    let gameDetailsProps: game = filteredGames[randomGameIndex];
 
-    let [rotation, history] = moveGameToHistory(games, [], randomGameIndex);
+    let [rotation, history] = moveGameToHistory(filteredGames, [], gameDetailsProps);
     setGamesInRotation(rotation);
     setGamesInHistory(history);
 
@@ -86,7 +91,7 @@ function App() {
     let randomGameIndex = Math.floor(Math.random() * Math.floor(gamesInRotation.length));
     let gameDetailsProps: game = gamesInRotation[randomGameIndex];
 
-    let [rotation, history] = moveGameToHistory(gamesInRotation, gamesInHistory, randomGameIndex);
+    let [rotation, history] = moveGameToHistory(gamesInRotation, gamesInHistory, gameDetailsProps);
     setGamesInRotation(rotation);
     setGamesInHistory(history);
 

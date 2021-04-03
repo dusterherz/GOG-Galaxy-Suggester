@@ -14,9 +14,8 @@ import Navigation from './components/Navigation/Navigation';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
-import moveGameToHistory from './filters/history';
 import { preferences } from './types/preferences';
-import applyFilters from './filters/applyFilters';
+import { pickAGameAndRefreshRotaion, pickAGameInRotation } from './utils/gamesRotation';
 
 
 const theme = createMuiTheme({
@@ -43,16 +42,10 @@ function App() {
 
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
     setAllGames(games);
-    let filteredGames = applyFilters(games, preferences.filters);
 
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(filteredGames.length));
-    let gameDetailsProps: game = filteredGames[randomGameIndex];
+    const selectedGame = pickAGameAndRefreshRotaion(games, preferences, setGamesInRotation, setGamesInHistory);
 
-    let [rotation, history] = moveGameToHistory(filteredGames, [], gameDetailsProps);
-    setGamesInRotation(rotation);
-    setGamesInHistory(history);
-
-    setGame(gameDetailsProps);
+    setGame(selectedGame);
     setIsLoaded(true);
   };
 
@@ -88,14 +81,9 @@ function App() {
       return;
     }
 
-    let randomGameIndex = Math.floor(Math.random() * Math.floor(gamesInRotation.length));
-    let gameDetailsProps: game = gamesInRotation[randomGameIndex];
+    const selectedGame = pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, setGamesInRotation, setGamesInHistory);
 
-    let [rotation, history] = moveGameToHistory(gamesInRotation, gamesInHistory, gameDetailsProps);
-    setGamesInRotation(rotation);
-    setGamesInHistory(history);
-
-    setGame(gameDetailsProps);
+    setGame(selectedGame);
   };
 
   const isNextGameDisabled = () => {

@@ -30,7 +30,7 @@ const Navigation = ({
                         </div>
                     </Tooltip>
                     <Tooltip title="Preferences">
-                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.preferences) }}>
+                        <IconButton color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.preferences) }}>
                             <TuneTwoToneIcon />
                         </IconButton>
                     </Tooltip>

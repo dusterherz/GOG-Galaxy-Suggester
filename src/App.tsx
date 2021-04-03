@@ -35,7 +35,7 @@ function App() {
   const [allGames, setAllGames] = useState<game[] | null>(null);
   const [gamesInRotation, setGamesInRotation] = useState<game[]>([]);
   const [gamesInHistory, setGamesInHistory] = useState<game[]>([]);
-  const [preferences, setPreferences] = useState<preferences>(defaultPreferences);
+  const [preferences,] = useState<preferences>(defaultPreferences);
 
   const handleGogRead = (queryResults: SqlJs.QueryResults) => {
     let rows = queryResults.values;

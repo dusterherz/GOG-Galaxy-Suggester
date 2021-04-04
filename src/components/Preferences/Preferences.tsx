@@ -1,4 +1,4 @@
-import { List, ListItem, Container, Checkbox } from '@material-ui/core';
+import { List, ListItem, Container, Checkbox, Typography } from '@material-ui/core';
 import { preferencesProps } from './Preferences.types';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
@@ -15,6 +15,7 @@ const Preferences = ({
 
     return (
         <Container>
+            <Typography variant='h4'>Here you can configure the mighty recommendation engine</Typography>
             <List>
                 <ListItem>
                     <FormControlLabel
@@ -25,7 +26,6 @@ const Preferences = ({
                         }
                         label='Only unplayed games'
                     />
-
                 </ListItem>
             </List>
         </Container>

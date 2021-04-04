@@ -38,4 +38,13 @@ describe('Navigation', () => {
         expect(nextGameButton).toBeDisabled();
         expect(onNavigationChanged).toHaveBeenCalledTimes(0);
     });
+
+    it('should change navigation to Preferences when Preferences is clicked', () => {
+        const onNavigationChanged = jest.fn()
+        createNavigation(onNavigationChanged, null);
+
+        fireEvent.click(screen.getByTitle('Preferences'));
+
+        expect(onNavigationChanged).toHaveBeenCalledWith(navigationPage.preferences);
+    });
 });

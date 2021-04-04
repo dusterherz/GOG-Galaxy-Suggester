@@ -31,4 +31,10 @@ describe('Navigation', () => {
             });
         });
     });
+
+    it('should be able to visit preferences', () => {
+        cy.findByTitle('Preferences').click();
+
+        cy.findByText('Here you can configure the mighty recommendation engine').should('exist');
+    });
 });

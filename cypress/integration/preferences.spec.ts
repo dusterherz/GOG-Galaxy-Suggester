@@ -11,6 +11,9 @@ describe('Preferences', () => {
 
     beforeEach(() => {
         openDbFile('preferences.db');
+
+        cy.findByText('Welcome to GOG Galaxy Suggester').should('not.exist');
+        cy.findAllByText('Loading').should('not.exist');
     });
 
     it('should filter for unplayed games', () => {

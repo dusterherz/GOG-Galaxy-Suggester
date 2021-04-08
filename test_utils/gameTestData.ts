@@ -1,3 +1,38 @@
+export const createGameData = ({ id, releaseKey, title, gameMinutes = 60 }: fakeGameData) => {
+    return [`
+    INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
+    ${id},123123123,'${releaseKey}');
+    
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',30,NULL,'{"releases":["${releaseKey}"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',33,123123123,'{"background":"","squareIcon":"","verticalCover":""}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',34,123123123,'{"criticsScore":88.7059,"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',35,123123123,'{"title":"${title}"}'); 
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',101,123123123,'{"criticsScore":88.7059,"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',102,123123123,'{"summary":"This is the game summary."}');
+    `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
+    '${releaseKey}',103,123123123,'{"title":"${title}"}');
+
+    `, `INSERT INTO [GameTimes] ([userId],[releaseKey],[minutesInGame]) VALUES (
+    123123123,'${releaseKey}',${gameMinutes});
+
+    `, `INSERT INTO [ReleaseProperties] ([releaseKey],[isDlc],[isVisibleInLibrary],[gameId]) VALUES (
+    '${releaseKey}',0,1,'${id}');
+`];
+};
+
+export interface fakeGameData {
+    id: number;
+    releaseKey: string;
+    title: string;
+    gameMinutes: number;
+}
+
 export const prisonArchitect = [`
     INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
     14,123123123,'gog_1441974651');

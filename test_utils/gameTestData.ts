@@ -6,7 +6,7 @@ export const createGameData = ({ id, releaseKey, title, gameMinutes = 60 }: fake
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',30,NULL,'{"releases":["${releaseKey}"]}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
-    '${releaseKey}',33,123123123,'{"background":"","squareIcon":"","verticalCover":""}');
+    '${releaseKey}',33,123123123,'{"background":null,"squareIcon":null,"verticalCover":null}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',34,123123123,'{"criticsScore":88.7059,"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (

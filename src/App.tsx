@@ -8,6 +8,7 @@ import Background from './components/Background/Background';
 import Error from './components/Error/Error';
 import FileUpload from './components/FileUpload/FileUpload';
 import GameDetails from './components/GameDetails/GameDetails';
+import GameNotFound from './components/GameNotFound/GameNotFound';
 import Loading from './components/Loading/Loading';
 import Navigation from './components/Navigation/Navigation';
 import Preferences from './components/Preferences/Preferences';
@@ -108,6 +109,15 @@ function App() {
     return allGames === null || allGames.length === 0;
   }
 
+  const renderPageWhenNoGame = () => {
+    switch (currentPage) {
+      case navigationPage.openFile: return <FileUpload onFileChange={handleFileChange}></FileUpload>;
+      case navigationPage.preferences: return <Preferences preferences={preferences} onPreferencesChanged={handlePreferencesChanged}></Preferences>;
+      case navigationPage.gameDetails: return <GameNotFound />;
+      default: return <GameNotFound />;
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Paper>
@@ -119,9 +129,7 @@ function App() {
               ? <Loading />
               : game != null
                 ? <GameDetails {...game} />
-                : currentPage === navigationPage.openFile
-                  ? <FileUpload onFileChange={handleFileChange}></FileUpload>
-                  : <Preferences preferences={preferences} onPreferencesChanged={handlePreferencesChanged}></Preferences>
+                : renderPageWhenNoGame()
           }
         </Background>
       </Paper>

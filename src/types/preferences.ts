@@ -3,5 +3,5 @@ export interface preferences {
 }
 
 export interface filters {
-    excludePlayed: boolean;
+    played: boolean;
 }

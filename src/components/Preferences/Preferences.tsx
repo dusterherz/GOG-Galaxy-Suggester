@@ -9,7 +9,7 @@ const Preferences = ({
 
     const handleExcludePlayedChange = (event: { target: { checked: boolean; }; }) => {
         const newPreferences = { ...preferences };
-        newPreferences.filters.excludePlayed = event.target.checked;
+        newPreferences.filters.played = event.target.checked;
         onPreferencesChanged(newPreferences);
     };
 
@@ -17,14 +17,15 @@ const Preferences = ({
         <Container>
             <Typography variant='h4'>Here you can configure the mighty recommendation engine</Typography>
             <List>
+                <Typography variant='h5'>Show:</Typography>
                 <ListItem>
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={preferences.filters.excludePlayed}
+                                checked={preferences.filters.played}
                                 onChange={handleExcludePlayedChange} />
                         }
-                        label='Only unplayed games'
+                        label='Played games'
                     />
                 </ListItem>
             </List>

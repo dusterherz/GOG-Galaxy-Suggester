@@ -18,7 +18,7 @@ describe('Preferences', () => {
 
     it('should filter for unplayed games', () => {
         cy.findByTitle('Preferences').click();
-        cy.findByLabelText('Only unplayed games').check();
+        cy.findByLabelText('Played games').uncheck();
 
         cy.findByTitle('Next Game').click();
         cy.findByText('Unplayed Game').should('exist');

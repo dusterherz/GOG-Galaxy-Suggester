@@ -1,8 +1,9 @@
+import { filters } from "../types/preferences";
 import applyFilters from "./applyFilters";
 import { testGame } from "./testData";
 
 describe('applyFilters', () => {
-    const allowAllFilter = { excludePlayed: false };
+    const allowAllFilter: filters = { played: true };
     const games = [
         testGame,
     ];
@@ -16,7 +17,7 @@ describe('applyFilters', () => {
     it('should exclude games with gameTime if excluding played games', () => {
         games[0].gameMinutes = 13;
         let filter = allowAllFilter;
-        filter.excludePlayed = true;
+        filter.played = false;
 
         const actualGames = applyFilters(games, allowAllFilter);
 

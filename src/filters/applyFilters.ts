@@ -3,7 +3,7 @@ import { filters } from "../types/preferences";
 
 const applyFilters = (games: game[], filters: filters) => {
     return games.filter(game => {
-        return filters.excludePlayed ? !isPlayed(game) : true;
+        return filters.played ? true : !isPlayed(game);
     });
 }
 

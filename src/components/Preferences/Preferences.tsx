@@ -7,15 +7,21 @@ const Preferences = ({
     onPreferencesChanged,
 }: preferencesProps) => {
 
-    const handleExcludePlayedChange = (event: { target: { checked: boolean; }; }) => {
+    const handlePlayedChange = (event: { target: { checked: boolean; }; }) => {
         const newPreferences = { ...preferences };
         newPreferences.filters.played = event.target.checked;
         onPreferencesChanged(newPreferences);
     };
 
-    const handleExcludeUnplayedChange = (event: { target: { checked: boolean; }; }) => {
+    const handleUnplayedChange = (event: { target: { checked: boolean; }; }) => {
         const newPreferences = { ...preferences };
         newPreferences.filters.unplayed = event.target.checked;
+        onPreferencesChanged(newPreferences);
+    };
+
+    const handleNoCriticsScoreChange = (event: { target: { checked: boolean; }; }) => {
+        const newPreferences = { ...preferences };
+        newPreferences.filters.withoutCriticsScore = event.target.checked;
         onPreferencesChanged(newPreferences);
     };
 
@@ -29,7 +35,7 @@ const Preferences = ({
                         control={
                             <Checkbox
                                 checked={preferences.filters.played}
-                                onChange={handleExcludePlayedChange} />
+                                onChange={handlePlayedChange} />
                         }
                         label='Played games'
                     />
@@ -39,9 +45,19 @@ const Preferences = ({
                         control={
                             <Checkbox
                                 checked={preferences.filters.unplayed}
-                                onChange={handleExcludeUnplayedChange} />
+                                onChange={handleUnplayedChange} />
                         }
                         label='Unplayed games'
+                    />
+                </ListItem>
+                <ListItem>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={preferences.filters.withoutCriticsScore}
+                                onChange={handleNoCriticsScoreChange} />
+                        }
+                        label='No critics score'
                     />
                 </ListItem>
             </List>

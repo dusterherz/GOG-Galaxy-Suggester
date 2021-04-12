@@ -33,6 +33,7 @@ const defaultPreferences: preferences = {
   filters: {
     played: true,
     unplayed: true,
+    withoutCriticsScore: true,
   }
 };
 

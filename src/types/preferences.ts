@@ -5,4 +5,5 @@ export interface preferences {
 export interface filters {
     played: boolean;
     unplayed: boolean;
+    withoutCriticsScore: boolean;
 }

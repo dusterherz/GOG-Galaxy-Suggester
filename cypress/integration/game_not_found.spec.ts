@@ -17,7 +17,7 @@ describe('Game Not Found', () => {
 
     it('should show game not found page when no game matches the filters', () => {
         cy.findByTitle('Preferences').click();
-        cy.findByLabelText('Only unplayed games').check();
+        cy.findByLabelText('Played games').uncheck();
 
         cy.findByTitle('Next Game').click();
         cy.findByText("We couldn't find any game that matches your given criteria.").should('exist');

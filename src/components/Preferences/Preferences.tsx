@@ -13,6 +13,12 @@ const Preferences = ({
         onPreferencesChanged(newPreferences);
     };
 
+    const handleExcludeUnplayedChange = (event: { target: { checked: boolean; }; }) => {
+        const newPreferences = { ...preferences };
+        newPreferences.filters.unplayed = event.target.checked;
+        onPreferencesChanged(newPreferences);
+    };
+
     return (
         <Container>
             <Typography variant='h4'>Here you can configure the mighty recommendation engine</Typography>
@@ -26,6 +32,16 @@ const Preferences = ({
                                 onChange={handleExcludePlayedChange} />
                         }
                         label='Played games'
+                    />
+                </ListItem>
+                <ListItem>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={preferences.filters.unplayed}
+                                onChange={handleExcludeUnplayedChange} />
+                        }
+                        label='Unplayed games'
                     />
                 </ListItem>
             </List>

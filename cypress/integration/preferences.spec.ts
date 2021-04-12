@@ -20,4 +20,12 @@ describe('Preferences', () => {
         cy.findByTitle('Next Game').click();
         cy.findByText('Unplayed Game').should('exist');
     });
+
+    it('should filter for played games', () => {
+        cy.findByTitle('Preferences').click();
+        cy.findByLabelText('Unplayed games').uncheck();
+
+        cy.findByTitle('Next Game').click();
+        cy.findByText('Played Game').should('exist');
+    });
 });

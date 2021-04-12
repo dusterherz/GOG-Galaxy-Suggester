@@ -4,15 +4,24 @@ import Preferences from './Preferences';
 import { preferences } from '../../types/preferences';
 
 describe('Preferences', () => {
-
-    it('should change exclude played to true when only unplayed games is checked', () => {
-        const initialPreferences: preferences = {
+    const createInitialPreferences = (): preferences => {
+        return {
             filters: {
                 played: true,
+                unplayed: true,
             }
         };
+    }
+
+    const createExpectedPreferences = (initialPreferences: preferences): preferences => {
         let expectedPreferences: preferences = { ...initialPreferences };
         expectedPreferences.filters = { ...initialPreferences.filters };
+        return expectedPreferences;
+    }
+
+    it('should change played games to false when played games is unchecked', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
         expectedPreferences.filters.played = false;
         const onPreferencesChanged = jest.fn();
         const preferencesProps = {
@@ -22,6 +31,22 @@ describe('Preferences', () => {
         render(<Preferences {...preferencesProps} />);
 
         fireEvent.click(screen.getByLabelText('Played games'));
+
+        expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
+    });
+
+    it('should change unplayed games to false when unplayed games is unchecked', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
+        expectedPreferences.filters.unplayed = false;
+        const onPreferencesChanged = jest.fn();
+        const preferencesProps = {
+            preferences: initialPreferences,
+            onPreferencesChanged: onPreferencesChanged,
+        }
+        render(<Preferences {...preferencesProps} />);
+
+        fireEvent.click(screen.getByLabelText('Unplayed games'));
 
         expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
     });

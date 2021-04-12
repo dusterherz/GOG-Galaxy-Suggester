@@ -29,7 +29,12 @@ const theme = createMuiTheme({
   },
 });
 
-const defaultPreferences: preferences = { filters: { played: true } };
+const defaultPreferences: preferences = {
+  filters: {
+    played: true,
+    unplayed: true,
+  }
+};
 
 function App() {
   const [error, setError] = useState<any>(null);

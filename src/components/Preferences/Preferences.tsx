@@ -1,11 +1,14 @@
-import { List, ListItem, Container, Checkbox, Typography } from '@material-ui/core';
+import { Container, Checkbox, Grid, Typography } from '@material-ui/core';
 import { preferencesProps } from './Preferences.types';
+import useStyles from './Preferences.styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const Preferences = ({
     preferences,
     onPreferencesChanged,
 }: preferencesProps) => {
+
+    const classes = useStyles();
 
     const handlePlayedChange = (event: { target: { checked: boolean; }; }) => {
         const newPreferences = { ...preferences };
@@ -27,20 +30,14 @@ const Preferences = ({
 
     return (
         <Container>
-            <Typography variant='h4'>Here you can configure the mighty recommendation engine</Typography>
-            <List>
-                <Typography variant='h5'>Show:</Typography>
-                <ListItem>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={preferences.filters.played}
-                                onChange={handlePlayedChange} />
-                        }
-                        label='Played games'
-                    />
-                </ListItem>
-                <ListItem>
+            <Typography variant='h4' className={classes.header}>Here you can configure the mighty recommendation engine</Typography>
+
+            <Grid container>
+                <Grid item xs={12} className={classes.header}>
+                    <Typography variant='h5'>Filters</Typography>
+                </Grid>
+                <Grid item xs={12}><Typography variant='h6'>Game Time:</Typography></Grid>
+                <Grid item xs={12} lg={6}>
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -49,18 +46,31 @@ const Preferences = ({
                         }
                         label='Unplayed games'
                     />
-                </ListItem>
-                <ListItem>
+                </Grid>
+                <Grid item xs={12} lg={6}>
                     <FormControlLabel
                         control={
                             <Checkbox
-                                checked={preferences.filters.withoutCriticsScore}
-                                onChange={handleNoCriticsScoreChange} />
+                                checked={preferences.filters.played}
+                                onChange={handlePlayedChange} />
                         }
-                        label='No critics score'
+                        label='Played games'
                     />
-                </ListItem>
-            </List>
+                </Grid>
+                <Grid item xs={12} ><Typography variant='h6'>Critics Score:</Typography></Grid>
+                <Grid item xs={12} lg={6}><FormControlLabel
+                    control={
+                        <Checkbox
+                            checked={preferences.filters.withoutCriticsScore}
+                            onChange={handleNoCriticsScoreChange} />
+                    }
+                    label='No critics score'
+                /></Grid>
+                <Grid item xs={12} lg={6}></Grid>
+            </Grid>
+
+
+
         </Container>
     );
 }

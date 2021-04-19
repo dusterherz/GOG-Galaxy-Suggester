@@ -16,7 +16,7 @@ import Preferences from './components/Preferences/Preferences';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
-import { preferences } from './types/preferences';
+import { allowAllFilter, preferences } from './types/preferences';
 import { pickAGameAndRefreshRotaion, pickAGameInRotation } from './utils/gamesRotation';
 import { navigationPage } from './types/navigation';
 
@@ -31,9 +31,7 @@ const theme = createMuiTheme({
 
 const defaultPreferences: preferences = {
   filters: {
-    played: true,
-    unplayed: true,
-    withoutCriticsScore: true,
+    ...allowAllFilter
   }
 };
 

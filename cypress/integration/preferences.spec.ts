@@ -34,14 +34,15 @@ describe('Preferences on game time', () => {
 describe('Preferences on critics score', () => {
     before(() => {
         const unrated_game = createGameData({ id: 1, releaseKey: 'test_1', title: 'No Critics Score Game', criticsScore: null });
-        // const high_score_game = createGameData({ id: 2, releaseKey: 'test_2', title: 'Super Good Game', criticsScore: 100 });
-        writeDbFile('preferences_criticsscore.db', unrated_game);
+        const high_score_game = createGameData({ id: 2, releaseKey: 'test_2', title: 'Super Good Game', criticsScore: 100 });
+        writeDbFile('preferences_criticsscore.db', unrated_game.concat(high_score_game));
     });
 
     beforeEach(() => {
         openDbFile('preferences_criticsscore.db');
         cy.findByTitle('Preferences').click();
         cy.findByLabelText('No critics score').uncheck();
+        cy.findByLabelText('Critics score').uncheck();
     });
 
     it('should filter for games without critics score', () => {
@@ -49,5 +50,12 @@ describe('Preferences on critics score', () => {
 
         cy.findByTitle('Next Game').click();
         cy.findByText('No Critics Score Game').should('exist');
+    });
+
+    it('should filter for games with critics score', () => {
+        cy.findByLabelText('Critics score').check();
+
+        cy.findByTitle('Next Game').click();
+        cy.findByText('Super Good Game').should('exist');
     });
 });

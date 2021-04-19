@@ -10,6 +10,8 @@ describe('Preferences', () => {
                 played: true,
                 unplayed: true,
                 withoutCriticsScore: true,
+                withCriticsScore: true,
+                criticsScore: [0, 100],
             }
         };
     }
@@ -64,6 +66,22 @@ describe('Preferences', () => {
         render(<Preferences {...preferencesProps} />);
 
         fireEvent.click(screen.getByLabelText('No critics score'));
+
+        expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
+    });
+
+    it('should change with critics score to false when games with critics score is unchecked', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
+        expectedPreferences.filters.withCriticsScore = false;
+        const onPreferencesChanged = jest.fn();
+        const preferencesProps = {
+            preferences: initialPreferences,
+            onPreferencesChanged: onPreferencesChanged,
+        }
+        render(<Preferences {...preferencesProps} />);
+
+        fireEvent.click(screen.getByLabelText('Critics score'));
 
         expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
     });

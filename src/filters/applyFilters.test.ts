@@ -1,15 +1,9 @@
 import { game } from "../types/game";
-import { filters } from "../types/preferences";
+import { allowAllFilter, filters } from "../types/preferences";
 import applyFilters from "./applyFilters";
 import { testGame } from "./testData";
 
 describe('applyFilters', () => {
-    const allowAllFilter: filters = {
-        played: true,
-        unplayed: true,
-        withoutCriticsScore: true,
-    };
-
     let games: game[] = [
     ];
 
@@ -54,5 +48,29 @@ describe('applyFilters', () => {
         const actualGames = applyFilters(games, filter);
 
         expect(actualGames).toHaveLength(0);
+    });
+
+    it('should exclude games with criticsScore if excluding games with critics score', () => {
+        games[0].criticsScore = 50;
+        filter.withCriticsScore = false;
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(0);
+    });
+
+    it('should exclude games with criticsScore out of range if excluding games with critics score', () => {
+        games = [
+            { ...testGame, criticsScore: 24 },
+            { ...testGame, criticsScore: 25 },
+            { ...testGame, criticsScore: 50 },
+            { ...testGame, criticsScore: 75 },
+            { ...testGame, criticsScore: 76 },
+        ];
+        filter.criticsScore = [25, 75]
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(3);
     });
 });

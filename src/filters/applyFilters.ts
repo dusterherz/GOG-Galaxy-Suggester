@@ -14,7 +14,8 @@ const gameTimeFilter = (game: game, filters: filters): boolean => {
 }
 
 const criticsScoreFilter = (game: game, filters: filters): boolean => {
-    return filters.withoutCriticsScore ? true : game.criticsScore !== null;
+    return (filters.withoutCriticsScore && game.criticsScore === null)
+        || (filters.withCriticsScore && game.criticsScore !== null && game.criticsScore >= filters.criticsScore[0] && game.criticsScore <= filters.criticsScore[1]);
 }
 
 const isPlayed = (game: game) => {

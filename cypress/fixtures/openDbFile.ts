@@ -8,7 +8,7 @@ const openDbFile = (dbFile: string) => {
         });
 
     cy.findByText('Welcome to GOG Galaxy Suggester').should('not.exist');
-    cy.findAllByText('Loading').should('not.exist');
+    cy.findByText('Loading').should('not.exist');
 }
 
 export default openDbFile;

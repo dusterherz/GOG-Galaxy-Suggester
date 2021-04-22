@@ -95,6 +95,7 @@ const Preferences = ({
                         disabled={!preferences.filters.withCriticsScore}
                         valueLabelDisplay="auto"
                         aria-labelledby="critics-score-range"
+                        data-testId="criticsScoreRange"
                     />
                 </Grid>
             </Grid>

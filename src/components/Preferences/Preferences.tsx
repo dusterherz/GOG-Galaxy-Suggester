@@ -11,31 +11,19 @@ const Preferences = ({
 
     const classes = useStyles();
 
-    const handlePlayedChange = (event: { target: { checked: boolean; }; }) => {
-        const newPreferences = { ...preferences };
-        newPreferences.filters.played = event.target.checked;
-        onPreferencesChanged(newPreferences);
-    };
+    const handleChange = (event: { target: any; }) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
 
-    const handleUnplayedChange = (event: { target: { checked: boolean; }; }) => {
         const newPreferences = { ...preferences };
-        newPreferences.filters.unplayed = event.target.checked;
+        const newFilters: any = { ...preferences.filters };
+        newFilters[name] = value;
+        newPreferences.filters = newFilters;
         onPreferencesChanged(newPreferences);
-    };
+    }
 
-    const handleNoCriticsScoreChange = (event: { target: { checked: boolean; }; }) => {
-        const newPreferences = { ...preferences };
-        newPreferences.filters.withoutCriticsScore = event.target.checked;
-        onPreferencesChanged(newPreferences);
-    };
-
-    const handleWithCriticsScoreChange = (event: { target: { checked: boolean; }; }) => {
-        const newPreferences = { ...preferences };
-        newPreferences.filters.withCriticsScore = event.target.checked;
-        onPreferencesChanged(newPreferences);
-    };
-
-    const handleCriticsScoreChange = (event: any, newValue: number | number[]) => {
+    const handleSliderChange = (event: any, newValue: number | number[]) => {
         const newPreferences = { ...preferences };
         newPreferences.filters.criticsScore = newValue as number[];
         onPreferencesChanged(newPreferences);
@@ -53,8 +41,9 @@ const Preferences = ({
                 <Grid item xs={12} lg={6}>
                     <FormControlLabel control={
                         <Checkbox
+                            name='unplayed'
                             checked={preferences.filters.unplayed}
-                            onChange={handleUnplayedChange} />
+                            onChange={handleChange} />
                     }
                         label='Unplayed games'
                     />
@@ -62,8 +51,9 @@ const Preferences = ({
                 <Grid item xs={12} lg={6}>
                     <FormControlLabel control={
                         <Checkbox
+                            name='played'
                             checked={preferences.filters.played}
-                            onChange={handlePlayedChange} />
+                            onChange={handleChange} />
                     }
                         label='Played games'
                     />
@@ -72,8 +62,9 @@ const Preferences = ({
                 <Grid item xs={12} lg={4}>
                     <FormControlLabel control={
                         <Checkbox
+                            name='withoutCriticsScore'
                             checked={preferences.filters.withoutCriticsScore}
-                            onChange={handleNoCriticsScoreChange} />
+                            onChange={handleChange} />
                     }
                         label='No critics score'
                     />
@@ -81,8 +72,9 @@ const Preferences = ({
                 <Grid item xs={12} lg={4}>
                     <FormControlLabel control={
                         <Checkbox
+                            name='withCriticsScore'
                             checked={preferences.filters.withCriticsScore}
-                            onChange={handleWithCriticsScoreChange} />
+                            onChange={handleChange} />
                     }
                         label='Critics score'
                     />
@@ -90,8 +82,9 @@ const Preferences = ({
                 <Grid item xs={12} lg={4}>
                     <Typography id="score-slider" gutterBottom>Score range</Typography>
                     <Slider
+                        name='criticsScore'
                         value={preferences.filters.criticsScore}
-                        onChange={handleCriticsScoreChange}
+                        onChange={handleSliderChange}
                         disabled={!preferences.filters.withCriticsScore}
                         valueLabelDisplay="auto"
                         aria-labelledby="critics-score-range"

@@ -23,9 +23,11 @@ const Preferences = ({
         onPreferencesChanged(newPreferences);
     }
 
-    const handleSliderChange = (event: any, newValue: number | number[]) => {
+    const handleSliderChange = (event: any, newValue: number | number[], name: string) => {
         const newPreferences = { ...preferences };
-        newPreferences.filters.criticsScore = newValue as number[];
+        const newFilters: any = { ...preferences.filters };
+        newFilters[name] = newValue as number[];
+        newPreferences.filters = newFilters;
         onPreferencesChanged(newPreferences);
     };
 
@@ -84,11 +86,47 @@ const Preferences = ({
                     <Slider
                         name='criticsScore'
                         value={preferences.filters.criticsScore}
-                        onChange={handleSliderChange}
+                        onChange={(event, value) => handleSliderChange(event, value, 'criticsScore')}
                         disabled={!preferences.filters.withCriticsScore}
                         valueLabelDisplay="auto"
                         aria-labelledby="critics-score-range"
                         data-testId="criticsScoreRange"
+                    />
+                </Grid>
+                <Grid item xs={12} ><Typography variant='h6'>Release Date:</Typography></Grid>
+                <Grid item xs={12} lg={4}>
+                    <FormControlLabel control={
+                        <Checkbox
+                            name='withoutReleaseDate'
+                            checked={preferences.filters.withoutReleaseDate}
+                            onChange={handleChange} />
+                    }
+                        label='No release date'
+                    />
+                </Grid>
+                <Grid item xs={12} lg={4}>
+                    <FormControlLabel control={
+                        <Checkbox
+                            name='withReleaseDate'
+                            checked={preferences.filters.withReleaseDate}
+                            onChange={handleChange} />
+                    }
+                        label='Release date'
+                    />
+                </Grid>
+                <Grid item xs={12} lg={4}>
+                    <Typography gutterBottom>Release year</Typography>
+                    <Slider
+                        name='releaseYear'
+                        min={1980}
+                        max={new Date().getFullYear() + 1}
+                        value={preferences.filters.releaseYear}
+                        onChange={(event, value) => handleSliderChange(event, value, 'releaseYear')}
+                        disabled={!preferences.filters.withReleaseDate}
+                        valueLabelDisplay="auto"
+                        aria-labelledby="release-year-range"
+                        data-testId="releaseYearRange"
+                        data-name="releaseYear"
                     />
                 </Grid>
             </Grid>

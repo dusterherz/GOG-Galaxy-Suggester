@@ -2,6 +2,7 @@ import openDbFile from "../fixtures/openDbFile";
 import writeDbFile from "../fixtures/writeDbFile";
 import { createGameData } from "../../test_utils/gameTestData";
 import { SliderClicker } from "../../test_utils/sliderClicker";
+import { minYear, maxYear } from "../../src/types/preferences"
 
 describe('Preferences on game time', () => {
     before(() => {
@@ -75,5 +76,55 @@ describe('Preferences on critics score', () => {
 
         cy.findByTitle('Next Game').click();
         cy.findByText('Bad Game').should('exist');
+    });
+});
+
+describe('Preferences on release date', () => {
+    before(() => {
+        const no_release_date = createGameData({ id: 1, releaseKey: 'test_1', title: 'No Release Date Game', releaseDate: null });
+        const old_game = createGameData({ id: 2, releaseKey: 'test_2', title: 'Old Game', releaseDate: new Date('1990-01-01') });
+        const new_game = createGameData({ id: 3, releaseKey: 'test_3', title: 'New Game', releaseDate: new Date('2020-01-01') });
+        writeDbFile('preferences_releasedate.db', no_release_date.concat(old_game).concat(new_game));
+    });
+
+    beforeEach(() => {
+        openDbFile('preferences_releasedate.db');
+        cy.findByTitle('Preferences').click();
+        cy.findByLabelText('No release date').uncheck();
+        cy.findByLabelText('Release date').uncheck();
+    });
+
+    it('should filter for games without release date', () => {
+        cy.findByLabelText('No release date').check();
+
+        cy.findByTitle('Next Game').click();
+        cy.findByText('No Release Date Game').should('exist');
+    });
+
+    it('should filter for games with release date', () => {
+        cy.findByLabelText('Release date').check();
+
+        cy.findByTitle('Next Game').click();
+        cy.findByText(/^(Old Game|New Game)$/).should('exist');
+    });
+
+    it('should filter for games newer than 1995', () => {
+        cy.findByLabelText('Release date').check();
+        cy.findByTestId('releaseYearRange').then(($slider) =>
+            SliderClicker.change($slider[0], 1995, minYear, maxYear)
+        );
+
+        cy.findByTitle('Next Game').click();
+        cy.findByText('New Game').should('exist');
+    });
+
+    it('should filter for games older than 2015', () => {
+        cy.findByLabelText('Release date').check();
+        cy.findByTestId('releaseYearRange').then(($slider) =>
+            SliderClicker.change($slider[0], 2015, minYear, maxYear)
+        );
+
+        cy.findByTitle('Next Game').click();
+        cy.findByText('Old Game').should('exist');
     });
 });

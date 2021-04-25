@@ -1,4 +1,4 @@
-export const createGameData = ({ id, releaseKey, title, gameMinutes = 60, criticsScore = 50 }: fakeGameData) => {
+export const createGameData = ({ id, releaseKey, title, gameMinutes = 60, criticsScore = 50, releaseDate = new Date('2010-01-01') }: fakeGameData) => {
     return [`
     INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
     ${id},123123123,'${releaseKey}');
@@ -8,11 +8,11 @@ export const createGameData = ({ id, releaseKey, title, gameMinutes = 60, critic
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',33,123123123,'{"background":null,"squareIcon":null,"verticalCover":null}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
-    '${releaseKey}',34,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
+    '${releaseKey}',34,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":${releaseDate === null ? 'null' : Date.parse(releaseDate?.toDateString()) / 1000},"themes":["Action","Science fiction"]}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',35,123123123,'{"title":"${title}"}'); 
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
-    '${releaseKey}',101,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":1436227200,"themes":["Action","Science fiction"]}');
+    '${releaseKey}',101,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":["Indie","Sport","Racing"],"publishers":["Psyonix"],"releaseDate":${releaseDate === null ? 'null' : Date.parse(releaseDate?.toDateString()) / 1000},"themes":["Action","Science fiction"]}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',102,123123123,'{"summary":"This is the game summary."}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
@@ -32,6 +32,7 @@ export interface fakeGameData {
     title: string;
     gameMinutes?: number;
     criticsScore?: number | null;
+    releaseDate?: Date | null;
 }
 
 export const prisonArchitect = [`

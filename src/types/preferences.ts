@@ -8,7 +8,13 @@ export interface filters {
     withoutCriticsScore: boolean;
     withCriticsScore: boolean;
     criticsScore: number[];
+    withoutReleaseDate: boolean;
+    withReleaseDate: boolean;
+    releaseYear: number[];
 }
+
+export const minYear = 1980;
+export const maxYear = new Date().getFullYear() + 1;
 
 export const allowAllFilter: filters = {
     played: true,
@@ -16,4 +22,7 @@ export const allowAllFilter: filters = {
     withoutCriticsScore: true,
     withCriticsScore: true,
     criticsScore: [0, 100],
+    withoutReleaseDate: true,
+    withReleaseDate: true,
+    releaseYear: [minYear, maxYear],
 };

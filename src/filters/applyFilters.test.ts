@@ -67,10 +67,42 @@ describe('applyFilters', () => {
             { ...testGame, criticsScore: 75 },
             { ...testGame, criticsScore: 76 },
         ];
-        filter.criticsScore = [25, 75]
+        filter.criticsScore = [25, 75];
 
         const actualGames = applyFilters(games, filter);
 
         expect(actualGames).toHaveLength(3);
+    });
+
+    it('should exclude games without releaseDate if excluding games without release date', () => {
+        games[0].releaseDate = null;
+        filter.withoutReleaseDate = false;
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(0);
+    });
+
+    it('should exclude games with releaseDate if excluding games with release date', () => {
+        games[0].releaseDate = new Date('2010-01-01');
+        filter.withReleaseDate = false;
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(0);
+    });
+
+    it('should exclude games with releaseDate out of range if excluding games with release year', () => {
+        games = [
+            { ...testGame, releaseDate: new Date('1980-01-01') },
+            { ...testGame, releaseDate: new Date('1990-01-01') },
+            { ...testGame, releaseDate: new Date('2000-01-01') },
+            { ...testGame, releaseDate: new Date('2010-01-01') },
+        ];
+        filter.releaseYear = [1985, 2005];
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(2);
     });
 });

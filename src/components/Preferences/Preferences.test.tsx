@@ -1,18 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Preferences from './Preferences';
-import { preferences } from '../../types/preferences';
+import { preferences, allowAllFilter } from '../../types/preferences';
 import { SliderClicker } from '../../../test_utils/sliderClicker';
 
 describe('Preferences', () => {
     const createInitialPreferences = (): preferences => {
         return {
             filters: {
-                played: true,
-                unplayed: true,
-                withoutCriticsScore: true,
-                withCriticsScore: true,
-                criticsScore: [0, 100],
+                ...allowAllFilter
             }
         };
     }
@@ -115,6 +111,73 @@ describe('Preferences', () => {
         render(<Preferences {...preferencesProps} />);
 
         SliderClicker.change(screen.getByTestId('criticsScoreRange'), 75)
+
+        expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
+    });
+
+
+
+
+    it('should change without release date to false when games without release date is unchecked', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
+        expectedPreferences.filters.withoutReleaseDate = false;
+        const onPreferencesChanged = jest.fn();
+        const preferencesProps = {
+            preferences: initialPreferences,
+            onPreferencesChanged: onPreferencesChanged,
+        }
+        render(<Preferences {...preferencesProps} />);
+
+        fireEvent.click(screen.getByLabelText('No release date'));
+
+        expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
+    });
+
+    it('should change with release date to false when games with release date is unchecked', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
+        expectedPreferences.filters.withReleaseDate = false;
+        const onPreferencesChanged = jest.fn();
+        const preferencesProps = {
+            preferences: initialPreferences,
+            onPreferencesChanged: onPreferencesChanged,
+        }
+        render(<Preferences {...preferencesProps} />);
+
+        fireEvent.click(screen.getByLabelText('Release date'));
+
+        expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
+    });
+
+    it('should set minimum release year to 1990 when minimum release year range slider is set to 1990', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
+        expectedPreferences.filters.releaseYear = [1990, initialPreferences.filters.releaseYear[1]];
+        const onPreferencesChanged = jest.fn();
+        const preferencesProps = {
+            preferences: initialPreferences,
+            onPreferencesChanged: onPreferencesChanged,
+        }
+        render(<Preferences {...preferencesProps} />);
+
+        SliderClicker.change(screen.getByTestId('releaseYearRange'), 1990, initialPreferences.filters.releaseYear[0], initialPreferences.filters.releaseYear[1])
+
+        expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
+    });
+
+    it('should maximum release year to 2010 when maximum release year range slider is set to 2010', () => {
+        const initialPreferences: preferences = createInitialPreferences();
+        let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
+        expectedPreferences.filters.releaseYear = [initialPreferences.filters.releaseYear[0], 2010];
+        const onPreferencesChanged = jest.fn();
+        const preferencesProps = {
+            preferences: initialPreferences,
+            onPreferencesChanged: onPreferencesChanged,
+        }
+        render(<Preferences {...preferencesProps} />);
+
+        SliderClicker.change(screen.getByTestId('releaseYearRange'), 2010, initialPreferences.filters.releaseYear[0], initialPreferences.filters.releaseYear[1])
 
         expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
     });

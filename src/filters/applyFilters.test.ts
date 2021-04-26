@@ -1,5 +1,5 @@
 import { game } from "../types/game";
-import { allowAllFilter, filters } from "../types/preferences";
+import { allowAllFilter, filters, maxYear, minYear } from "../types/preferences";
 import applyFilters from "./applyFilters";
 import { testGame } from "./testData";
 
@@ -104,5 +104,27 @@ describe('applyFilters', () => {
         const actualGames = applyFilters(games, filter);
 
         expect(actualGames).toHaveLength(2);
+    });
+
+    it('should include games older than minimum year when minimum year is selected', () => {
+        games = [
+            { ...testGame, releaseDate: new Date((minYear - 10) + '-01-01') },
+        ];
+        filter.releaseYear = [minYear, 2005];
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(1);
+    });
+
+    it('should include games newer than maximum year when maximum year is selected', () => {
+        games = [
+            { ...testGame, releaseDate: new Date((maxYear + 1) + '-01-01') },
+        ];
+        filter.releaseYear = [2000, maxYear];
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(1);
     });
 });

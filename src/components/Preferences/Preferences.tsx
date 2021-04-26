@@ -3,6 +3,7 @@ import { preferencesProps } from './Preferences.types';
 import useStyles from './Preferences.styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Slider from '@material-ui/core/Slider';
+import { minYear, maxYear } from '../../types/preferences';
 
 const Preferences = ({
     preferences,
@@ -30,6 +31,16 @@ const Preferences = ({
         newPreferences.filters = newFilters;
         onPreferencesChanged(newPreferences);
     };
+
+    const releaseYearValueLabelFormat = (value: number) => {
+        if (value === minYear) {
+            return `≤${value}`;
+        }
+        if (value === maxYear) {
+            return `≥${value}`;
+        }
+        return value.toString();
+    }
 
     return (
         <Container>
@@ -118,12 +129,13 @@ const Preferences = ({
                     <Typography gutterBottom>Release year</Typography>
                     <Slider
                         name='releaseYear'
-                        min={1980}
-                        max={new Date().getFullYear() + 1}
+                        min={minYear}
+                        max={maxYear}
                         value={preferences.filters.releaseYear}
                         onChange={(event, value) => handleSliderChange(event, value, 'releaseYear')}
                         disabled={!preferences.filters.withReleaseDate}
                         valueLabelDisplay="auto"
+                        valueLabelFormat={releaseYearValueLabelFormat}
                         aria-labelledby="release-year-range"
                         data-testId="releaseYearRange"
                         data-name="releaseYear"

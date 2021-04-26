@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/GOG-Galaxy-Suggester/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/GOG-Galaxy-Suggester/static/js/main.65468fdc.chunk.js",
-    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.65468fdc.chunk.js.map",
+    "main.js": "/GOG-Galaxy-Suggester/static/js/main.c633ac2c.chunk.js",
+    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.c633ac2c.chunk.js.map",
     "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.bc909f24.js",
     "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.bc909f24.js.map",
     "static/js/2.4c9ba40d.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.4c9ba40d.chunk.js",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.bc909f24.js",
     "static/js/2.4c9ba40d.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.65468fdc.chunk.js"
+    "static/js/main.c633ac2c.chunk.js"
   ]
 }

@@ -101,7 +101,7 @@ const Preferences = ({
                         disabled={!preferences.filters.withCriticsScore}
                         valueLabelDisplay="auto"
                         aria-labelledby="critics-score-range"
-                        data-testId="criticsScoreRange"
+                        data-testid="criticsScoreRange"
                     />
                 </Grid>
                 <Grid item xs={12} ><Typography variant='h6'>Release Date:</Typography></Grid>
@@ -137,7 +137,7 @@ const Preferences = ({
                         valueLabelDisplay="auto"
                         valueLabelFormat={releaseYearValueLabelFormat}
                         aria-labelledby="release-year-range"
-                        data-testId="releaseYearRange"
+                        data-testid="releaseYearRange"
                         data-name="releaseYear"
                     />
                 </Grid>

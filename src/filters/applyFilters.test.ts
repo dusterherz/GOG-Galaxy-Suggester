@@ -92,7 +92,7 @@ describe('applyFilters', () => {
         expect(actualGames).toHaveLength(0);
     });
 
-    it('should exclude games with releaseDate out of range if excluding games with release year', () => {
+    it('should exclude games with releaseDate out of range', () => {
         games = [
             { ...testGame, releaseDate: new Date('1980-01-01') },
             { ...testGame, releaseDate: new Date('1990-01-01') },

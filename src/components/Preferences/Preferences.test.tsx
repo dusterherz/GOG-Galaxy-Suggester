@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Preferences from './Preferences';
-import { preferences, allowAllFilter } from '../../types/preferences';
+import { preferences, allowAllFilter, minYear, maxYear } from '../../types/preferences';
 import { SliderClicker } from '../../../test_utils/sliderClicker';
 
 describe('Preferences', () => {
@@ -150,10 +150,10 @@ describe('Preferences', () => {
         expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
     });
 
-    it('should set minimum release year to 1990 when minimum release year range slider is set to 1990', () => {
+    it(`should set minimum release year to ${minYear + 5} when minimum release year range slider is set to ${minYear + 5}`, () => {
         const initialPreferences: preferences = createInitialPreferences();
         let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
-        expectedPreferences.filters.releaseYear = [1990, initialPreferences.filters.releaseYear[1]];
+        expectedPreferences.filters.releaseYear = [minYear + 5, initialPreferences.filters.releaseYear[1]];
         const onPreferencesChanged = jest.fn();
         const preferencesProps = {
             preferences: initialPreferences,
@@ -161,15 +161,15 @@ describe('Preferences', () => {
         }
         render(<Preferences {...preferencesProps} />);
 
-        SliderClicker.change(screen.getByTestId('releaseYearRange'), 1990, initialPreferences.filters.releaseYear[0], initialPreferences.filters.releaseYear[1])
+        SliderClicker.change(screen.getByTestId('releaseYearRange'), minYear + 5, minYear, maxYear)
 
         expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
     });
 
-    it('should maximum release year to 2010 when maximum release year range slider is set to 2010', () => {
+    it(`should set maximum release year to ${maxYear - 5} when maximum release year range slider is set to ${maxYear - 5}`, () => {
         const initialPreferences: preferences = createInitialPreferences();
         let expectedPreferences: preferences = createExpectedPreferences(initialPreferences);
-        expectedPreferences.filters.releaseYear = [initialPreferences.filters.releaseYear[0], 2010];
+        expectedPreferences.filters.releaseYear = [initialPreferences.filters.releaseYear[0], maxYear - 5];
         const onPreferencesChanged = jest.fn();
         const preferencesProps = {
             preferences: initialPreferences,
@@ -177,7 +177,7 @@ describe('Preferences', () => {
         }
         render(<Preferences {...preferencesProps} />);
 
-        SliderClicker.change(screen.getByTestId('releaseYearRange'), 2010, initialPreferences.filters.releaseYear[0], initialPreferences.filters.releaseYear[1])
+        SliderClicker.change(screen.getByTestId('releaseYearRange'), maxYear - 5, minYear, maxYear)
 
         expect(onPreferencesChanged).toHaveBeenLastCalledWith(expectedPreferences);
     });

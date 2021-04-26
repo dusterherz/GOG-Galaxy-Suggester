@@ -82,8 +82,8 @@ describe('Preferences on critics score', () => {
 describe('Preferences on release date', () => {
     before(() => {
         const no_release_date = createGameData({ id: 1, releaseKey: 'test_1', title: 'No Release Date Game', releaseDate: null });
-        const old_game = createGameData({ id: 2, releaseKey: 'test_2', title: 'Old Game', releaseDate: new Date('1990-01-01') });
-        const new_game = createGameData({ id: 3, releaseKey: 'test_3', title: 'New Game', releaseDate: new Date('2020-01-01') });
+        const old_game = createGameData({ id: 2, releaseKey: 'test_2', title: 'Old Game', releaseDate: new Date(minYear + '-01-01') });
+        const new_game = createGameData({ id: 3, releaseKey: 'test_3', title: 'New Game', releaseDate: new Date(maxYear + '-01-01') });
         writeDbFile('preferences_releasedate.db', no_release_date.concat(old_game).concat(new_game));
     });
 

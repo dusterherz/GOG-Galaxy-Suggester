@@ -14,7 +14,7 @@ export interface filters {
 }
 
 export const minYear = 1980;
-export const maxYear = new Date().getFullYear() + 1;
+export const maxYear = new Date().getFullYear();
 
 export const allowAllFilter: filters = {
     played: true,

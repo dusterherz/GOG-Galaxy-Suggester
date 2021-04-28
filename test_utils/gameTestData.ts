@@ -1,4 +1,4 @@
-export const createGameData = ({ id, releaseKey, title, gameMinutes = 60, criticsScore = 50, releaseDate = new Date('2010-01-01') }: fakeGameData) => {
+export const createGameData = ({ id = 1, releaseKey = 'test_1', title, gameMinutes = 60, criticsScore = 50, releaseDate = new Date('2010-01-01') }: fakeGameData) => {
     return [`
     INSERT INTO [LibraryReleases] ([id],[userId],[releaseKey]) VALUES (
     ${id},123123123,'${releaseKey}');
@@ -26,9 +26,17 @@ export const createGameData = ({ id, releaseKey, title, gameMinutes = 60, critic
 `];
 };
 
+export const createMultipleGameData = (data: fakeGameData[]) => {
+    let sqlStatements: string[] = [];
+    for (let i = 0; i < data.length; i++) {
+        sqlStatements = sqlStatements.concat(createGameData({ ...data[i], id: i + 1, releaseKey: `test_${i + 1}` }));
+    }
+    return sqlStatements;
+}
+
 export interface fakeGameData {
-    id: number;
-    releaseKey: string;
+    id?: number;
+    releaseKey?: string;
     title: string;
     gameMinutes?: number;
     criticsScore?: number | null;

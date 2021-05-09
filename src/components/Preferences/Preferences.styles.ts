@@ -5,4 +5,7 @@ export default makeStyles(theme => ({
         textAlign: 'center',
         padding: theme.spacing(2),
     },
+    minutesInput: {
+        width: '50%',
+    }
 }));

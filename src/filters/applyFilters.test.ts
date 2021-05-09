@@ -1,5 +1,5 @@
 import { game } from "../types/game";
-import { allowAllFilter, filters, maxYear, minYear } from "../types/preferences";
+import { allowAllFilter, filters, maxGameMinutes, maxYear, minYear } from "../types/preferences";
 import applyFilters from "./applyFilters";
 import { testGame } from "./testData";
 
@@ -39,6 +39,30 @@ describe('applyFilters', () => {
         const actualGames = applyFilters(games, filter);
 
         expect(actualGames).toHaveLength(0);
+    });
+
+    it('should exclude games with gameMinutes out of range', () => {
+        games = [
+            { ...testGame, gameMinutes: 20 },
+            { ...testGame, gameMinutes: 50 },
+            { ...testGame, gameMinutes: 80 },
+        ];
+        filter.gameMinutes = [40, 60];
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(1);
+    });
+
+    it('should include games with gameMinutes more than max if max is selected', () => {
+        games = [
+            { ...testGame, gameMinutes: maxGameMinutes + 1 },
+        ];
+        filter.gameMinutes = [0, maxGameMinutes];
+
+        const actualGames = applyFilters(games, filter);
+
+        expect(actualGames).toHaveLength(1);
     });
 
     it('should exclude games without criticsScore if excluding games without critics score', () => {

@@ -1,5 +1,5 @@
 import { game } from "../types/game";
-import { filters, maxYear, minYear } from "../types/preferences";
+import { filters, maxGameMinutes, maxYear, minYear } from "../types/preferences";
 
 const applyFilters = (games: game[], filters: filters) => {
     return games.filter(game => {
@@ -10,8 +10,10 @@ const applyFilters = (games: game[], filters: filters) => {
 }
 
 const gameTimeFilter = (game: game, filters: filters): boolean => {
-    return (filters.played && isPlayed(game))
-        || (filters.unplayed && !isPlayed(game));
+    return (filters.unplayed && !isPlayed(game))
+        || (filters.played && isPlayed(game)
+            && ((game.gameMinutes >= filters.gameMinutes[0] && game.gameMinutes <= filters.gameMinutes[1])
+                || (game.gameMinutes >= maxGameMinutes && filters.gameMinutes[1] === maxGameMinutes)));
 }
 
 const criticsScoreFilter = (game: game, filters: filters): boolean => {

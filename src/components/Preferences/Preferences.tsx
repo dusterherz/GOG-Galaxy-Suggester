@@ -1,9 +1,14 @@
 import { Container, Checkbox, Grid, Typography } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { preferencesProps } from './Preferences.types';
 import useStyles from './Preferences.styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Slider from '@material-ui/core/Slider';
-import { minYear, maxYear } from '../../types/preferences';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { minYear, maxYear, maxGameMinutes } from '../../types/preferences';
+import { minutesToHumanTime } from '../../utils/humanTime';
+import { Divider } from '@material-ui/core';
+
 
 const Preferences = ({
     preferences,
@@ -14,7 +19,7 @@ const Preferences = ({
 
     const handleChange = (event: { target: any; }) => {
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.checked;
         const name = target.name;
 
         const newPreferences = { ...preferences };
@@ -42,6 +47,14 @@ const Preferences = ({
         return value.toString();
     }
 
+    const gameMinutesValueLabelFormat = (value: number) => {
+        const humanTime = minutesToHumanTime(value);
+        if (value === maxGameMinutes) {
+            return `≥${humanTime}`;
+        }
+        return humanTime;
+    }
+
     return (
         <Container>
             <Typography variant='h4' className={classes.header}>Here you can configure the mighty recommendation engine</Typography>
@@ -51,7 +64,7 @@ const Preferences = ({
                     <Typography variant='h5'>Filters</Typography>
                 </Grid>
                 <Grid item xs={12}><Typography variant='h6'>Game Time:</Typography></Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={4}>
                     <FormControlLabel control={
                         <Checkbox
                             name='unplayed'
@@ -61,7 +74,7 @@ const Preferences = ({
                         label='Unplayed games'
                     />
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={4}>
                     <FormControlLabel control={
                         <Checkbox
                             name='played'
@@ -70,6 +83,73 @@ const Preferences = ({
                     }
                         label='Played games'
                     />
+                </Grid>
+                <Grid item xs={12} lg={4}>
+                    <Typography id="gameminutes-slider" gutterBottom>Time played</Typography>
+                    <Slider
+                        name='gameMinutes'
+                        value={preferences.filters.gameMinutes}
+                        min={0}
+                        max={maxGameMinutes}
+                        onChange={(event: any, value: number | number[]) => {
+                            handleSliderChange(event, value, 'gameMinutes');
+                        }}
+                        disabled={!preferences.filters.played}
+                        valueLabelDisplay="auto"
+                        valueLabelFormat={gameMinutesValueLabelFormat}
+                        aria-labelledby="game-minutes-range"
+                        data-testid="gameMinutesRange"
+                    />
+                    <TextField
+                        label="Min minutes"
+                        type="number"
+                        className={classes.minutesInput}
+                        value={preferences.filters.gameMinutes[0]}
+                        onChange={(event: any) => {
+                            const newFilters = { ...preferences.filters };
+                            newFilters.gameMinutes[0] = event.target.value;
+                            onPreferencesChanged({ ...preferences, filters: newFilters });
+                        }}
+                        disabled={!preferences.filters.played}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps={{
+                            min: 0,
+                            max: maxGameMinutes,
+                        }}
+                        data-testId="minMinutes"
+                    />
+                    <TextField
+                        label="Max minutes"
+                        type="number"
+                        className={classes.minutesInput}
+                        value={preferences.filters.gameMinutes[1]}
+                        onChange={(event: any) => {
+                            let value = event.target.value;
+                            if (value > maxGameMinutes) {
+                                value = maxGameMinutes;
+                            }
+                            const newFilters = { ...preferences.filters };
+                            newFilters.gameMinutes[1] = value;
+                            onPreferencesChanged({ ...preferences, filters: newFilters });
+                        }}
+                        disabled={!preferences.filters.played}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps={{
+                            min: 0,
+                            max: maxGameMinutes,
+                        }}
+                        InputProps={{
+                            startAdornment: preferences.filters.gameMinutes[1] === maxGameMinutes ? <InputAdornment position="start">≥</InputAdornment> : <></>,
+                        }}
+                        data-testId="maxMinutes"
+                    />
+                </Grid>
+                <Grid item xs={12} >
+                    <Divider></Divider>
                 </Grid>
                 <Grid item xs={12} ><Typography variant='h6'>Critics Score:</Typography></Grid>
                 <Grid item xs={12} lg={4}>
@@ -97,12 +177,15 @@ const Preferences = ({
                     <Slider
                         name='criticsScore'
                         value={preferences.filters.criticsScore}
-                        onChange={(event, value) => handleSliderChange(event, value, 'criticsScore')}
+                        onChange={(event: any, value: number | number[]) => handleSliderChange(event, value, 'criticsScore')}
                         disabled={!preferences.filters.withCriticsScore}
                         valueLabelDisplay="auto"
                         aria-labelledby="critics-score-range"
                         data-testid="criticsScoreRange"
                     />
+                </Grid>
+                <Grid item xs={12} >
+                    <Divider></Divider>
                 </Grid>
                 <Grid item xs={12} ><Typography variant='h6'>Release Date:</Typography></Grid>
                 <Grid item xs={12} lg={4}>
@@ -132,7 +215,7 @@ const Preferences = ({
                         min={minYear}
                         max={maxYear}
                         value={preferences.filters.releaseYear}
-                        onChange={(event, value) => handleSliderChange(event, value, 'releaseYear')}
+                        onChange={(event: any, value: number | number[]) => handleSliderChange(event, value, 'releaseYear')}
                         disabled={!preferences.filters.withReleaseDate}
                         valueLabelDisplay="auto"
                         valueLabelFormat={releaseYearValueLabelFormat}

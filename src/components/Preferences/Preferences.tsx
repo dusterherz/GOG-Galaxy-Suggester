@@ -1,4 +1,4 @@
-import { Container, Checkbox, Grid, Typography } from '@material-ui/core';
+import { Container, Checkbox, Grid, Typography, FormControl, FormLabel, RadioGroup, Radio } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { preferencesProps } from './Preferences.types';
 import useStyles from './Preferences.styles';
@@ -118,7 +118,7 @@ const Preferences = ({
                             min: 0,
                             max: maxGameMinutes,
                         }}
-                        data-testId="minMinutes"
+                        data-testid="minMinutes"
                     />
                     <TextField
                         label="Max minutes"
@@ -145,7 +145,7 @@ const Preferences = ({
                         InputProps={{
                             startAdornment: preferences.filters.gameMinutes[1] === maxGameMinutes ? <InputAdornment position="start">≥</InputAdornment> : <></>,
                         }}
-                        data-testId="maxMinutes"
+                        data-testid="maxMinutes"
                     />
                 </Grid>
                 <Grid item xs={12} >
@@ -224,6 +224,11 @@ const Preferences = ({
                         data-name="releaseYear"
                     />
                 </Grid>
+                <Grid item xs={12} >
+                    <Divider></Divider>
+                </Grid>
+                <Grid item xs={12} ><Typography variant='h6'>Depending on what you play, pick games that are</Typography></Grid>
+                <Grid item xs={12} ><Typography variant='h6'>Genre</Typography></Grid>
             </Grid>
         </Container>
     );

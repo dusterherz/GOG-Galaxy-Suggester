@@ -1,5 +1,6 @@
 export interface preferences {
     filters: filters;
+    biases: biases;
 }
 
 export interface filters {
@@ -12,6 +13,16 @@ export interface filters {
     withoutReleaseDate: boolean;
     withReleaseDate: boolean;
     releaseYear: number[];
+}
+
+export interface biases {
+    genre: bias;
+}
+
+export enum bias {
+    ignore,
+    similar,
+    different,
 }
 
 export const minYear = 1980;
@@ -28,4 +39,8 @@ export const allowAllFilter: filters = {
     withoutReleaseDate: true,
     withReleaseDate: true,
     releaseYear: [minYear, maxYear],
+};
+
+export const ignoreAllBias: biases = {
+    genre: bias.ignore,
 };

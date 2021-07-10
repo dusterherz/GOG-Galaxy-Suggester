@@ -16,7 +16,7 @@ import Preferences from './components/Preferences/Preferences';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
-import { allowAllFilter, preferences } from './types/preferences';
+import { allowAllFilter, ignoreAllBias, preferences } from './types/preferences';
 import { pickAGameAndRefreshRotaion, pickAGameInRotation } from './utils/gamesRotation';
 import { navigationPage } from './types/navigation';
 
@@ -32,6 +32,9 @@ const theme = createMuiTheme({
 const defaultPreferences: preferences = {
   filters: {
     ...allowAllFilter
+  },
+  biases: {
+    ...ignoreAllBias
   }
 };
 
@@ -42,6 +45,7 @@ function App() {
   const [allGames, setAllGames] = useState<game[] | null>(null);
   const [gamesInRotation, setGamesInRotation] = useState<game[]>([]);
   const [gamesInHistory, setGamesInHistory] = useState<game[]>([]);
+  const [biasedGames, setBiasedGames] = useState<game[]>([]);
   const [preferences, setPreferences] = useState<preferences>(defaultPreferences);
   const [currentPage, setCurrentPage] = useState<navigationPage>(navigationPage.openFile);
 
@@ -51,7 +55,7 @@ function App() {
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
     setAllGames(games);
 
-    const selectedGame = pickAGameAndRefreshRotaion(games, preferences, setGamesInRotation, setGamesInHistory);
+    const selectedGame = pickAGameAndRefreshRotaion(games, preferences, biasedGames, setGamesInRotation, setGamesInHistory);
 
     setGame(selectedGame);
     setIsLoaded(true);
@@ -103,8 +107,8 @@ function App() {
     }
 
     const selectedGame = gamesInRotation.length === 0
-      ? pickAGameAndRefreshRotaion(allGames, preferences, setGamesInRotation, setGamesInHistory)
-      : pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, setGamesInRotation, setGamesInHistory);
+      ? pickAGameAndRefreshRotaion(allGames, preferences, biasedGames, setGamesInRotation, setGamesInHistory)
+      : pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, biasedGames, setGamesInRotation, setGamesInHistory);
 
     setGame(selectedGame);
   };

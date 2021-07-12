@@ -60,6 +60,7 @@ const pickABiasedGame = (filteredBiasedGames: game[], gamesInHistory: game[]) =>
     let randomGameIndex = Math.floor(Math.random() * Math.floor(biasedInRotation.length));
     console.log("pickingBiased from " + biasedInRotation.length)
     console.log(randomGameIndex);
+    console.log(biasedInRotation.filter(game => game === biasedInRotation[randomGameIndex]).length);
     return biasedInRotation[randomGameIndex];
 };
 

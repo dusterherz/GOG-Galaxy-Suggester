@@ -56,13 +56,10 @@ const Preferences = ({
     }
 
     const handleBiasChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event)
         const newPreferences = { ...preferences };
         const newBiases: biases = { ...preferences.biases };
-        const newBias = event.target.value === bias.different.toString()
-            ? bias.different
-            : event.target.value === bias.similar.toString()
-                ? bias.similar
-                : bias.ignore;
+        const newBias: bias = parseInt(event.target.value) as bias;
         newBiases['genre'] = newBias;
         newPreferences.biases = newBiases
         onPreferencesChanged(newPreferences);
@@ -248,6 +245,7 @@ const Preferences = ({
                             checked={preferences.biases.genre === bias.ignore}
                             onChange={handleBiasChange}
                             value={bias.ignore}
+                            name="genre-ignore"
                             inputProps={{ 'aria-label': 'Ignore' }}
                         />
                     }
@@ -260,6 +258,7 @@ const Preferences = ({
                             checked={preferences.biases.genre === bias.similar}
                             onChange={handleBiasChange}
                             value={bias.similar}
+                            name="genre-similar"
                             inputProps={{ 'aria-label': 'Similar' }}
                         />
                     }
@@ -272,6 +271,7 @@ const Preferences = ({
                             checked={preferences.biases.genre === bias.different}
                             onChange={handleBiasChange}
                             value={bias.different}
+                            name="genre-different"
                             inputProps={{ 'aria-label': 'Different' }}
                         />
                     }

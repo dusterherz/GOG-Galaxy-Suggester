@@ -4,7 +4,7 @@ import { bias, biases } from "../types/preferences";
 export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
     let genresScore: { [key: string]: number; } = {};
     games.forEach(game => {
-        const hoursPlayed = Math.ceil(game.gameMinutes / 60);
+        const hoursPlayed = Math.ceil(game.gameMinutes / (game.genres.length > 0 ? game.genres.length : 1) / 60);
 
         game.genres.forEach(genre => {
             genresScore[genre] = genresScore[genre] === undefined
@@ -12,6 +12,15 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
                 : genresScore[genre] + hoursPlayed;
         })
     });
+
+
+    // let arr = Object.values(genresScore);
+    // let max = Math.max(...arr);
+    // Object.keys(genresScore).forEach(key => {
+    //     genresScore[key] = genresScore[key] > max / 2 ? genresScore[key] : 0;
+    // });
+
+
 
     let gamesWithScore: gameWithScore[] = games.map(game => {
         let score = 0;

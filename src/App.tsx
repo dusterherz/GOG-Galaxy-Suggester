@@ -95,12 +95,6 @@ function App() {
         setGame(null);
         break;
       case navigationPage.gameDetails:
-        if (preferences.biases.changed
-          && preferences.biases.genre !== bias.ignore) {
-          const biasedTickets = prepareBiasedTickets(allGames as game[], preferences.biases);
-          setBiasedGames(biasedTickets);
-          setPreferences({ ...preferences, biases: { ...preferences.biases, changed: false } });
-        }
         setNextGame();
         break;
       case navigationPage.preferences:
@@ -117,8 +111,16 @@ function App() {
       return;
     }
 
+    let biasedTickets = biasedGames;
+    if (preferences.biases.changed
+      && preferences.biases.genre !== bias.ignore) {
+      biasedTickets = prepareBiasedTickets(allGames as game[], preferences.biases);
+      setBiasedGames(biasedTickets);
+      setPreferences({ ...preferences, biases: { ...preferences.biases, changed: false } });
+    }
+
     const selectedGame = gamesInRotation.length === 0
-      ? pickAGameAndRefreshRotaion(allGames, preferences, biasedGames, setGamesInRotation, setGamesInHistory, setFilteredBiasedGames)
+      ? pickAGameAndRefreshRotaion(allGames, preferences, biasedTickets, setGamesInRotation, setGamesInHistory, setFilteredBiasedGames)
       : pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, filteredBiasedGames, setGamesInRotation, setGamesInHistory);
 
     setGame(selectedGame);

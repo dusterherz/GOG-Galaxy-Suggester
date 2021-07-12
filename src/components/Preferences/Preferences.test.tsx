@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Preferences from './Preferences';
-import { preferences, allowAllFilter, minYear, maxYear } from '../../types/preferences';
+import { preferences, allowAllFilter, minYear, maxYear, ignoreAllBias } from '../../types/preferences';
 import { SliderClicker } from '../../../test_utils/sliderClicker';
 
 describe('Preferences', () => {
@@ -9,7 +9,8 @@ describe('Preferences', () => {
         return {
             filters: {
                 ...allowAllFilter
-            }
+            },
+            biases: { ...ignoreAllBias }
         };
     }
 

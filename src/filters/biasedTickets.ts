@@ -23,6 +23,10 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
             });
         }
 
+        if (game.genres.length > 0) {
+            score = score / game.genres.length;
+        }
+
         return { game, score }
     });
 
@@ -34,6 +38,13 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
             biasedGames.push(x.game);
         }
     });
+
+    console.log(genresScore);
+    console.log(gamesWithScore);
+    console.log(biasedGames);
+
+    const maxScoreGame = gamesWithScore.sort((a, b) => b.score - a.score)[0]
+    console.log(maxScoreGame);
 
     return biasedGames;
 }

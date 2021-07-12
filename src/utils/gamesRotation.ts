@@ -39,23 +39,27 @@ const pickAGame = (
     gamesInRotation: game[],
     gamesInHistory: game[],
     preferences: preferences,
-    biasedGames: game[],): game => {
+    filteredBiasedGames: game[],): game => {
     if (preferences.biases.genre === bias.ignore) {
         return pickARandomGame(gamesInRotation);
     } else {
-        return pickABiasedGame(biasedGames, gamesInHistory);
+        return pickABiasedGame(filteredBiasedGames, gamesInHistory);
     }
 }
 
 const pickARandomGame = (filteredGames: game[]) => {
     let randomGameIndex = Math.floor(Math.random() * Math.floor(filteredGames.length));
+    console.log("picking random from " + filteredGames.length)
+    console.log(randomGameIndex);
     return filteredGames[randomGameIndex];
 };
 
-const pickABiasedGame = (allBiasedGames: game[], gamesInHistory: game[]) => {
-    const biasedInRotation = allBiasedGames.filter(biasedGame => !gamesInHistory.includes(biasedGame));
+const pickABiasedGame = (filteredBiasedGames: game[], gamesInHistory: game[]) => {
+    const biasedInRotation = filteredBiasedGames.filter(biasedGame => !gamesInHistory.includes(biasedGame));
 
     let randomGameIndex = Math.floor(Math.random() * Math.floor(biasedInRotation.length));
+    console.log("pickingBiased from " + biasedInRotation.length)
+    console.log(randomGameIndex);
     return biasedInRotation[randomGameIndex];
 };
 

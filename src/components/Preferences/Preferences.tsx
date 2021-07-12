@@ -5,7 +5,7 @@ import useStyles from './Preferences.styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Slider from '@material-ui/core/Slider';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { minYear, maxYear, maxGameMinutes } from '../../types/preferences';
+import { minYear, maxYear, maxGameMinutes, bias, biases } from '../../types/preferences';
 import { minutesToHumanTime } from '../../utils/humanTime';
 import { Divider } from '@material-ui/core';
 
@@ -54,6 +54,19 @@ const Preferences = ({
         }
         return humanTime;
     }
+
+    const handleBiasChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newPreferences = { ...preferences };
+        const newBiases: biases = { ...preferences.biases };
+        const newBias = event.target.value === bias.different.toString()
+            ? bias.different
+            : event.target.value === bias.similar.toString()
+                ? bias.similar
+                : bias.ignore;
+        newBiases['genre'] = newBias;
+        newPreferences.biases = newBiases
+        onPreferencesChanged(newPreferences);
+    };
 
     return (
         <Container>
@@ -227,8 +240,44 @@ const Preferences = ({
                 <Grid item xs={12} >
                     <Divider></Divider>
                 </Grid>
-                <Grid item xs={12} ><Typography variant='h6'>Depending on what you play, pick games that are</Typography></Grid>
-                <Grid item xs={12} ><Typography variant='h6'>Genre</Typography></Grid>
+                <Grid item xs={12} ><Typography variant='h5'>Depending on what you play, pick games that are...</Typography></Grid>
+                <Grid item xs={12} ><Typography variant='h6'>In Genre</Typography></Grid>
+                <Grid item xs={4} >
+                    <FormControlLabel control={
+                        <Radio
+                            checked={preferences.biases.genre === bias.ignore}
+                            onChange={handleBiasChange}
+                            value={bias.ignore}
+                            inputProps={{ 'aria-label': 'Ignore' }}
+                        />
+                    }
+                        label='Ignore'
+                    />
+                </Grid>
+                <Grid item xs={4} >
+                    <FormControlLabel control={
+                        <Radio
+                            checked={preferences.biases.genre === bias.similar}
+                            onChange={handleBiasChange}
+                            value={bias.similar}
+                            inputProps={{ 'aria-label': 'Similar' }}
+                        />
+                    }
+                        label='Similar'
+                    />
+                </Grid>
+                <Grid item xs={4} >
+                    <FormControlLabel control={
+                        <Radio
+                            checked={preferences.biases.genre === bias.different}
+                            onChange={handleBiasChange}
+                            value={bias.different}
+                            inputProps={{ 'aria-label': 'Different' }}
+                        />
+                    }
+                        label='Different'
+                    />
+                </Grid>
             </Grid>
         </Container>
     );

@@ -113,7 +113,7 @@ function App() {
 
     let biasedTickets = biasedGames;
     if (preferences.biases.changed
-      && preferences.biases.genre !== bias.ignore) {
+      && Object.entries(preferences.biases).some((_key, value) => value === bias.similar || bias.different)) {
       biasedTickets = prepareBiasedTickets(allGames as game[], preferences.biases);
       setBiasedGames(biasedTickets);
       setPreferences({ ...preferences, biases: { ...preferences.biases, changed: false } });

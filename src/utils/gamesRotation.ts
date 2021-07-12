@@ -40,10 +40,11 @@ const pickAGame = (
     gamesInHistory: game[],
     preferences: preferences,
     filteredBiasedGames: game[],): game => {
-    if (preferences.biases.genre === bias.ignore) {
-        return pickARandomGame(gamesInRotation);
-    } else {
+    if (Object.entries(preferences.biases).some((_key, value) => value === bias.similar || bias.different)) {
         return pickABiasedGame(filteredBiasedGames, gamesInHistory);
+    } else {
+        return pickARandomGame(gamesInRotation);
+
     }
 }
 

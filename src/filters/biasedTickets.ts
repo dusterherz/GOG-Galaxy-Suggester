@@ -3,13 +3,22 @@ import { bias, biases } from "../types/preferences";
 
 export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
     let genresScore: { [key: string]: number; } = {};
+    let themesScore: { [key: string]: number; } = {};
     games.forEach(game => {
-        const hoursPlayed = Math.ceil(game.gameMinutes / (game.genres.length > 0 ? game.genres.length : 1) / 60);
+        let hoursPlayed = Math.ceil(game.gameMinutes / (game.genres.length > 0 ? game.genres.length : 1) / 60);
 
         game.genres.forEach(genre => {
             genresScore[genre] = genresScore[genre] === undefined
                 ? hoursPlayed
                 : genresScore[genre] + hoursPlayed;
+        });
+
+        hoursPlayed = Math.ceil(game.gameMinutes / (game.themes.length > 0 ? game.themes.length : 1) / 60);
+
+        game.themes.forEach(theme => {
+            themesScore[theme] = themesScore[theme] === undefined
+                ? hoursPlayed
+                : themesScore[theme] + hoursPlayed;
         })
     });
 
@@ -27,7 +36,24 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
             score = score / game.genres.length;
         }
 
-        return { game, score }
+        let finalScore = score;
+
+        score = 0;
+        if (biases.theme !== bias.ignore) {
+            game.themes.forEach(theme => {
+                score += biases.theme === bias.similar
+                    ? themesScore[theme]
+                    : -themesScore[theme];
+            });
+        }
+
+        if (game.themes.length > 0) {
+            score = score / game.themes.length;
+        }
+
+        finalScore += score;
+
+        return { game, score: finalScore }
     });
 
     gamesWithScore = normalize(gamesWithScore);
@@ -40,6 +66,7 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
     });
 
     console.log(genresScore);
+    console.log(themesScore);
     console.log(gamesWithScore);
     console.log(biasedGames);
 

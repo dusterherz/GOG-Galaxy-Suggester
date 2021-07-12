@@ -13,15 +13,6 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
         })
     });
 
-
-    // let arr = Object.values(genresScore);
-    // let max = Math.max(...arr);
-    // Object.keys(genresScore).forEach(key => {
-    //     genresScore[key] = genresScore[key] > max / 2 ? genresScore[key] : 0;
-    // });
-
-
-
     let gamesWithScore: gameWithScore[] = games.map(game => {
         let score = 0;
         if (biases.genre !== bias.ignore) {
@@ -60,7 +51,10 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
 
 const normalize = (gamesWithScore: gameWithScore[]): gameWithScore[] => {
     const minScore = Math.min(...gamesWithScore.map(x => x.score));
-    return gamesWithScore.map(x => { return { game: x.game, score: x.score - minScore + 1 } });
+    gamesWithScore = gamesWithScore.map(x => { return { game: x.game, score: x.score - minScore + 1 } });
+
+    const maxScore = Math.max(...gamesWithScore.map(x => x.score));
+    return gamesWithScore.map(x => ({ game: x.game, score: x.score > 0.75 * maxScore ? x.score : 1 }))
 }
 
 interface gameWithScore {

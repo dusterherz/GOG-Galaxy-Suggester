@@ -16,9 +16,10 @@ import Preferences from './components/Preferences/Preferences';
 import dbRowToGameDetails from './utils/dbRowToGame';
 import { readGogGames } from './utils/gogDb';
 import { game } from './types/game';
-import { allowAllFilter, ignoreAllBias, preferences } from './types/preferences';
+import { allowAllFilter, bias, ignoreAllBias, preferences } from './types/preferences';
 import { pickAGameAndRefreshRotaion, pickAGameInRotation } from './utils/gamesRotation';
 import { navigationPage } from './types/navigation';
+import { prepareBiasedTickets } from './filters/biasedTickets';
 
 
 const theme = createMuiTheme({
@@ -46,6 +47,7 @@ function App() {
   const [gamesInRotation, setGamesInRotation] = useState<game[]>([]);
   const [gamesInHistory, setGamesInHistory] = useState<game[]>([]);
   const [biasedGames, setBiasedGames] = useState<game[]>([]);
+  const [filteredBiasedGames, setFilteredBiasedGames] = useState<game[]>([]);
   const [preferences, setPreferences] = useState<preferences>(defaultPreferences);
   const [currentPage, setCurrentPage] = useState<navigationPage>(navigationPage.openFile);
 
@@ -55,7 +57,7 @@ function App() {
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));
     setAllGames(games);
 
-    const selectedGame = pickAGameAndRefreshRotaion(games, preferences, biasedGames, setGamesInRotation, setGamesInHistory);
+    const selectedGame = pickAGameAndRefreshRotaion(games, preferences, biasedGames, setGamesInRotation, setGamesInHistory, setFilteredBiasedGames);
 
     setGame(selectedGame);
     setIsLoaded(true);
@@ -79,6 +81,9 @@ function App() {
   };
 
   const handlePreferencesChanged = (newPreferences: preferences) => {
+    if (newPreferences.biases !== preferences.biases) {
+      newPreferences.biases.changed = true;
+    }
     setPreferences(newPreferences);
   };
 
@@ -90,6 +95,12 @@ function App() {
         setGame(null);
         break;
       case navigationPage.gameDetails:
+        if (preferences.biases.changed
+          && preferences.biases.genre !== bias.ignore) {
+          const biasedTickets = prepareBiasedTickets(allGames as game[], preferences.biases);
+          setBiasedGames(biasedTickets);
+          setPreferences({ ...preferences, biases: { ...preferences.biases, changed: false } });
+        }
         setNextGame();
         break;
       case navigationPage.preferences:
@@ -107,8 +118,8 @@ function App() {
     }
 
     const selectedGame = gamesInRotation.length === 0
-      ? pickAGameAndRefreshRotaion(allGames, preferences, biasedGames, setGamesInRotation, setGamesInHistory)
-      : pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, biasedGames, setGamesInRotation, setGamesInHistory);
+      ? pickAGameAndRefreshRotaion(allGames, preferences, biasedGames, setGamesInRotation, setGamesInHistory, setFilteredBiasedGames)
+      : pickAGameInRotation(gamesInRotation, gamesInHistory, preferences, filteredBiasedGames, setGamesInRotation, setGamesInHistory);
 
     setGame(selectedGame);
   };

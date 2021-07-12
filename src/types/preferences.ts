@@ -16,6 +16,7 @@ export interface filters {
 }
 
 export interface biases {
+    changed: boolean;
     genre: bias;
 }
 
@@ -42,5 +43,6 @@ export const allowAllFilter: filters = {
 };
 
 export const ignoreAllBias: biases = {
+    changed: false,
     genre: bias.ignore,
 };

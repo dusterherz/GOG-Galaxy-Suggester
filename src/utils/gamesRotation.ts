@@ -6,12 +6,14 @@ import { bias, preferences } from "../types/preferences";
 export const pickAGameAndRefreshRotaion = (
     allGames: game[],
     preferences: preferences,
-    biasedGames: game[],
+    allBiasedGames: game[],
     setGamesInRotation: (rotation: game[]) => void,
     setGamesInHistory: (history: game[]) => void,
+    setFilteredBiasedGames: (filteredBiasedGames: game[]) => void,
 ) => {
     let filteredGames = applyFilters(allGames, preferences.filters);
-    let filteredBiasedGames = applyFilters(biasedGames, preferences.filters);
+    let filteredBiasedGames = applyFilters(allBiasedGames, preferences.filters);
+    setFilteredBiasedGames(filteredBiasedGames);
 
     return pickAGameInRotation(filteredGames, [], preferences, filteredBiasedGames, setGamesInRotation, setGamesInHistory);
 };
@@ -20,11 +22,11 @@ export const pickAGameInRotation = (
     gamesInRotation: game[],
     gamesInHistory: game[],
     preferences: preferences,
-    biasedGames: game[],
+    filteredBiasedGames: game[],
     setGamesInRotation: (rotation: game[]) => void,
     setGamesInHistory: (history: game[]) => void,
 ) => {
-    const selectedGame = pickAGame(gamesInRotation, gamesInHistory, preferences, biasedGames);
+    const selectedGame = pickAGame(gamesInRotation, gamesInHistory, preferences, filteredBiasedGames);
 
     let [rotation, history] = moveGameToHistory(gamesInRotation, gamesInHistory, selectedGame);
     setGamesInRotation(rotation);

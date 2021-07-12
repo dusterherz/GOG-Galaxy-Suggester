@@ -18,6 +18,7 @@ export interface filters {
 export interface biases {
     changed: boolean;
     genre: bias;
+    theme: bias;
 }
 
 export enum bias {
@@ -45,4 +46,5 @@ export const allowAllFilter: filters = {
 export const ignoreAllBias: biases = {
     changed: false,
     genre: bias.ignore,
+    theme: bias.ignore,
 };

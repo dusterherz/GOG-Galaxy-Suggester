@@ -1,4 +1,4 @@
-import { Container, Checkbox, Grid, Typography, FormControl, FormLabel, RadioGroup, Radio } from '@material-ui/core';
+import { Container, Checkbox, Grid, Typography, Radio } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { preferencesProps } from './Preferences.types';
 import useStyles from './Preferences.styles';

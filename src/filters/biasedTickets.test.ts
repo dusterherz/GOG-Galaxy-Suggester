@@ -48,4 +48,28 @@ describe('biasedTickets', () => {
         expect(actualGames.filter(x => x.title === 'B').length).toEqual(1);
         expect(actualGames.filter(x => x.title === 'C').length).toEqual(2);
     });
+
+    it('should two games twice if similar theme and one game has a minute played with matching theme in another while third has nothing to match', () => {
+        biases.theme = bias.similar;
+        games[0].themes = ['Action'];
+        games[1].themes = ['Action'];
+        const actualGames = prepareBiasedTickets(games, biases);
+
+        expect(actualGames.length).toEqual(5);
+        expect(actualGames.filter(x => x.title === 'A').length).toEqual(2);
+        expect(actualGames.filter(x => x.title === 'B').length).toEqual(2);
+        expect(actualGames.filter(x => x.title === 'C').length).toEqual(1);
+    });
+
+    it('should promote unplayed theme if different theme and one game has a minute played with matching theme in another while third has nothing to match', () => {
+        biases.theme = bias.different;
+        games[0].themes = ['Action'];
+        games[1].themes = ['Action'];
+        const actualGames = prepareBiasedTickets(games, biases);
+
+        expect(actualGames.length).toEqual(4);
+        expect(actualGames.filter(x => x.title === 'A').length).toEqual(1);
+        expect(actualGames.filter(x => x.title === 'B').length).toEqual(1);
+        expect(actualGames.filter(x => x.title === 'C').length).toEqual(2);
+    });
 });

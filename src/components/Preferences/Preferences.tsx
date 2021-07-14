@@ -243,6 +243,20 @@ const Preferences = ({
                     preferences={preferences}
                     onPreferencesChanged={onPreferencesChanged}
                 ></Bias>
+                <Bias
+                    headerText="In Developers"
+                    name="developer"
+                    biasValue={preferences.biases.developer}
+                    preferences={preferences}
+                    onPreferencesChanged={onPreferencesChanged}
+                ></Bias>
+                <Bias
+                    headerText="In Publishers"
+                    name="publisher"
+                    biasValue={preferences.biases.publisher}
+                    preferences={preferences}
+                    onPreferencesChanged={onPreferencesChanged}
+                ></Bias>
             </Grid>
         </Container>
     );

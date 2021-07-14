@@ -4,9 +4,13 @@ import { bias, biases } from "../types/preferences";
 export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
     let genresScore: { [key: string]: number; } = {};
     let themesScore: { [key: string]: number; } = {};
+    let developersScore: { [key: string]: number; } = {};
+    let publishersScore: { [key: string]: number; } = {};
     games.forEach(game => {
         genresScore = addToAttributeScore(genresScore, game.genres, game.gameMinutes);
         themesScore = addToAttributeScore(themesScore, game.themes, game.gameMinutes);
+        developersScore = addToAttributeScore(developersScore, game.developers, game.gameMinutes);
+        publishersScore = addToAttributeScore(publishersScore, game.publishers, game.gameMinutes);
     });
 
     let gamesWithScore: gameWithScore[] = games.map(game => {
@@ -14,6 +18,8 @@ export const prepareBiasedTickets = (games: game[], biases: biases): game[] => {
 
         score += calculateGameScoreForAttribute(game.genres, biases.genre, genresScore);
         score += calculateGameScoreForAttribute(game.themes, biases.theme, themesScore);
+        score += calculateGameScoreForAttribute(game.developers, biases.developer, developersScore);
+        score += calculateGameScoreForAttribute(game.publishers, biases.publisher, publishersScore);
 
         return { game, score }
     });

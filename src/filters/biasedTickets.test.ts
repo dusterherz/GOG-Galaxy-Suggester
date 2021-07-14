@@ -72,4 +72,52 @@ describe('biasedTickets', () => {
         expect(actualGames.filter(x => x.title === 'B').length).toEqual(1);
         expect(actualGames.filter(x => x.title === 'C').length).toEqual(2);
     });
+
+    it('should two games twice if same developer and one game has a minute played with matching developer in another while third has nothing to match', () => {
+        biases.developer = bias.similar;
+        games[0].developers = ['Games.dev'];
+        games[1].developers = ['Games.dev'];
+        const actualGames = prepareBiasedTickets(games, biases);
+
+        expect(actualGames.length).toEqual(5);
+        expect(actualGames.filter(x => x.title === 'A').length).toEqual(2);
+        expect(actualGames.filter(x => x.title === 'B').length).toEqual(2);
+        expect(actualGames.filter(x => x.title === 'C').length).toEqual(1);
+    });
+
+    it('should promote unplayed developer if different developer and one game has a minute played with matching developer in another while third has nothing to match', () => {
+        biases.developer = bias.different;
+        games[0].developers = ['Games.dev'];
+        games[1].developers = ['Games.dev'];
+        const actualGames = prepareBiasedTickets(games, biases);
+
+        expect(actualGames.length).toEqual(4);
+        expect(actualGames.filter(x => x.title === 'A').length).toEqual(1);
+        expect(actualGames.filter(x => x.title === 'B').length).toEqual(1);
+        expect(actualGames.filter(x => x.title === 'C').length).toEqual(2);
+    });
+
+    it('should two games twice if same publisher and one game has a minute played with matching publisher in another while third has nothing to match', () => {
+        biases.publisher = bias.similar;
+        games[0].publishers = ['Stocks inc.'];
+        games[1].publishers = ['Stocks inc.'];
+        const actualGames = prepareBiasedTickets(games, biases);
+
+        expect(actualGames.length).toEqual(5);
+        expect(actualGames.filter(x => x.title === 'A').length).toEqual(2);
+        expect(actualGames.filter(x => x.title === 'B').length).toEqual(2);
+        expect(actualGames.filter(x => x.title === 'C').length).toEqual(1);
+    });
+
+    it('should promote unplayed publisher if different publisher and one game has a minute played with matching publisher in another while third has nothing to match', () => {
+        biases.publisher = bias.different;
+        games[0].publishers = ['Stocks inc.'];
+        games[1].publishers = ['Stocks inc.'];
+        const actualGames = prepareBiasedTickets(games, biases);
+
+        expect(actualGames.length).toEqual(4);
+        expect(actualGames.filter(x => x.title === 'A').length).toEqual(1);
+        expect(actualGames.filter(x => x.title === 'B').length).toEqual(1);
+        expect(actualGames.filter(x => x.title === 'C').length).toEqual(2);
+    });
 });

@@ -18,11 +18,11 @@ export const createGameData = ({
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',33,123123123,'{"background":null,"squareIcon":null,"verticalCover":null}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
-    '${releaseKey}',34,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":[${genres?.map(x => '"' + x + '"').join(",")}],"publishers":["Psyonix"],"releaseDate":${releaseDate === null ? 'null' : Date.parse(releaseDate?.toDateString()) / 1000},"themes":[${themes?.map(x => '"' + x + '"').join(",")}]}');
+    '${releaseKey}',34,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":[${getCommaSeparatedStrings(genres)}],"publishers":["Psyonix"],"releaseDate":${releaseDate === null ? 'null' : Date.parse(releaseDate?.toDateString()) / 1000},"themes":[${getCommaSeparatedStrings(themes)}]}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',35,123123123,'{"title":"${title}"}'); 
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
-    '${releaseKey}',101,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":[${genres?.map(x => '"' + x + '"').join(",")}],"publishers":["Psyonix"],"releaseDate":${releaseDate === null ? 'null' : Date.parse(releaseDate?.toDateString()) / 1000},"themes":[${themes?.map(x => '"' + x + '"').join(",")}]}');
+    '${releaseKey}',101,123123123,'{"criticsScore":${criticsScore},"developers":["Psyonix"],"genres":[${getCommaSeparatedStrings(genres)}],"publishers":["Psyonix"],"releaseDate":${releaseDate === null ? 'null' : Date.parse(releaseDate?.toDateString()) / 1000},"themes":[${getCommaSeparatedStrings(themes)}]}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
     '${releaseKey}',102,123123123,'{"summary":"${summary}"}');
     `, `INSERT INTO [GamePieces] ([releaseKey],[gamePieceTypeId],[userId],[value]) VALUES (
@@ -209,3 +209,7 @@ export const greyGooDefinitiveEdition_notInLibraryReleases = [`
     `, `INSERT INTO [ReleaseProperties] ([releaseKey],[isDlc],[isVisibleInLibrary],[gameId]) VALUES (
     'humble_greygoo_definitiveedition_steam',0,1,'51152934844753453');
 `];
+
+const getCommaSeparatedStrings = (items: string[] | null): string | undefined => {
+    return items?.map(x => '"' + x + '"').join(",");
+}

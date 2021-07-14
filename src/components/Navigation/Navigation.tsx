@@ -18,19 +18,19 @@ const Navigation = ({
             <AppBar position="fixed" className={classes.root}>
                 <Toolbar>
                     <Tooltip title="Open">
-                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.openFile) }}>
+                        <IconButton edge="start" color="inherit" aria-label="Open" onClick={() => { onNavigationChanged(navigationPage.openFile) }}>
                             <FolderOpenTwoToneIcon />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Next Game">
                         <div>
-                            <IconButton color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.gameDetails) }} disabled={isNextGameDisabled} data-testid='nextGameButton'>
+                            <IconButton color="inherit" aria-label="Next Game" onClick={() => { onNavigationChanged(navigationPage.gameDetails) }} disabled={isNextGameDisabled} data-testid='nextGameButton'>
                                 <RefreshTwoToneIcon />
                             </IconButton>
                         </div>
                     </Tooltip>
                     <Tooltip title="Preferences">
-                        <IconButton color="inherit" aria-label="menu" onClick={() => { onNavigationChanged(navigationPage.preferences) }}>
+                        <IconButton color="inherit" aria-label="Preferences" onClick={() => { onNavigationChanged(navigationPage.preferences) }}>
                             <TuneTwoToneIcon />
                         </IconButton>
                     </Tooltip>

@@ -33,7 +33,7 @@ const Bias = ({
                         onChange={handleBiasChange}
                         value={bias.ignore}
                         name={`${name}-ignore`}
-                        inputProps={{ 'aria-label': 'Ignore' }}
+                        inputProps={{ 'aria-label': `Ignore ${name}` }}
                     />
                 }
                     label='Ignore'
@@ -46,7 +46,7 @@ const Bias = ({
                         onChange={handleBiasChange}
                         value={bias.similar}
                         name={`${name}-similar`}
-                        inputProps={{ 'aria-label': 'Similar' }}
+                        inputProps={{ 'aria-label': `Similar ${name}` }}
                     />
                 }
                     label='Similar'
@@ -59,7 +59,7 @@ const Bias = ({
                         onChange={handleBiasChange}
                         value={bias.different}
                         name={`${name}-different`}
-                        inputProps={{ 'aria-label': 'Different' }}
+                        inputProps={{ 'aria-label': `Different ${name}` }}
                     />
                 }
                     label='Different'

@@ -71,7 +71,7 @@ const normalize = (gamesWithScore: gameWithScore[]): gameWithScore[] => {
     gamesWithScore = gamesWithScore.map(x => { return { game: x.game, score: x.score - minScore + 1 } });
 
     const maxScore = Math.max(...gamesWithScore.map(x => x.score));
-    return gamesWithScore.map(x => ({ game: x.game, score: x.score > 0.75 * maxScore ? x.score : 1 }))
+    return gamesWithScore.map(x => ({ game: x.game, score: x.score > 0.1 * maxScore ? x.score : 1 }))
 }
 
 const createBiasedTickets = (gamesWithScore: gameWithScore[]) => {

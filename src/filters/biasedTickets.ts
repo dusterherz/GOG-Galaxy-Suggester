@@ -53,7 +53,7 @@ const calculateGameScoreForAttribute = (attributes: string[], attributeBias: bia
     let score = 0;
     if (attributeBias !== bias.ignore) {
         attributes.forEach(attribute => {
-            score += attributeBias === bias.similar
+            score += attributeBias === bias.same
                 ? attributeScore[attribute]
                 : -attributeScore[attribute];
         });

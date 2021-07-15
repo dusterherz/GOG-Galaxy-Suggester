@@ -20,7 +20,7 @@ describe("Preferences on genre bias", () => {
   });
 
   it("should bias for games with played genre", () => {
-    cy.findByRole("radio", { name: "Similar genre" }).click();
+    cy.findByRole("radio", { name: "Same genre" }).click();
 
     cy.findByRole("button", { name: "Next Game" }).click();
     cy.findByText("Played genre").should("exist");

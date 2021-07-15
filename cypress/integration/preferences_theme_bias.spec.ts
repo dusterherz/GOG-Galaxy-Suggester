@@ -20,7 +20,7 @@ describe("Preferences on theme bias", () => {
   });
 
   it("should bias for games with played theme", () => {
-    cy.findByRole("radio", { name: "Similar theme" }).click();
+    cy.findByRole("radio", { name: "Same theme" }).click();
 
     cy.findByRole("button", { name: "Next Game" }).click();
     cy.findByText("Played theme").should("exist");

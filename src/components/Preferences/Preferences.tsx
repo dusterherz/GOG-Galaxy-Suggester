@@ -230,28 +230,28 @@ const Preferences = ({
                 </Grid>
                 <Grid item xs={12} ><Typography variant='h5'>Depending on what you play, pick games that are...</Typography></Grid>
                 <Bias
-                    headerText="In Genre"
+                    headerText="Genre"
                     name="genre"
                     biasValue={preferences.biases.genre}
                     preferences={preferences}
                     onPreferencesChanged={onPreferencesChanged}
                 ></Bias>
                 <Bias
-                    headerText="In Theme"
+                    headerText="Theme"
                     name="theme"
                     biasValue={preferences.biases.theme}
                     preferences={preferences}
                     onPreferencesChanged={onPreferencesChanged}
                 ></Bias>
                 <Bias
-                    headerText="In Developers"
+                    headerText="Developers"
                     name="developer"
                     biasValue={preferences.biases.developer}
                     preferences={preferences}
                     onPreferencesChanged={onPreferencesChanged}
                 ></Bias>
                 <Bias
-                    headerText="In Publishers"
+                    headerText="Publishers"
                     name="publisher"
                     biasValue={preferences.biases.publisher}
                     preferences={preferences}

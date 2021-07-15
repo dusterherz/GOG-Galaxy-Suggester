@@ -42,14 +42,14 @@ const Bias = ({
             <Grid item xs={4} >
                 <FormControlLabel control={
                     <Radio
-                        checked={biasValue === bias.similar}
+                        checked={biasValue === bias.same}
                         onChange={handleBiasChange}
-                        value={bias.similar}
-                        name={`${name}-similar`}
-                        inputProps={{ 'aria-label': `Similar ${name}` }}
+                        value={bias.same}
+                        name={`${name}-same`}
+                        inputProps={{ 'aria-label': `Same ${name}` }}
                     />
                 }
-                    label='Similar'
+                    label='Same'
                 />
             </Grid>
             <Grid item xs={4} >

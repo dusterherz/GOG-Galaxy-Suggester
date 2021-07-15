@@ -40,7 +40,7 @@ const pickAGame = (
     gamesInHistory: game[],
     preferences: preferences,
     filteredBiasedGames: game[],): game => {
-    if (Object.entries(preferences.biases).some((entry) => entry[1] === bias.similar || entry[1] === bias.different)) {
+    if (Object.entries(preferences.biases).some((entry) => entry[1] === bias.same || entry[1] === bias.different)) {
         return pickABiasedGame(filteredBiasedGames, gamesInHistory);
     } else {
         return pickARandomGame(gamesInRotation);

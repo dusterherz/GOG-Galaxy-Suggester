@@ -25,7 +25,7 @@ export interface biases {
 
 export enum bias {
     ignore,
-    similar,
+    same,
     different,
 }
 

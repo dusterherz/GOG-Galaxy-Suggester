@@ -20,7 +20,7 @@ describe("Preferences on developer bias", () => {
   });
 
   it("should bias for games with played developer", () => {
-    cy.findByRole("radio", { name: "Similar developer" }).click();
+    cy.findByRole("radio", { name: "Same developer" }).click();
 
     cy.findByRole("button", { name: "Next Game" }).click();
     cy.findByText("Played developer").should("exist");

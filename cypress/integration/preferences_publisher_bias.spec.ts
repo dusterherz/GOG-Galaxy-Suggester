@@ -20,7 +20,7 @@ describe("Preferences on publisher bias", () => {
   });
 
   it("should bias for games with played publisher", () => {
-    cy.findByRole("radio", { name: "Similar publisher" }).click();
+    cy.findByRole("radio", { name: "Same publisher" }).click();
 
     cy.findByRole("button", { name: "Next Game" }).click();
     cy.findByText("Played publisher").should("exist");

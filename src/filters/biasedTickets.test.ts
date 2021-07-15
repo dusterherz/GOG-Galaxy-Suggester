@@ -25,8 +25,8 @@ describe('biasedTickets', () => {
         expect(actualGames).toEqual(games);
     });
 
-    it('should two games twice if similar genre and one game has a minute played with matching genre in another while third has nothing to match', () => {
-        biases.genre = bias.similar;
+    it('should two games twice if same genre and one game has a minute played with matching genre in another while third has nothing to match', () => {
+        biases.genre = bias.same;
         games[0].genres = ['RPG'];
         games[1].genres = ['RPG'];
         const actualGames = prepareBiasedTickets(games, biases);
@@ -49,8 +49,8 @@ describe('biasedTickets', () => {
         expect(actualGames.filter(x => x.title === 'C').length).toEqual(2);
     });
 
-    it('should two games twice if similar theme and one game has a minute played with matching theme in another while third has nothing to match', () => {
-        biases.theme = bias.similar;
+    it('should two games twice if same theme and one game has a minute played with matching theme in another while third has nothing to match', () => {
+        biases.theme = bias.same;
         games[0].themes = ['Action'];
         games[1].themes = ['Action'];
         const actualGames = prepareBiasedTickets(games, biases);
@@ -74,7 +74,7 @@ describe('biasedTickets', () => {
     });
 
     it('should two games twice if same developer and one game has a minute played with matching developer in another while third has nothing to match', () => {
-        biases.developer = bias.similar;
+        biases.developer = bias.same;
         games[0].developers = ['Games.dev'];
         games[1].developers = ['Games.dev'];
         const actualGames = prepareBiasedTickets(games, biases);
@@ -98,7 +98,7 @@ describe('biasedTickets', () => {
     });
 
     it('should two games twice if same publisher and one game has a minute played with matching publisher in another while third has nothing to match', () => {
-        biases.publisher = bias.similar;
+        biases.publisher = bias.same;
         games[0].publishers = ['Stocks inc.'];
         games[1].publishers = ['Stocks inc.'];
         const actualGames = prepareBiasedTickets(games, biases);

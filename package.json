@@ -46,7 +46,7 @@
     "@testing-library/user-event": "^13.2.0",
     "@types/jest": "^26.0.24",
     "@types/sql.js": "^1.0.3",
-    "cypress": "^7.6.0",
+    "cypress": "^8.0.0",
     "cypress-file-upload": "^5.0.8",
     "copy-webpack-plugin": "6.4.1",
     "gh-pages": "^3.2.3",

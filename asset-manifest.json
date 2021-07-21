@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/GOG-Galaxy-Suggester/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/GOG-Galaxy-Suggester/static/js/main.bdf40aed.chunk.js",
-    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.bdf40aed.chunk.js.map",
+    "main.js": "/GOG-Galaxy-Suggester/static/js/main.ed459028.chunk.js",
+    "main.js.map": "/GOG-Galaxy-Suggester/static/js/main.ed459028.chunk.js.map",
     "runtime-main.js": "/GOG-Galaxy-Suggester/static/js/runtime-main.bc909f24.js",
     "runtime-main.js.map": "/GOG-Galaxy-Suggester/static/js/runtime-main.bc909f24.js.map",
     "static/js/2.3914d1e2.chunk.js": "/GOG-Galaxy-Suggester/static/js/2.3914d1e2.chunk.js",
@@ -22,13 +22,13 @@
     "static/media/pasteAndOpen.8950bedd.jpg": "/GOG-Galaxy-Suggester/static/media/pasteAndOpen.8950bedd.jpg",
     "static/media/playstation.79bc1e4b.svg": "/GOG-Galaxy-Suggester/static/media/playstation.79bc1e4b.svg",
     "static/media/steam.9258aedf.svg": "/GOG-Galaxy-Suggester/static/media/steam.9258aedf.svg",
-    "static/media/uplay.3858a744.svg": "/GOG-Galaxy-Suggester/static/media/uplay.3858a744.svg",
+    "static/media/ubisoft.f02cfa3a.svg": "/GOG-Galaxy-Suggester/static/media/ubisoft.f02cfa3a.svg",
     "static/media/xbox.41ec052c.svg": "/GOG-Galaxy-Suggester/static/media/xbox.41ec052c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.bc909f24.js",
     "static/js/2.3914d1e2.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.bdf40aed.chunk.js"
+    "static/js/main.ed459028.chunk.js"
   ]
 }

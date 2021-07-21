@@ -13,7 +13,7 @@ import { ReactComponent as OriginIcon } from './icons/origin.svg'
 import { ReactComponent as ParadoxIcon } from './icons/paradox.svg'
 import { ReactComponent as PlayStationIcon } from './icons/playstation.svg'
 import { ReactComponent as SteamIcon } from './icons/steam.svg'
-import { ReactComponent as UplayIcon } from './icons/uplay.svg'
+import { ReactComponent as UbisoftIcon } from './icons/ubisoft.svg'
 import { ReactComponent as XboxIcon } from './icons/xbox.svg'
 import { ReactComponent as DefaultIcon } from './icons/default.svg'
 import { IconButton } from '@material-ui/core';
@@ -58,8 +58,8 @@ function pickIcon(platform: string) {
             return { icon: PlayStationIcon };
         case 'Steam':
             return { icon: SteamIcon };
-        case 'Uplay':
-            return { icon: UplayIcon };
+        case 'Ubisoft Connect':
+            return { icon: UbisoftIcon, size: 32 };
         case 'Xbox Live':
             return { icon: XboxIcon };
         default:

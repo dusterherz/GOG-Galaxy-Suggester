@@ -9,7 +9,7 @@ describe('readablePlatformName', () => {
         ['psn', 'PlayStation Network'],
         ['xboxone', 'Xbox Live'],
         ['origin', 'Origin'],
-        ['uplay', 'Uplay'],
+        ['uplay', 'Ubisoft Connect'],
         ['battlenet', 'Battle.net'],
         ['epic', 'Epic Games Store'],
         ['bethesda', 'Bethesda.net'],

@@ -50,9 +50,9 @@ describe('PlatformIcon should', () => {
         expect(screen.queryByTitle('Steam')).toBeInTheDocument();
     });
 
-    it('show Uplay icon when platform is Uplay', () => {
+    it('show Ubisoft icon when platform is uplay', () => {
         render(<PlatformIcon releaseKey={'uplay_213'}></PlatformIcon>);
-        expect(screen.queryByTitle('Uplay')).toBeInTheDocument();
+        expect(screen.queryByTitle('Ubisoft Connect')).toBeInTheDocument();
     });
 
     it('show Xbox icon when platform is Xbox Live', () => {

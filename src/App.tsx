@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { purple, teal } from '@material-ui/core/colors';
 import Paper from '@material-ui/core/Paper';
-import { SqlJs } from 'sql.js/module';
+import { QueryExecResult }  from 'sql.js';
 
 import Background from './components/Background/Background';
 import Error from './components/Error/Error';
@@ -51,7 +51,7 @@ function App() {
   const [preferences, setPreferences] = useState<preferences>(defaultPreferences);
   const [currentPage, setCurrentPage] = useState<navigationPage>(navigationPage.openFile);
 
-  const handleGogRead = (queryResults: SqlJs.QueryResults) => {
+  const handleGogRead = (queryResults: QueryExecResult) => {
     let rows = queryResults.values;
 
     let games = rows.map(x => dbRowToGameDetails(x, queryResults.columns));

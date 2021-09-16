@@ -1,9 +1,9 @@
-import { SqlJs } from "sql.js/module";
+import { Database } from "sql.js";
 import initSqlJs from "sql.js";
 import readFileAsync from "./readFileAsync";
 
 
-let db: SqlJs.Database;
+let db: Database;
 initSqlJs();
 
 const id = (type: string) => {

@@ -1,11 +1,11 @@
-import { SqlJs } from 'sql.js/module';
+import { SqlValue } from 'sql.js';
 import { game } from '../types/game';
 
 const columnIndexFromName = (columns: string[], name: string) => {
     return columns.indexOf(name) as number;
 };
 
-const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
+const parseGamePiece = (valueType: SqlValue[], columnIndex: number) => {
     let gamePieceJson = valueType[columnIndex];
     if (typeof gamePieceJson !== "string") {
         throw new Error('unexpected type');
@@ -14,7 +14,7 @@ const parseGamePiece = (valueType: SqlJs.ValueType[], columnIndex: number) => {
     return JSON.parse(gamePieceJson);
 };
 
-const dbRowToGame = (row: SqlJs.ValueType[], columns: string[]) => {
+const dbRowToGame = (row: SqlValue[], columns: string[]) => {
     let releaseKeys = (row[columnIndexFromName(columns, 'releaseKeys')] as string)
         .split(',');
 

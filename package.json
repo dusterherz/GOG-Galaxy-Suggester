@@ -50,7 +50,7 @@
     "cypress": "^8.4.1",
     "cypress-file-upload": "^5.0.8",
     "gh-pages": "^3.2.3",
-    "jest-each": "^27.2.2",
+    "jest-each": "^27.2.4",
     "react-app-rewired": "^2.1.8",
     "typescript": "^4.4.3",
     "webpack": "4.44.2"

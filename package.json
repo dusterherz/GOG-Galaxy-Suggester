@@ -47,7 +47,7 @@
     "@types/jest": "^27.0.2",
     "@types/sql.js": "^1.4.3",
     "copy-webpack-plugin": "6.4.1",
-    "cypress": "^8.6.0",
+    "cypress": "^8.7.0",
     "cypress-file-upload": "^5.0.8",
     "gh-pages": "^3.2.3",
     "jest-each": "^27.3.1",

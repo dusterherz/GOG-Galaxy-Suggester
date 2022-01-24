@@ -52,7 +52,7 @@
     "gh-pages": "^3.2.3",
     "jest-each": "^27.4.6",
     "react-app-rewired": "^2.1.11",
-    "typescript": "^4.5.4",
+    "typescript": "^4.5.5",
     "webpack": "4.44.2"
   }
 }

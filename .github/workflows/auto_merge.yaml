@@ -7,7 +7,13 @@ jobs:
     name: Auto-merge
     runs-on: ubuntu-latest
     steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: "${{ secrets.LITTLE_BUDDY_APP_ID }}"
+          private_key: "${{ secrets.LITTLE_BUDDY_PRIVATE_KEY }}"
       - uses: koj-co/dependabot-pr-action@v1.1.12
         with:
-          token: ${{ secrets.AUTO_MERGE_TOKEN }}
+          token: ${{ steps.generate_token.outputs.token }}
           merge: true

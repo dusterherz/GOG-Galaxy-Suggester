@@ -2,17 +2,16 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - run: npm ci
-    - run: npm test
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm test
 
   cypress-test:
     runs-on: ubuntu-latest
@@ -21,10 +20,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           start: npm start
-          wait-on: 'http://localhost:3000'
+          wait-on: "http://localhost:3000"
       - uses: actions/upload-artifact@v1
         if: failure()
         with:
@@ -41,12 +40,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2    
-    - run: npm ci
-    - run: npm run build
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-      
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

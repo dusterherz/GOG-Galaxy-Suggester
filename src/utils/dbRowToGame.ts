@@ -23,10 +23,10 @@ const dbRowToGame = (row: SqlValue[], columns: string[]) => {
     let images = parseGamePiece(row, columnIndexFromName(columns, 'images'));
 
     let game: game = {
-        title: parseGamePiece(row, columnIndexFromName(columns, 'title')).title,
-        summary: parseGamePiece(row, columnIndexFromName(columns, 'summary')).summary
-            .split('\r\n').join('\\n')
-            .split('\n').join('\\n'),
+        title: parseGamePiece(row, columnIndexFromName(columns, 'title'))?.title,
+        summary: parseGamePiece(row, columnIndexFromName(columns, 'summary'))?.summary
+            ?.split('\r\n')?.join('\\n')
+            ?.split('\n')?.join('\\n'),
         releaseKeys: releaseKeys,
         criticsScore: metadata.criticsScore,
         developers: metadata.developers,
